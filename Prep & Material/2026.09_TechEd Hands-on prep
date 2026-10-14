@@ -1,0 +1,89 @@
+## @Team Brain Ingestion skill: transfer content into .md file. Group information by area, and implement simple formatting for for headers. Leave details ##
+
+TechEd 2026 Berlin 
+Test Managmeent Assistant hands-on system information
+
+Access: 
+BTP System: https://emea.cockpit.btp.cloud.sap/cockpit?idp=tdct3ched1.accounts.ondemand.com#/globalaccount/4a4d94b7-7273-428b-8132-3b7af29312bb
+
+QU: Will all users have to go through the btp UI or do they directly get to the CALM UI?
+
+BTP/BAIP:
+BTP/BAIP Subaccount: TM261
+
+Admin: 
+tm261-000@education.cloud.sap
+PASS: Adm1nteched26
+
+Participants: 
+tm261-001@education.cloud.sap
+...
+tm261-041@education.cloud.sap
+
+tm261-094@education.cloud.sap
+
+tm261-099@education.cloud.sap
+
+PASS: Acce$$teched26
+
+Access via default IDP(accounts.sap.com) still possible but will be disabled before the event to avoid pop-ups.
+Users: 
+- via custom IAS/CIS 
+- 41 pre-created Users (40 for participants 1 for testing) 
+- be restrictive with the authorization to make sure that participants do not mess up the system.
+
+Roles: 
+- role-collection: TM261_Participant; TM261_Inst (admin)
+Just add all the roles you need for the session to those collections as needed.
+
+S/4HANA systems: 
+Source-ip-filter --> accessible only from SAP Office or when testing from virtual Frontend
+On-site the systems will be reachable from all virtual frontends.
+
+Front-End:
+SID: MG4
+Client:001
+Hostname: flp.tdc.sap.com
+Nr: 00
+
+User: TM261
+Initial password: Welcome1
+
+Back-End:
+SID: HE4
+Client:400
+Hostname: s4hana.tdc.sap.com
+Nr: 00
+
+User: TM261
+Initial password: Welcome1
+
+
+BC_TOOLS_USER --> copy a reference user as often as you want.
+
+Support:
+ticket via https://url.sap/16h8dn (Request Type: TechEd Event Request)
+Mail to DL SAP TechEd HO IT Support. 
+
+ ***
+QUs
+OPEN
+1. Signavio tenant - 
+	- 2026.10.08 not deployed. 
+	- how does it play into the scenario - essential or we use a "standard" process?		
+2. additional Users (40-50 ) --> not yet created
+3. additional users (90s range) --> created 
+4. "transcript to requirements" Ai feature: 2026.10.12: AI feature ID not activated, in contact with Daniel. 
+5. which business process do we want to use? 
+	- cf (1) Signavio dependendy (customer/standard process). 
+	- currently working on BKJ (from "public POC" script)
+6. smoke test: initially failed despite all prerequisites done/well formed. Issues:
+	- agents can't process standard best practise processes. Workaround: take a standar BPMN, copy it, go into edit mode, make any change to the BPMN, and store it under a new name (preferably, starting with "Custom".
+	- assigning the adequate "solution scenario" did not work. Due to (too many?) roles, the admin user did not get to see or could not create Solution scenario "custom" which is a prerequisite (together with the above described BPMN variant.
+	- normal user has restrictions: 
+		- cannot create project
+		- cannot see user stories 
+		- cannot see requirements (unless linked to a process? not sure)
+
+DONE
+6. sm
