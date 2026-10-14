@@ -1,0 +1,6 @@
+# hands-on-recorder
+.env
+.env-auth-state-*
+.venv/
+__pycache__/
+*.pyc

@@ -1,0 +1,11 @@
+{
+  "browser": {
+    "launchOptions": {
+      "args": [
+        "--hide-crash-restore-bubble",
+        "--disable-session-crashed-bubble",
+        "--disable-infobars"
+      ]
+    }
+  }
+}
