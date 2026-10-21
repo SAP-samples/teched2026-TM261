@@ -1,4 +1,4 @@
-# Chapter 5 – Preparation Agent: Test Cases
+# Chapter 5 – Generate Test Cases
 
 **Prerequisite:** You have completed [Chapter 4](../ex3/README.md); a confirmed test plan exists for the BJ5 process, and test case generation has been triggered and is running in the background.
 
@@ -19,7 +19,7 @@ The Preparation Agent is now in its second phase. Having cleared HITL Gate 2 wit
 - **Output**: Complete, traceable test cases written to Cloud ALM Test Management, ready for review and execution.
 
 <br><img src="images/ex4_01_tc_agent_phase2.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>01 – Preparation Agent Phase 2: test case generation pipeline</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>34 – Preparation Agent Phase 2: test case generation pipeline</em></p>
 
 > ⏱️ **While the agent works: try it yourself:**
 >
@@ -69,12 +69,12 @@ By now the test cases should be ready. Time to see what the agent produced.
 While you were working on your manual test case, the generation agent was completing its work in the background. SAP Cloud ALM sends an in-app notification for each test case created. You will see a badge on the **notifications bell** in the top-right corner of the screen.
 
 <br><img src="images/ex4_02_notifications_button.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>02 – Notification badge: test cases created</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>35 – Notification badge: test cases created</em></p>
 
 Close the Joule panel first, then click the **notifications bell**. An overlay opens showing one entry per test case, with the test case name and a timestamp.
 
 <br><img src="images/ex4_03_notifications_overlay.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>03 – Notification overlay: one entry per generated test case</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>36 – Notification overlay: one entry per generated test case</em></p>
 
 **Opening and browsing a test case**
 
@@ -86,7 +86,7 @@ Click on any notification to open the test case directly in the SAP Cloud ALM Te
 - The **References** tab: any EARL standard content applied
 
 <br><img src="images/ex4_04_tc_detail.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>04 – Test case detail: Content tab with purpose, acceptance criteria, and test steps</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>37 – Test case detail: Content tab with purpose, acceptance criteria, and test steps</em></p>
 
 **Quality check**
 
@@ -119,4 +119,4 @@ The Preparation Agent's Phase 2 wrote detailed, executable test cases for the fu
 - [x] Quality criteria checked: role assignment, step clarity, traceability, expected results
 - [ ] Test data values: parameter placeholders identified; to be resolved in Chapter 6
 
-Continue to [Chapter 6 – Test Data Management Agent](../ex5/README.md)
+Continue to [Chapter 6 – Generate Test Data](../ex5/README.md)

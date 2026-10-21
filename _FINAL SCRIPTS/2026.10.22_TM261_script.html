@@ -14,40 +14,9 @@ code{background:#f4f4f4;padding:1px 4px;border-radius:3px;font-size:9.5pt}
 pre{background:#f4f4f4;padding:1em;border-radius:4px;overflow-x:auto}
 hr{border:none;border-top:1px solid #ccc;margin:2em 0}
 details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw"><h1>TM261 – Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM</h1>
-<p><strong>Presenter Script – Full Session</strong></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Session</strong></td>
-<td>TM261 – Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM</td>
-</tr>
-<tr>
-<td><strong>Date</strong></td>
-<td>Thursday, 29 October 2026</td>
-</tr>
-<tr>
-<td><strong>Location</strong></td>
-<td>SAP TechEd 2026, Berlin</td>
-</tr>
-<tr>
-<td><strong>Presenters</strong></td>
-<td>Christina Pickhardt · Niclas Weidner · Tobias Keller</td>
-</tr>
-<tr>
-<td><strong>Scenario</strong></td>
-<td>Sales Order Processing with Customer Down Payment (BKJ)</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>This file is the compiled presenter script. Source of truth lives in the individual exercise READMEs under . Images are referenced relative to the repo root.</p>
-</blockquote>
+<p><strong>Date:</strong> Thursday, 29 October 2026 · SAP TechEd 2026, Berlin<br />
+<strong>Presenters:</strong> Christina Pickhardt · Niclas Weidner · Tobias Keller · Daniel Lorenz<br />
+<strong>Scenario:</strong> Make-to-Stock Production – Discrete Manufacturing (BJ5)</p>
 <hr />
 <h2>Agenda</h2>
 <table>
@@ -62,58 +31,54 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 <tr>
 <td>–</td>
 <td>Introduction</td>
-<td>SAP Migration &amp; Modernization Assistants: context</td>
-</tr>
-<tr>
-<td>–</td>
-<td>Introduction</td>
-<td>Test Management Assistant: agent architecture overview</td>
-</tr>
-<tr>
-<td>0</td>
-<td>Getting Started</td>
-<td>Log In &amp; Orient Yourself · Steps 1–4C</td>
+<td>Test Management Assistant: context and agent overview</td>
 </tr>
 <tr>
 <td>1</td>
-<td>Generate Requirements</td>
-<td>Turn an interview transcript into requirements with AI · Step 5</td>
+<td>Getting Started</td>
+<td>Log In &amp; Orient Yourself</td>
 </tr>
 <tr>
 <td>2</td>
-<td>Scope with AI</td>
-<td>Scoping agent; compare with manual scoping · Steps 6–10</td>
+<td>Generate Requirements</td>
+<td>Turn an interview transcript into requirements with AI</td>
 </tr>
 <tr>
 <td>3</td>
-<td>Plan with AI</td>
-<td>Planning agent; HITL Gate 2; review · Steps 11–14</td>
+<td>Scope with AI</td>
+<td>Scoping agent; compare with manual scoping</td>
 </tr>
 <tr>
 <td>4</td>
-<td>Generate Test Cases</td>
-<td>TC generation agent; quality review; parameters · Steps 15–18</td>
+<td>Plan with AI</td>
+<td>Planning agent; HITL Gate 2; review</td>
 </tr>
 <tr>
 <td>5</td>
-<td>Generate Test Data</td>
-<td>Data agent; classify &amp; explore; dependencies · Steps 19–23</td>
+<td>Generate Test Cases</td>
+<td>TC generation agent; quality review; parameters</td>
 </tr>
 <tr>
 <td>6</td>
+<td>Generate Test Data</td>
+<td>Data agent; classify &amp; explore; dependencies</td>
+</tr>
+<tr>
+<td>7</td>
 <td>Recap &amp; Outlook</td>
-<td>Time saved; roadmap; key takeaways · Steps 24–26</td>
+<td>Time saved; roadmap; key takeaways</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2>Introduction – SAP Migration &amp; Modernization Assistants</h2>
-<blockquote>
-<p><strong>Presenter narration:</strong> Before we jump into the hands-on, a quick word on context, because what you're about to use is not an isolated feature.</p>
-</blockquote>
-<p>SAP Cloud ALM Joule is the home of the <strong>Test Management Assistant</strong>: one of <strong>seven</strong> AI-powered assistants SAP is building for Migration and Modernization scenarios:</p>
-<p><br><img src="images/intro_7_assistants.png" /></p>
-<p><strong>Why AI matters for test management specifically:</strong></p>
+<h1>Introduction: Test Management Assistant</h1>
+<p><strong>Context – SAP Migration &amp; Modernization Assistants</strong></p>
+<p>Before we jump into the hands-on, a quick word on context, because what you're about to use is not an isolated feature.</p>
+<p>SAP has developed seven AI-powered assistants for Migration and Modernization scenarios, built to help customers move from SAP ECC to S/4HANA Cloud Private Edition faster and with significantly less manual effort:</p>
+<p><br><img src="exercises/ex_intro/images/intro_7_assistants.png" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>01 – Seven SAP Migration & Modernization Assistants</em></p>
+
+<p>The <strong>Test Management Assistant</strong> is one of these seven, and test management is an area where the shift from manual to AI-driven work matters most:</p>
 <table>
 <thead>
 <tr>
@@ -123,7 +88,7 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 </thead>
 <tbody>
 <tr>
-<td>E2E Test Management is still heavily dependent upon business and IT personal; it's a cost driver for transitions.</td>
+<td>E2E Test Management is still heavily dependent upon business and IT personnel; it's a cost driver for transitions.</td>
 <td>AI automates test scope, cases, data, execution and validation across the test stages.</td>
 </tr>
 <tr>
@@ -132,65 +97,28 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>The Test Management Assistant is the one you're working with today. It sits at the quality gate of every migration, and as you'll see, it's where AI can compress days of manual work into minutes of guided review.</p>
-</blockquote>
-<hr />
-<h2>Introduction – Test Management Assistant: Agent Architecture</h2>
-<blockquote>
-<p><strong>Presenter narration:</strong> The Test Management Assistant is not a single AI feature; it's a pipeline of four specialized agents, each transforming manual work into an AI-driven capability.</p>
-</blockquote>
-<p><strong>The challenge each agent addresses:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Current State (Manual)</th>
-<th>Agent</th>
-<th>Future State (AI-driven)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Manual selection and management of scope-related artefacts</td>
-<td><strong>Scoping</strong></td>
-<td>Intelligent determination of test scope context</td>
-</tr>
-<tr>
-<td>Manual creation of test cases by power users</td>
-<td><strong>Preparation</strong></td>
-<td>Automated creation of test cases</td>
-</tr>
-<tr>
-<td>Manual selection and creation of required test data</td>
-<td><strong>Data Mgmt.</strong></td>
-<td>Zero-touch test data automation <em>(partly available)</em></td>
-</tr>
-<tr>
-<td>Manual execution of test cases by huge groups of testers</td>
-<td><strong>Execution Mgmt.</strong></td>
-<td>Agent-led orchestration of execution and defect handling <em>(planned)</em></td>
-</tr>
-</tbody>
-</table>
+<p>The TMA targets the upstream side of this: the preparation of manual end-to-end testing. It sits at the quality gate of every migration, and as you'll see today, it's where AI can compress days of manual work into minutes of guided review.</p>
+<h2>What is the Test Management Assistant?</h2>
+<p>The Test Management Assistant is not a single AI feature; it's a pipeline of four specialized agents, each transforming a stage of manual test preparation into an AI-driven capability:</p>
+<p><br><img src="exercises/ex_intro/images/intro_agent_architecture.png" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>02 – Test Management Assistant: four-agent pipeline</em></p>
+
 <blockquote>
 <p><strong>Today's hands-on covers the first three agents</strong>: Scoping, Preparation, and Data Management. Execution Management is on the roadmap.</p>
 <p><em>* Partly available and **planned functionality. Subject to change by SAP at any time without notice.</em></p>
 </blockquote>
-<p><br><img src="images/intro_agent_architecture.png" /></p>
+<p>Continue to <a href="../ex0/README.md">Chapter 1 – Getting Started</a></p>
 <hr />
-<h1>Chapter 1 – Orientation</h1>
-<p><strong>Session:</strong> TM261 – Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM<br />
-<strong>Date:</strong> Thursday, 29 October 2026 · SAP TechEd 2026, Berlin<br />
-<strong>Presenters:</strong> Christina Pickhardt · Niclas Weidner · Tobias Keller<br />
-<strong>Scenario:</strong> Make-to-Stock Production – Discrete Manufacturing (BJ5)</p>
+<p>← Back to <a href="../ex_intro/README.md">Introduction</a></p>
+<h1>Chapter 1 – Getting Started</h1>
 <hr />
 <h2>Your Story Today</h2>
-<p>You are a <strong>Test Business Process Expert</strong> at a company that just activated SAP S/4HANA Scope Item BJ5: Make-to-Stock Production – Discrete Manufacturing. Your task: <strong>prepare test coverage for the new process</strong> from scratch.</p>
+<p>You are a <strong>Test Business Process Expert</strong> at a company rolling out SAP S/4HANA. As part of that rollout, your team activated SAP S/4HANA Scope Item BJ5: Make-to-Stock Production – Discrete Manufacturing, and adapted it to fit your specific operational needs; creating a custom process variant called <strong>BJ5_simple</strong>. Your task today: <strong>prepare test coverage for this process, with a focus on validating the role assignments and workflow changes</strong> that came with the customisation. You're starting from scratch.</p>
 <p>In this hands-on you'll work with AI agents in SAP Cloud ALM Test Management to speed up every stage, from requirements to test data, dramatically reducing the manual effort that would normally take days.</p>
 <hr />
 <h2>1.1 – Log In to SAP Cloud ALM</h2>
-<p>You are a business and process expert at a large multinational corporation. It's the start of your work day, and you have an important task on your agenda: preparing test coverage for a newly activated SAP process.</p>
-<p>Open your browser. The SAP Cloud ALM login page is already loaded.</p>
+<p>It's the start of your work day, and preparing test coverage for the newly customised process is on your agenda. SAP Cloud ALM Test Management is where this work happens: the platform where you plan, execute, and track test projects end to end, with every test artifact traceable back to requirements, providing documented assurance of what has been validated and why.</p>
+<p>Open your browser and navigate to the Cloud ALM tenant.</p>
 <blockquote>
 <p><strong>Your credentials:</strong></p>
 <table>
@@ -202,230 +130,169 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 </thead>
 <tbody>
 <tr>
-<td>User</td>
+<td><strong>Tenant</strong></td>
+<td><a href="https://tm261-000-l2fw0ndj.eu10-004.alm.cloud.sap/launchpad">SAP Cloud ALM (TM261)</a></td>
+</tr>
+<tr>
+<td><strong>User</strong></td>
 <td><code>tm261-###@education.cloud.sap</code></td>
 </tr>
 <tr>
-<td>Password</td>
+<td><strong>Password</strong></td>
 <td><code>Acce$$teched26</code></td>
 </tr>
 </tbody>
 </table>
-<p>Replace <strong>###</strong> with your <strong>workstation number</strong> (shown on your desk), for example: 001, 018, 042. This number is yours for the entire session; it identifies your personal data and work in the shared system.</p>
+<p>Replace <strong>###</strong> with your workstation number, zero-padded to three digits: desk 3 → <code>003</code>, desk 18 → <code>018</code>, desk 42 → <code>042</code>. Your number is on the tent card on your desk.</p>
+<p>Whenever you see <code>###</code> in a field value, filename, or prompt in this guide, that's your cue to substitute your own number. Screenshots in this guide use <code>099</code> as the example; wherever you see <code>099</code>, read it as your own number.</p>
 </blockquote>
-<ol>
-<li>
-<p>Confirm the tenant name on the left reads <strong>SAP Cloud ALM (TM261_000)</strong>: this is the shared demo system for this session.</p>
-</li>
-<li>
-<p>Enter your username and password, then click <strong>Log On</strong>.</p>
-</li>
-</ol>
+<p><strong>1.</strong> Enter your username and password, then click <strong>Log On</strong>.</p>
 <p><br><img src="exercises/ex0/images/ex0_01_login.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>01 – Login to SAP Cloud ALM</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>03 – Login to SAP Cloud ALM</em></p>
 
 <hr />
 <h2>1.2 – Open Joule</h2>
-<p>After logging in you land on the SAP Cloud ALM home page. Time to call your most valuable tool: <strong>Joule</strong>.</p>
+<p>After logging in you land on the SAP Cloud ALM home page. We'll explore more of the platform in a moment, but first: let's call your most valuable tool for today: <strong>Joule</strong>.</p>
 <p>Joule is a chat-style AI interface built into SAP Cloud ALM. You'll use it throughout this session to interact with AI agents, ask questions, and drive the test preparation workflow; all in natural language.</p>
-<p><strong>1.</strong> Look for the <strong>diamond icon</strong> (◇) in the upper-right area of the screen and click it to open Joule.</p>
+<p><strong>1.</strong> Look for the <strong>diamond icon</strong> in the upper-right area of the screen and click it to open Joule.</p>
 <p><br><img src="exercises/ex0/images/ex0_02_home.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>02 – SAP Cloud ALM home page</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>04 – SAP Cloud ALM home page</em></p>
 
 <p><strong>2.</strong> Joule opens as a panel that slides over the application screen; it's always available, regardless of where you are in SAP Cloud ALM.</p>
 <p>The panel header gives you three controls:<br />
-- <strong>Sidebar icon</strong>: manage multiple concurrent conversations (you can run several Joule chats in parallel, e.g. one per topic or agent)<br />
 - <strong>Expand icon</strong>: open Joule in full-screen mode<br />
-- <strong>Close (×)</strong>: close the panel</p>
+- <strong>Close (×)</strong>: close the panel<br />
+- <strong>Sidebar icon</strong>: manage multiple concurrent conversations (you can run several Joule chats in parallel, one per topic or agent)</p>
 <blockquote>
-<p><strong>Good to know:</strong> Joule is stateful. Close the panel, navigate elsewhere, reopen it; your conversation is still there exactly as you left it.</p>
+<p><strong>Good to know:</strong> Joule is stateful. Close the panel, navigate elsewhere, reopen it; your conversation is still there where you left it.<br />
+The sidebar shows your conversation list: up to <strong>10 conversations can be active</strong> at the same time, with older ones moved to <strong>Expired</strong>.</p>
 </blockquote>
 <p><br><img src="exercises/ex0/images/ex0_03_joule_panel.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>03 – Joule panel open</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>05 – Joule panel open</em></p>
 
 <p><strong>3.</strong> Wake up Joule with a simple message in the input box at the bottom; just type naturally, for example: <strong>"Joule on :)"</strong> or any greeting.</p>
-<p>Joule responds with an introduction of its capabilities. Scroll through its response; you'll see areas like <strong>Test Data Management</strong>, <strong>Test Scoping</strong>, <strong>Test Planning</strong>, and <strong>ALM Project Setup</strong>. These are exactly the capabilities you'll use today.</p>
+<p>Joule will start processing; this can take a moment, feel free to read ahead while waiting. When it responds, you'll see an introduction of its capabilities covering areas like <strong>Test Data Management</strong>, <strong>Test Scoping</strong>, <strong>Test Planning</strong>, and <strong>ALM Project Setup</strong>. These are exactly the capabilities you'll use today.</p>
 <p><br><img src="exercises/ex0/images/ex0_04_joule_hello.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>04 – Joule greeting and capabilities</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>06 – Joule greeting and capabilities</em></p>
 
+<blockquote>
+<p>⚠ <strong>Before you continue: a word on stability.</strong> The agentic capabilities you're about to use involve complex multi-step orchestration across multiple AI skills and agent calls. This session runs on a shared productive tenant, designed for normal corporate use, not for dozens of simultaneous participants. Expect some variability in response times.</p>
+<p>If Joule appears frozen, read ahead and give it a moment. If it seems to have timed out or lost context entirely, send a gentle follow-up ("still there?" or "hi") to wake it up, or re-send the original prompt. This is a known behaviour in the agentic framework; don't be surprised if it happens.</p>
+</blockquote>
 <hr />
 <h2>1.3 – Jump Ahead: What Happens Without Preparation? <em>(Optional)</em></h2>
 <blockquote>
 <p><strong>Optional step</strong>: try this if you want to see what happens when you skip straight to test case generation without proper setup.</p>
 </blockquote>
-<p>Let's see what Joule does when asked to work with incomplete input.</p>
-<p>In Joule, prompt it to generate test cases directly; specifying the process and project:</p>
+<p>In the initial view you'll notice the process has a BPMN flow diagram, but nothing else linked to it. Let's see what Joule does when asked to work with that incomplete input.</p>
+<p>In the Joule message window, prompt it to generate test cases directly; specifying the process and project:</p>
 <blockquote>
 <p><em>"I need to test process "Beta_Straight Make-to-Stock Production – Discrete Manufacturing (BJ5_simple)" in project "###_TestProject""</em></p>
 <p>Replace <strong>###</strong> with your workstation number.</p>
+<p><strong>Tip:</strong> Click the <strong>expand icon</strong> (⤢) in the Joule panel header to open Joule in full-screen mode; much easier to read the agent outputs, especially the longer ones coming later in this session.</p>
 </blockquote>
-<p>Joule navigates to the process in your project and analyses its content, but it hits a problem.</p>
-<blockquote>
-<p><strong>Tip:</strong> Click the <strong>expand icon</strong> (⤢) in the Joule panel header to open Joule in full-screen mode: much easier to read Joule's responses, especially for longer agent outputs. The left sidebar shows your conversation list: up to <strong>10 concurrent conversations</strong> can be active at the same time, with older ones moved to <strong>Expired</strong>.</p>
-</blockquote>
-<p><br><img src="exercises/ex0/images/ex0_05_joule_jump_in.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>05 – Joule blocked: no requirement or user story</em></p>
-
+<p>Joule navigates to the process in your project and analyses its content, but it hits a problem:</p>
 <blockquote>
 <p><strong>⚠️ Blocker: No Requirement or User Story Assigned</strong></p>
-<p>Joule found the process and confirmed the BPMN diagram is available, but it immediately flags a blocker: <strong>no Requirement or User Story is linked to the process</strong>. SAP Cloud ALM requires at least one to be assigned before test cases can be generated.</p>
-<p>This is intentional. <strong>Garbage in, garbage out</strong>: even for AI agents. The quality of the output depends directly on the quality of the input. Before Joule can do useful work, we need to enrich the process with requirements and user stories.</p>
-<p>That's exactly what we'll do in the next steps.</p>
+<p>Joule found the process and confirmed the BPMN diagram is available, but it immediately flags a blocker: <strong>no Requirement or User Story is linked to the process</strong>. The agents require at least a requirements description before test cases can be generated; the more background they have, the better the output quality.</p>
+<p><strong>Garbage in, garbage out</strong> is true for AI agents too. The quality of the output depends directly on the quality of the input. Before Joule can do useful work, we need to enrich the process with requirements and user stories. That's exactly what we'll do next.</p>
 </blockquote>
 <hr />
-<h1>Chapter 2 – Build Your Input</h1>
-<p>Before the AI agents can do useful work, the process needs to be populated with the documentation they'll work from: a BPMN diagram, user stories, and a requirements document. In this chapter you'll navigate to your project, assign pre-prepared user stories, and generate a requirements document from an expert interview transcript.</p>
+<h1>Chapter 2 – Feed the Agents</h1>
+<p>Before the AI agents can do useful work, the process needs to be populated with the documentation they'll work from. A BPMN diagram is already there, as you'll see; but a requirements document and linked user stories add the business context and process intent that language models are best at processing.</p>
+<p>In this chapter you'll navigate to your project, assign pre-prepared user stories, and generate a requirements document from an expert interview transcript.</p>
 <hr />
 <h2>2.1 – Navigate to Your Project</h2>
-<p>Time to find our process. Close the Joule panel first (click <strong>×</strong> in the panel header), then navigate to the project.</p>
-<p><strong>1.</strong> Back on the home screen, click the <strong>Implementation</strong> tab in the top navigation bar. This is the launchpad for all test management related apps, and much more: requirements, process authoring, test preparation, test plans, test execution, defects.</p>
+<p>Time to find your process. Give Joule a break first; close the panel (click <strong>×</strong> in the panel header), then navigate to the project.</p>
+<p><strong>1.</strong> Back on the Cloud ALM home screen, click the <strong>Implementation</strong> tab in the top navigation bar. This is the launchpad for all test management related apps and more: requirements, process authoring, test preparation, test plans, test execution, defects.</p>
 <p><br><img src="exercises/ex0/images/ex0_06_implementation.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>06 – Implementation tab</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>07 – Implementation tab</em></p>
 
-<p><strong>2.</strong> Under <strong>Preparation and Setup</strong>, click the <strong>Projects and Setup</strong> tile.</p>
+<p><strong>2.</strong> In the <strong>Preparation and Setup</strong> section, click the <strong>Projects and Setup</strong> tile to reach the overview of all projects in Cloud ALM.</p>
 <p><br><img src="exercises/ex0/images/ex0_07_projects_setup.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>07 – Projects and Setup tile</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>08 – Projects and Setup tile</em></p>
 
-<p><strong>3.</strong> In the <strong>Manage Projects</strong> list, locate your project: <strong><code>###_TestProject</code></strong> (replace ### with your workstation number). Click it to open the project details.</p>
-<p><strong>4.</strong> In the project detail view, click the <strong>Scopes</strong> tab. You'll see one scope: <strong><code>###_CustomScope</code></strong>: this is the container for all the process content you'll work with today. Click on it.</p>
+<p><strong>3.</strong> In the <strong>Manage Projects</strong> list, locate your project: <strong><code>###_TestProject</code></strong> (replace ### with your workstation number, e.g. <code>033</code>). Click it to open the project details.</p>
+<p><strong>4.</strong> In the project detail view, click the <strong>Scopes</strong> tab. This section can hold multiple scopes; here you'll find exactly one: <strong><code>###_CustomScope</code></strong>, the container for all the BJ5_simple process content you'll work with today. Click on it.</p>
 <p><br><img src="exercises/ex0/images/ex0_08_project_list.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>08 – Project list and scope</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>09 – Project list and scope</em></p>
 
-<p><strong>5.</strong> The view switches to <strong>Open Solution Processes</strong>, with the filter pre-set to your project and scope. You should see exactly one process: <strong><code>Beta_Straight Make-to-Stock Production – Discrete Manufacturing (BJ5_simple)</code></strong>: your process for today. Click on it to open its details.</p>
+<p><strong>5.</strong> The view switches to <strong>Open Solution Processes</strong>, with filters pre-set to your project and scope. In a real-life implementation this list could contain dozens of processes; today you have exactly one: <strong><code>Beta_Straight Make-to-Stock Production – Discrete Manufacturing (BJ5_simple)</code></strong>. Click on it to open its details.</p>
 <p><br><img src="exercises/ex0/images/ex0_09_process_list.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>09 – BJ5 process in the scope</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>10 – BJ5 process in the custom scope</em></p>
 
-<p><strong>6.</strong> The process detail view opens. On the right-hand panel, next to the <strong>General Information</strong> and <strong>Description</strong> tabs, click <strong>+8</strong> to expand the full list of content types that can be linked to this process. Everything is at zero: no requirements, no user stories, no test cases. The process diagram on the left is also empty; no flows, no steps. This is your starting point.</p>
-<p><br><img src="exercises/ex0/images/ex0_10_process_detail.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>10 – Process detail: all content at zero</em></p>
-
+<p><strong>6.</strong> The process detail view opens. A process record in Cloud ALM can hold a lot of information; for now, not much has been added here.</p>
+<p><strong>7.</strong> Click the <strong>Solution Process Flow</strong> tab (next to Solution Value Flow). Here you'll find something promising: a BPMN process diagram showing the BJ5 flow across two swimlanes; Production Planner and Warehouse Clerk. This diagram was imported from a process modelling tool such as <strong>SAP Signavio</strong> and is stored natively in Cloud ALM (a direct live integration with Signavio is planned as a future capability).</p>
 <blockquote>
-<p><strong>This is the root cause</strong> of Joule's rejection in Step 1.3. With no requirements, no user stories, and no process content, there is nothing for the AI agents to work from. Before we can generate anything meaningful, we need to populate this process, and that's exactly what the next steps will do.</p>
-</blockquote>
-<p><strong>7.</strong> Now click the <strong>Solution Process Flow</strong> tab (next to Solution Value Flow). Here you'll find something more promising: a BPMN process diagram showing the BJ5 flow across two swimlanes; Production Planner and Warehouse Clerk.</p>
-<p>This diagram was imported into SAP Cloud ALM from a process modeling tool such as <strong>SAP Signavio</strong>. It is natively stored here; a direct live integration with Signavio is planned as a future capability.</p>
-<blockquote>
-<p><strong>But here's the catch:</strong> the diagram alone is not sufficient for the AI agents to generate high-quality scope, test plan, and test cases. It provides the process skeleton, but without requirements, user stories, and linked documentation, the agents can't derive meaningful test coverage from it.</p>
-<p>Feel free to explore the diagram. You can even make small changes, but don't alter it too dramatically, or the AI agents may flag inconsistencies between the diagram and the other content you'll add next.</p>
+<p><strong>But here's the catch:</strong> the diagram alone is not sufficient for the AI agents to generate high-quality test output. It provides the process skeleton, but without requirements and user stories the agents can't derive meaningful test coverage from structure alone.</p>
 </blockquote>
 <p><br><img src="exercises/ex0/images/ex0_11_process_flow.png" /></p>
 <p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>11 – BJ5 process flow diagram</em></p>
 
+<p><strong>8.</strong> Return to the <strong>Solution Value Flow</strong> tab. On the right-hand panel, click <strong>+8</strong> to expand the full list of content types that can be linked to this process. All counters are at zero: no requirements, no user stories, no test cases.</p>
+<p><br><img src="exercises/ex0/images/ex0_10_process_detail.png" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>12 – Process detail: all content at zero</em></p>
+
 <blockquote>
-<p><strong>In short:</strong> A process structure exists and the diagram provides the skeleton. However, the process still lacks enriched content the AI agents need to do useful work. That's exactly what the next steps will fix.</p>
+<p><strong>This is the root cause</strong> of Joule's rejection in Step 1.3. Without requirements or user stories, the agents have no process intent to work from; and by design, they won't make things up. Before we can generate anything meaningful, we need to populate this process, and that's exactly what the next steps will do.</p>
 </blockquote>
 <hr />
 <h2>2.2 – Assign User Stories</h2>
-<p>To give the AI agents enough to work with, we need to link supporting content to the process. Let's start with the user stories.</p>
-<p><strong>1.</strong> Make sure you are on the <strong>Solution Value Flow</strong> tab. On the right-hand panel, click <strong>+8</strong> to open the dropdown and select <strong>User Stories</strong>: this brings the User Stories section into view.</p>
+<p>User stories for the BJ5_simple process have already been defined and created in the system; they just haven't been linked to this process yet. Let's do that now.</p>
+<p><strong>1.</strong> Make sure you are on the <strong>Solution Value Flow</strong> tab. On the right-hand panel, click the <strong>+8</strong> dropdown and select <strong>User Stories</strong> to bring that section into view.</p>
 <p><br><img src="exercises/ex0/images/ex0_12_user_stories_nav.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>12 – Opening User Stories section</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>13 – Opening User Stories section</em></p>
 
-<p><strong>2.</strong> The <strong>User Stories</strong> section is now visible in the right panel: currently empty ("No user story assigned"). Click the <strong>Assign</strong> button to open the selection dialog. It comes pre-populated with user stories prepared for the BJ5 process.</p>
+<p><strong>2.</strong> The <strong>User Stories</strong> section appears in the right panel, currently empty ("No user story assigned"). Click the <strong>Assign</strong> button to open the selection dialog.</p>
 <p><br><img src="exercises/ex0/images/ex0_13_user_stories_assign.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>13 – Assign User Stories dialog</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>14 – Assign User Stories dialog</em></p>
 
-<p><strong>3.</strong> The <strong>Assign User Stories</strong> dialog opens. Scroll down to find the 7 BJ5 user stories (prefixed <strong>BJ5_US-</strong>) and select all of them:</p>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Story</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Manual Creation of Production Order</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Release Production Order</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Pick Components and Post Goods Issue</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Confirm Production Operations</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Quality Assessment Gate</td>
-</tr>
-<tr>
-<td>6</td>
-<td>Post Goods Receipt – Finished Goods</td>
-</tr>
-<tr>
-<td>7</td>
-<td>Quality Failure Path: Scrap and Replenishment Request</td>
-</tr>
-</tbody>
-</table>
-<p>Once all 7 BJ5 stories are selected, click <strong>Assign</strong>.</p>
+<p><strong>3.</strong> The <strong>Assign User Stories</strong> dialog opens, pre-populated with user stories prepared for this process. Find the 7 entries prefixed <strong>BJ5_US-</strong>, select all of them, then click <strong>Assign</strong>.</p>
 <p><br><img src="exercises/ex0/images/ex0_14_user_stories_select.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>14 – Selecting all 7 BJ5 user stories</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>15 – Selecting all 7 BJ5 user stories</em></p>
 
-<p><strong>4.</strong> After returning to the process, feel free to open one of the user stories to inspect it. Each story is fully defined with <strong>story points</strong>, the <strong>user story</strong> narrative ("As an [role], I want to... so that..."), and granular <strong>acceptance criteria</strong>: exactly the kind of structured input the AI agents need.</p>
+<p><strong>4.</strong> Back in the process, open one of the user stories to inspect it. Each story follows the same structure: <strong>story points</strong>, a <strong>user story</strong> narrative ("As a [role], I want to... so that..."), and granular <strong>acceptance criteria</strong>: exactly the kind of structured input the AI agents need.</p>
 <p><br><img src="exercises/ex0/images/ex0_15_user_story_detail.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>15 – User story: narrative and acceptance criteria</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>16 – User story: narrative and acceptance criteria</em></p>
 
-<p>When done, click the <strong>back arrow</strong> (←) at the top left of the screen to return to the process view.</p>
+<p>When done, click the <strong>back arrow</strong> (←) at the top left to return to the process view.</p>
 <p><strong>5.</strong> Back in the process, open the <strong>+8</strong> dropdown again; <strong>User Stories</strong> now shows <strong>(7)</strong>. The assignment worked.</p>
-<p>But look at <strong>Requirements (0)</strong>. That entry is still empty, and it's arguably the most important input for the AI agents. A well-formed requirements document gives the agents the business rules, constraints, and acceptance detail they need to generate meaningful test coverage.</p>
-<p>Here's the good news: you were recently in a structured interview with a BJ5 process expert, walking through the process step by step in detail. Your colleague promised to post the transcript in SAP Cloud ALM for further use. Time to retrieve it and turn it into a requirements document.</p>
+<p>But look at <strong>Requirements (0)</strong>: still empty, and arguably the most important input for the agents. A well-formed requirements document gives the agents the building blocks of the process: business rules, role responsibilities, preconditions, expected outcomes, and the constraints that separate a happy path from an error scenario. This is the context that lets them generate meaningful, traceable test coverage rather than generic steps.</p>
+<p>Here's the good news: you were recently in a structured interview with a BJ5 process expert, walking through the process step by step. Your colleague promised to post the transcript in SAP Cloud ALM. Time to retrieve it and turn it into a requirements document.</p>
 <p><br><img src="exercises/ex0/images/ex0_16_requirements_needed.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>16 – Requirements count still zero</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>17 – Requirements count still zero</em></p>
 
 <hr />
 <h2>Summary</h2>
 <p>Chapters 1 and 2 (so far):<br />
 - [x] Logged in and opened Joule<br />
-- [x] BJ5 process located in <code>###_TestProject / ###_CustomScope</code><br />
-- [x] 7 BJ5 user stories assigned to the process<br />
+- [x] BJ5_simple process located in <code>###_TestProject / ###_CustomScope</code><br />
+- [x] 7 user stories assigned to the process<br />
 - [ ] Requirements document: still missing; covered in step 2.3</p>
-<p>Continue to <a href="../ex1/README.md">Chapter 2 – Build Your Input (continued)</a></p>
+<p>Continue to <a href="../ex1/README.md">Chapter 2 – Feed the Agents (continued)</a></p>
 <hr />
-<!-- Chapter 2 – Build Your Input, continued from exercises/ex0/README.md -->
+<!-- Chapter 2 – Feed the Agents, continued from exercises/ex0/README.md -->
 
 <h2>2.3 – Generate Requirements from an Interview Transcript</h2>
 <p><strong>Prerequisite:</strong> You have completed <a href="../ex0/README.md">Chapter 2 – steps 2.1 and 2.2</a>; the BJ5 process is set up with user stories.</p>
 <hr />
 <h2>What You'll Do</h2>
-<p>In this step you'll use the SAP Cloud ALM Requirements app to generate a requirements document from an interview transcript. This is your first AI-assisted step; instead of drafting requirements manually, the AI reads an expert interview and structures it for you.</p>
-<blockquote>
-<p><strong>Why this matters:</strong> Good requirements are the foundation for good test cases. Without them, the scoping and planning agents in later chapters won't have enough context to produce high-quality output. You'll see this contrast directly.</p>
-</blockquote>
+<p>In this step you'll use the Requirements app to generate a requirements document from an interview transcript. A BJ5 process expert was interviewed and the recording transcribed; the transcript is waiting for you in the system. The AI will read through it and extract the key business rules, process steps, and constraints into a structured requirements document, automatically.</p>
 <hr />
-<p>A requirements interview with a BJ5 process expert was recorded and transcribed for you. The transcript captures all the key business rules, process steps, and constraints discussed in the expert session.</p>
-<h3>2.3.1 – Open the Requirements App</h3>
-<p>Navigate to the <strong>Requirements</strong> app. There are two ways:</p>
+<p><strong>1.</strong> Navigate to the <strong>Requirements</strong> app. There are two ways:</p>
 <ul>
-<li><strong>Search bar</strong> (top center): type <code>require</code> and select <strong>Requirements</strong> from the results</li>
+<li><strong>Search bar</strong> (top center): type <code>requir</code> and select <strong>Requirements</strong> from the quick results</li>
 <li><strong>Left toolbar</strong>: click the quick-link icon that looks like a document being written on with a pen</li>
 </ul>
 <p><br><img src="exercises/ex1/images/ex1_01_requirements_nav.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>17 – Requirements app</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>18 – Requirements app</em></p>
 
-<h3>2.3.2 – Create a Requirement via Generate</h3>
-<ol>
-<li>
-<p>The Requirements app opens with the filter pre-set to your project and scope; confirm both show your <strong>workstation number</strong> (<code>###_TestProject</code> / <code>###_CustomScope</code>). The list is empty: no requirements exist yet.</p>
-</li>
-<li>
-<p>Click <strong>Create</strong>, then hover over <strong>Requirement</strong>: a sub-menu appears with two options:</p>
-</li>
-<li><strong>Manual</strong>: write the requirement yourself</li>
-<li><strong>Generate</strong> ✨; let AI generate it from a source document</li>
-</ol>
-<p>Click <strong>Generate</strong>.</p>
+<p>The Requirements app opens with filters pre-set to your project and scope; confirm both show your workstation number (<code>###_TestProject</code> / <code>###_CustomScope</code>). The list is empty: no requirements exist yet.</p>
+<p>Click <strong>Create</strong>, then hover over <strong>Requirement</strong>: a sub-menu appears with two options. Select <strong>Generate</strong> to have AI build the requirement from a source document rather than writing it manually.</p>
 <p><br><img src="exercises/ex1/images/ex1_02_requirements_create.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>18 – Create → Generate menu</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>19 – Create → Generate menu</em></p>
 
-<h3>2.3.3 – Configure the Generation Dialog</h3>
-<p>The <strong>Generate Requirement with AI</strong> dialog opens. Fill in the fields:</p>
+<p><strong>2.</strong> The <strong>Generate Requirement with AI</strong> dialog opens. Fill in the fields:</p>
 <table>
 <thead>
 <tr>
@@ -436,7 +303,7 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 <tbody>
 <tr>
 <td><strong>Title</strong></td>
-<td><code>###_BJ5_Requirement</code> (replace ### with your workstation number)</td>
+<td><code>###_BJ5_Requirement</code> (replace ### with your workstation number, e.g. <code>018</code>, <code>033</code>)</td>
 </tr>
 <tr>
 <td><strong>Requirement Template</strong></td>
@@ -456,35 +323,30 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 </tr>
 </tbody>
 </table>
-<p>Click the <strong>selection icon</strong> next to the <strong>Documents</strong> field to choose the source document; the interview transcript your colleague posted.</p>
+<p>In the <strong>Documents</strong> field, click the <strong>selection icon</strong> to choose the source document.</p>
 <p><br><img src="exercises/ex1/images/ex1_03_generate_dialog.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>19 – Generate Requirement with AI dialog</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>20 – Generate Requirement with AI dialog</em></p>
 
-<h3>2.3.4 – Select the Interview Transcript</h3>
-<p>The <strong>Assign Documents</strong> dialog opens, showing the documents available in your project. You should see the interview transcript your colleague posted:</p>
-<p><strong><code>###_Interview Transcript_Make-to-Stock Production – Discrete Manufacturing (BJ5_simple)</code></strong></p>
-<p>Select it and click <strong>Assign</strong>.</p>
+<p>The <strong>Assign Documents</strong> dialog opens. You should see exactly one document: a transcript of a ~20-minute interview with a BJ5 process expert, covering process steps, role responsibilities, and business rules. Select it and click <strong>Assign</strong>.</p>
 <p><br><img src="exercises/ex1/images/ex1_04_transcript_select.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>20 – Selecting the interview transcript</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>21 – Selecting the interview transcript</em></p>
 
-<h3>2.3.5 – Generate</h3>
-<p>Back in the <strong>Generate Requirement with AI</strong> dialog, the transcript now appears in the <strong>Documents</strong> field. Everything is set. Click <strong>Generate</strong>.</p>
-<p>SAP Cloud ALM's built-in AI agent reads the full 30-minute conversation transcript and converts it into a structured requirements document; automatically. You'll be able to review the result in the next screen.</p>
+<p><strong>3.</strong> Back in the <strong>Generate Requirement with AI</strong> dialog, the transcript now appears in the <strong>Documents</strong> field. Everything is set. Click <strong>Generate</strong>.</p>
+<p>SAP Cloud ALM's built-in AI agent reads the full conversation transcript and converts it into a structured requirements document, automatically. You'll be able to review the result in the next screen.</p>
 <p><br><img src="exercises/ex1/images/ex1_05_generate_action.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>21 – Triggering AI generation</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>22 – Triggering AI generation</em></p>
 
-<h3>2.3.6 – Review and Save the Generated Requirement</h3>
-<p>The AI has created the new requirement. The detail view opens automatically.</p>
+<p><strong>4.</strong> The AI has created the new requirement. The detail view opens automatically.</p>
 <p>A few things worth noting here:</p>
 <ul>
-<li><strong>Scroll up</strong> to read the generated description; this is the structured requirements content extracted from your interview transcript.</li>
-<li><strong>Scroll down</strong> to the <strong>Solution Processes</strong> section: the BJ5 process has been <strong>automatically detected and linked</strong>: no manual assignment needed. The AI recognised the context from the document.</li>
+<li>Review the generated <strong>description</strong>: this is the structured requirements content extracted from the interview transcript.</li>
 <li>The info banner at the top reminds you that the description is editable while the status is <em>In Refinement</em>. Feel free to make adjustments if needed.</li>
+<li>In the left panel, <strong>scroll down</strong> to the <strong>Solution Processes</strong> section: the <em>BJ5_simple</em> process has been <strong>automatically linked</strong>, no manual assignment needed.</li>
 <li>At the bottom you can optionally fill in approver, priority, and other fields; skip this for now.</li>
 </ul>
 <p>When satisfied, click <strong>Save and Close</strong>.</p>
 <p><br><img src="exercises/ex1/images/ex1_06_requirement_created.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>22 – Generated requirement: detail view</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>23 – Generated requirement: detail view</em></p>
 
 <hr />
 <h2>Summary</h2>
@@ -493,49 +355,44 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 - [x] 7 user stories (assigned in Step 2.2)<br />
 - [x] Requirements document (generated in Step 2.3)</p>
 <p>A 20-minute expert interview was converted into a structured requirements document, automatically linked to the BJ5 process. Time to head back to Joule and try what failed in Step 1.3; this time with proper input in place.</p>
-<p>Continue to <a href="../ex2/README.md">Chapter 3 – Scoping Agent</a></p>
+<p>Continue to <a href="../ex2/README.md">Chapter 3 – Scope with AI</a></p>
 <hr />
-<h1>Chapter 3 – Scoping Agent</h1>
-<p><strong>Prerequisite:</strong> You have completed <a href="../ex1/README.md">Chapter 2</a>; the BJ5 process has linked requirements and user stories.</p>
+<h1>Chapter 3 – Scope with AI</h1>
+<p><strong>Prerequisite:</strong> You have completed <a href="../ex1/README.md">Chapter 2</a>; the <em>BJ5_simple</em> process has linked requirements and user stories.</p>
 <hr />
 <h2>What You'll Do</h2>
-<p>In this chapter you'll unleash the <strong>Scoping Agent</strong>: an AI agent that reads all your linked process documentation and proposes a structured set of test cases. While the agent works, you'll experience what manual scoping looks like, so you can appreciate the comparison.</p>
+<p>In this chapter you'll trigger the <strong>Scoping Agent</strong>: an AI agent that reads your linked process documentation and proposes a structured test case scope. While it works in the background, you'll run a quick manual scoping exercise; when the result arrives, you can see exactly what the AI found versus what you identified.</p>
 <hr />
 <h2>3.1 – Trigger the Scoping Agent</h2>
 <p>Time to try again; with proper input now in place.</p>
-<h3>3.1.1 – Prompt Joule (same as Step 1.3)</h3>
-<ol>
-<li>Open a new conversation in Joule and send the <strong>same prompt</strong> as in Step 1.3:</li>
-</ol>
+<p><strong>1.</strong> Open a new conversation in Joule and send the <strong>same prompt</strong> as in Step 1.3:</p>
 <blockquote>
 <p><em>"I need to test process "Beta_Straight Make-to-Stock Production – Discrete Manufacturing (BJ5_simple)" in project "###_TestProject""</em></p>
 <p>Replace <strong>###</strong> with your workstation number.</p>
 </blockquote>
-<ol>
-<li>The scoping agent starts working in the background. You'll see a notification or progress indicator.</li>
-</ol>
+<p><strong>2.</strong> The scoping agent starts working in the background. You'll see a notification or progress indicator.</p>
 <p><br><img src="exercises/ex2/images/ex2_02_agent_running.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>23 – Scoping agent running</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>24 – Scoping agent running</em></p>
 
 <hr />
-<h2>3.2 – What's Happening? (Narration)</h2>
+<h2>3.2 – What's happening in the background?</h2>
 <p><br><img src="exercises/ex2/images/ex2_03_scoping_agent_flow.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>24 – Scoping agent methodology</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>25 – Scoping agent methodology</em></p>
 
 <blockquote>
-<p>The scoping agent applies a structured methodology:<br />
+<p><strong>The scoping agent applies a structured methodology:</strong><br />
 1. It resolves the process name, requirements, and user stories to exact identifiers in SAP Cloud ALM<br />
 2. It validates that the required input exists; if not, it blocks and returns clear instructions on what to fix<br />
 3. It classifies each input: process scope variants or detailed reference steps<br />
 4. It enriches the scope with SAP standard test baselines and extracts acceptance criteria from your linked content<br />
 5. It scores each scope item for completeness, ranks items by priority, and flags coverage gaps<br />
-6. It presents the result for your review and sign-off; no downstream work starts without your approval (HITL Gate 1)</p>
+6. It presents the result for your review and sign-off; no downstream work starts without your approval (the "Human in the Loop", or HITL, Gate 1)</p>
 <p>This is the same analysis a skilled test architect would do, but compressed from hours into minutes.</p>
 </blockquote>
 <hr />
 <h2>3.3 – Manual Scoping Exercise</h2>
 <p>While you wait for the agent, try a structured manual scoping exercise.</p>
-<p>For the BJ5 process, work through these dimensions on a piece of paper or sticky note:</p>
+<p>Return to the Processes app and for the <em>BJ5_simple</em> process, think through these dimensions (a piece of paper to jot notes works fine):</p>
 <table>
 <thead>
 <tr>
@@ -544,6 +401,10 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>What are the main <strong>process paths</strong> (happy path + variants)?</td>
+<td></td>
+</tr>
 <tr>
 <td>What <strong>acceptance criteria</strong> can you identify from the user stories and requirements?</td>
 <td></td>
@@ -557,15 +418,11 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 <td></td>
 </tr>
 <tr>
-<td>What are the main <strong>process paths</strong> (happy path + variants)?</td>
-<td></td>
-</tr>
-<tr>
 <td>Which steps have <strong>blocking conditions</strong> worth testing?</td>
 <td></td>
 </tr>
 <tr>
-<td>What <strong>error scenarios</strong> should be covered?</td>
+<td>What <strong>error scenarios</strong> can you imagine that should be covered?</td>
 <td></td>
 </tr>
 </tbody>
@@ -573,66 +430,60 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 <blockquote>
 <p>Hint: The BJ5 process involves 2 roles (Production Planner and Warehouse Clerk) and spans the full make-to-stock cycle from production order creation to finished goods receipt. There is 1 critical quality gate where output is assessed before goods receipt, and a separate failure path for scrap and replenishment.</p>
 </blockquote>
-<p>Keep your notes; you'll compare them to the agent's output next.</p>
 <hr />
 <h2>3.4 – Review the Scoping Agent's Work</h2>
-<h3>3.4.1 – Open the Agent's Output</h3>
-<p>When the agent is ready, it replies directly in the Joule chat window with a <strong>Test Scope Summary</strong>. The response is detailed; switch Joule to <strong>full-screen mode</strong> first using the <strong>expand icon</strong> (⤢) in the top-right of the Joule panel for a much easier reading experience.</p>
-<p>The response gives you:</p>
+<p><strong>1.</strong> When the agent is ready, it replies directly in the Joule chat window with a <strong>Test Scope Summary</strong>. The response is detailed; best switch Joule to <strong>full-screen mode</strong> first using the <strong>expand icon</strong> in the top-right of the Joule panel.</p>
+<p>The response typically gives you:</p>
 <ul>
 <li><strong>Process context</strong>: the solution process, flow diagram, and applicable countries it resolved</li>
 <li>A <strong>summary of identified process flow paths</strong>, reflecting any splits or variants in the process structure</li>
-<li>An overview of the <strong>items it ingested</strong>: your requirement and the 7 user stories</li>
+<li>An overview of the <strong>items it ingested</strong> (your requirement and the 7 user stories)</li>
 <li>Related <strong>standard process procedures</strong> retrieved from the SAP Enterprise Architecture Reference Library (EARL)</li>
-<li>A conclusive list of <strong>acceptance criteria</strong> derived from all of the above</li>
+<li>A conclusive list of <strong>acceptance criteria</strong> derived from all of the above, augmented with patterns from SAP's standard process baselines</li>
 </ul>
 <p><br><img src="exercises/ex2/images/ex2_04_scope_result.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>25 – Test Scope Summary in Joule</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>26 – Test Scope Summary in Joule</em></p>
 
+<p>After the response, the agent asks you whether to confirm the scope as is or revise it.</p>
 <blockquote>
-<p><strong>HITL Gate 1: Test Scope Summary.</strong> This is the first checkpoint in the agentic workflow. The agent stops, presents its detailed structured analysis, and waits for your review and sign-off. Nothing proceeds until you confirm.</p>
+<p><strong>HITL (Human in the Loop) Gate 1: Test Scope Summary.</strong> This is the first checkpoint in Test Management Assistant's agentic workflow. The agent stops, presents its detailed structured analysis, and waits for your review and sign-off. Nothing proceeds until you confirm.</p>
 </blockquote>
-<hr />
-<h3>3.4.2 – Evaluate and Compare</h3>
-<p>Take a few minutes to work through the proposed scope. For each item, check:<br />
+<p><strong>2.</strong> Before making that decision, take a few minutes to work through the proposed scope. For each item, check:<br />
 - <strong>Name and description</strong>: does it clearly describe what's being tested?<br />
 - <strong>Linked acceptance criteria</strong>: is it traceable back to a user story or requirement?<br />
 - <strong>Role separation</strong>: are Production Planner tasks and Warehouse Clerk tasks kept in separate test cases?<br />
 - <strong>Coverage</strong>: does the overall set cover the happy path (P1), the quality gate failure path (P2), and the scrap/replenishment scenario?</p>
 <blockquote>
-<p><strong>Compare with your manual notes from Step 3.3:</strong> Did the agent catch everything you identified? Did it find things you missed? This is the key learning moment of this chapter.</p>
+<p><strong>Compare with your manual notes from Step 3.3:</strong> Did the agent catch everything you identified? Or did it find things you missed? That's exactly the kind of task AI agents excel at: ingesting text, inferring structure, and surfacing patterns at speed.</p>
 </blockquote>
 <hr />
 <h2>3.5 – Refine the Scope in Joule</h2>
-<p>The first scoping suggestion is your starting point. Joule lets you refine it through conversation.</p>
+<p>Let's not just accept the scope as is. Joule lets you refine it through conversation, and this is the moment to apply your focus on role switches and shape the scope accordingly.</p>
 <blockquote>
-<p><strong>Note for participants sharing a system:</strong> The agents run on shared infrastructure. To avoid overloading the system with concurrent calls, keep your refinement focused. We recommend limiting the scope to <strong>user stories 5, 6, and 7</strong> (the quality gate, goods receipt, and failure path).</p>
+<p><strong>Note for participants sharing a system:</strong> In a real-life scenario you'd typically start with the full E2E process before narrowing down. The reason for this tweak is twofold: first, it lets you experience how to shape agent output through a simple conversation; and second, the agents run on shared infrastructure and we want to avoid overloading the system with heavy concurrent calls. So we recommend limiting the scope to <strong>user stories 5, 6, and 7</strong> (the quality gate, goods receipt, and failure path), where the handoff from Production Planner to Warehouse Clerk happens.</p>
 </blockquote>
-<p><strong>Option 1: Use the built-in Revise Scope shortcut</strong></p>
-<p>Click the <strong>Select</strong> button in the Joule output panel, then choose <strong>Revise Scope</strong> from the dropdown. Joule converts your selection into a refinement prompt and sends it to the agent automatically.</p>
-<!-- 📷 TODO: screenshot ex2_06_revise_button.png: Select button → dropdown → Revise Scope / "No, let me revise" option -->
-<p><br><img src="exercises/ex2/images/ex2_06_revise_button.png" /></p>
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>26 – Built-in Revise Scope option</em></p>
-
+<p>Two options are available; as you'll see, the second is the more direct one.</p>
+<p><strong>Option 1: Use the built-in "Revise Scope" shortcut</strong></p>
+<p>Click the <strong>Select</strong> button in the Joule output panel, then choose <strong>Revise Scope</strong> from the dropdown. This sends a built-in prompt ("No, let me revise the scope" or similar) to the agent, which then asks you what you'd like to change. You'd still need to type your refinement in the follow-up message, making it identical to Option 2 but with one extra round-trip.</p>
 <p><strong>Option 2: Write your own prompt</strong></p>
-<p>You can also type your refinement directly in the Joule chat window. Use this starting point:</p>
+<p>You can also type your refinement directly in the Joule chat window. Navigate to user stories US-05, US-06, and US-07 and note their Display IDs (format: <code>3-xxx</code>), then use a prompt like:</p>
 <blockquote>
-<p><em>"Focus on user stories [insert three user story IDs from your scope, format 3-456, for example the last three focusing on the decision point / path split]. In particular take care of roles and create test cases which do NOT cross multiple roles."</em></p>
+<p>"Focus on user stories <strong>[enter the Display IDs]</strong>. In particular take care of roles and create test cases which do NOT cross multiple roles."</p>
 </blockquote>
 <p><br><img src="exercises/ex2/images/ex2_05_refine_scope.png" /></p>
 <p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>27 – Refinement prompt: focusing on three user stories</em></p>
 
-<p>Or try one of these:<br />
+<p>You may try other refinements too:<br />
 - <strong>Narrow the scope:</strong> "Remove user stories 1–4 from the scope for now; focus only on the quality gate, goods receipt, and scrap path."<br />
-- <strong>Split a test case by role:</strong> "Split the goods issue test case into two; one for the Production Planner and one for the Warehouse Clerk."</p>
+- <strong>Narrow by role:</strong> "Drop the Production Planner for now, and consider only the process steps relevant for the Warehouse Clerk."</p>
+<p>The agent re-runs its scoping logic and returns faster than the first pass. It presents the revised scope and pauses for your sign-off again. This time, click <strong>Confirm</strong> to accept the scope and move to the next stage.</p>
 <hr />
 <h2>Summary</h2>
-<p>When you're satisfied with the scope, signal your approval in Joule. This is <strong>HITL Gate 1</strong>: the preparation agent will not begin building the test plan until you confirm.</p>
-<p>The scoping agent analyzed all your linked process artifacts and proposed a structured test case scope; with traceability to requirements and user stories; in the time it took you to sketch a rough outline manually.</p>
-<p>You now have a <strong>confirmed test case scope</strong> ready for test planning.</p>
-<p>Continue to <a href="../ex3/README.md">Chapter 4 – Preparation Agent: Test Plan</a></p>
+<p>The scoping agent analyzed all your linked process artifacts and proposed a structured test case scope, with traceability to requirements and user stories, in the time it took you to sketch a rough outline manually.</p>
+<p>You now have a <strong>confirmed test case scope</strong> that moves automatically into test planning.</p>
+<p>Continue to <a href="../ex3/README.md">Chapter 4 – Plan with AI</a></p>
 <hr />
-<h1>Chapter 4 – Preparation Agent: Test Plan</h1>
+<h1>Chapter 4 – Plan with AI</h1>
 <p><strong>Prerequisite:</strong> You have completed <a href="../ex2/README.md">Chapter 3</a>; a confirmed test case scope exists for the BJ5 process.</p>
 <hr />
 <h2>What You'll Do</h2>
@@ -734,9 +585,9 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 - [x] Test plan reviewed and approved (HITL Gate 2)<br />
 - [x] Test case generation triggered for 10 test cases across user stories 3-157, 3-158, 3-159<br />
 - [ ] Test cases: generation in progress; you will be notified when ready</p>
-<p>Continue to <a href="../ex4/README.md">Chapter 5 – Preparation Agent: Test Cases</a></p>
+<p>Continue to <a href="../ex4/README.md">Chapter 5 – Generate Test Cases</a></p>
 <hr />
-<h1>Chapter 5 – Preparation Agent: Test Cases</h1>
+<h1>Chapter 5 – Generate Test Cases</h1>
 <p><strong>Prerequisite:</strong> You have completed <a href="../ex3/README.md">Chapter 4</a>; a confirmed test plan exists for the BJ5 process, and test case generation has been triggered and is running in the background.</p>
 <hr />
 <h2>What You'll Do</h2>
@@ -907,9 +758,9 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 <li>[x] Quality criteria checked: role assignment, step clarity, traceability, expected results</li>
 <li>[ ] Test data values: parameter placeholders identified; to be resolved in Chapter 6</li>
 </ul>
-<p>Continue to <a href="../ex5/README.md">Chapter 6 – Test Data Management Agent</a></p>
+<p>Continue to <a href="../ex5/README.md">Chapter 6 – Generate Test Data</a></p>
 <hr />
-<h1>Chapter 6 – Test Data Management Agent</h1>
+<h1>Chapter 6 – Generate Test Data</h1>
 <p>Good test data is one of the most underestimated parts of test preparation. A single wrong value (an invalid material, the wrong plant, a date outside the planning horizon) is enough to make a test fail for the wrong reasons, wasting time and masking real defects. Yet gathering valid, consistent test data for a business process like BJ5 traditionally demands expert knowledge of both the process and the system configuration.</p>
 <p><strong>Prerequisite:</strong> You have completed <a href="../ex4/README.md">Chapter 5</a>; test cases have been generated for the BJ5 process and are visible in Test Preparation.</p>
 <hr />

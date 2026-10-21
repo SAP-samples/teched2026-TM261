@@ -1,4 +1,4 @@
-# Chapter 6 – Test Data Management Agent
+# Chapter 6 – Generate Test Data
 
 Good test data is one of the most underestimated parts of test preparation. A single wrong value (an invalid material, the wrong plant, a date outside the planning horizon) is enough to make a test fail for the wrong reasons, wasting time and masking real defects. Yet gathering valid, consistent test data for a business process like BJ5 traditionally demands expert knowledge of both the process and the system configuration.
 
@@ -19,7 +19,7 @@ This is the foundation for a longer roadmap: future phases will suggest actual v
 The diagram below shows the full pipeline of the Test Data Management Agent in Phase 1.
 
 <br><img src="images/ex5_01_tdm_agent_flow.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>01 – Test Data Management Agent: Phase 1 pipeline</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>38 – Test Data Management Agent: Phase 1 pipeline</em></p>
 
 | Stage | What happens |
 |---|---|
@@ -57,7 +57,7 @@ For a make-to-stock production and warehousing process like BJ5, you'll typicall
 Note the distinction: some values are fixed (company code, plant), some are looked up once before the test (material, work center), and some are only generated at runtime (production order number). This is exactly the classification the agent applies.
 
 <br><img src="images/ex5_02_tc_parameters.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>02 – Test case parameters: placeholder values in the instruction text</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>39 – Test case parameters: placeholder values in the instruction text</em></p>
 
 ---
 
@@ -82,7 +82,7 @@ There is also a practical reason: the generated test cases need to be processed 
 > *"Please suggest test data for test case [your test case ID] in project "###_TestProject""*
 
 <br><img src="images/ex5_03_tdm_trigger.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>03 – New Joule conversation: triggering the Test Data Management Agent</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>40 – New Joule conversation: triggering the Test Data Management Agent</em></p>
 
 The agent starts working: it fetches the test case, reads all activity steps, extracts and classifies every parameter, and applies the project context.
 
@@ -109,7 +109,7 @@ Values that are either chosen by the tester at runtime or generated on the fly d
 The agent does not just list parameters; it explains which values drive which others. This is more valuable than it first appears. Consider a quantity of "10" entered in a production order step: taken in isolation it looks arbitrary. Trace it forward through the process and that same quantity must arrive at a picking step where the storage location needs to hold sufficient stock. If it does not, the test will fail for the wrong reasons: not a defect, but a data setup problem. Understanding these dependencies upfront is the prerequisite for future agent phases to run automated checks and resolve such blocking conditions before a test is even started.
 
 <br><img src="images/ex5_04_tdm_output.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>04 – Test Data Management Agent output: parameters grouped by category with example values and reasoning</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>41 – Test Data Management Agent output: parameters grouped by category with example values and reasoning</em></p>
 
 **Evaluate the output**
 

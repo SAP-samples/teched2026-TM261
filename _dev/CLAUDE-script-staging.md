@@ -4,10 +4,10 @@
 
 **Session:** TM261 – Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM  
 **Date:** Thursday, 29 October 2026 · SAP TechEd 2026, Berlin  
-**Presenters:** Christina Pickhardt · Niclas Weidner · Tobias Keller  
-**Scenario:** Sales Order Processing with Customer Down Payment (BKJ)
+**Presenters:** Christina Pickhardt · Niclas Weidner · Tobias Keller · Daniel Lorenz  
+**Scenario:** BJ5_simple – Make-to-Stock Production – Discrete Manufacturing
 
-See `Script staging/README.md` for the human-readable workflow guide.
+See `HANDOVER.md` for the human-readable workflow guide.
 
 ---
 
@@ -15,39 +15,39 @@ See `Script staging/README.md` for the human-readable workflow guide.
 
 ### Source of truth
 
-- **Exercise READMEs:** `exercises/ex0–ex6/README.md` (edited directly for content changes)
-- **Header:** the block *before* the first `# Chapter 1` heading in the most recent `Script staging/*_TM261_script.md` — includes cover page, agenda, and two intro sections
-- **Root images:** `images/intro_7_assistants.png`, `images/intro_agent_architecture.png`
-- **Exercise images:** `exercises/exN/images/`
+- **Exercise READMEs:** `exercises/ex_intro/README.md` + `exercises/ex0–ex6/README.md` (edit these directly)
+- **Header:** `header.md` (repo root) — intentionally empty; cover page and intro live in `exercises/ex_intro/README.md`
+- **Exercise images:** `exercises/exN/images/` (including `exercises/ex_intro/images/`)
 
 ### Step index
 
 | Chapter | Steps | File |
 |---|---|---|
-| Chapter 1 – Orientation | 1.1–1.3 | `exercises/ex0/README.md` |
-| Chapter 2 – Build Your Input | 2.1–2.2 | `exercises/ex0/README.md` (continued) |
-| Chapter 2 – Build Your Input | 2.3 | `exercises/ex1/README.md` |
-| Chapter 3 – Scoping Agent | 3.1–3.5 | `exercises/ex2/README.md` |
-| Chapter 4 – Preparation Agent: Test Plan | 4.1–4.4 | `exercises/ex3/README.md` |
-| Chapter 5 – Preparation Agent: Test Cases | 5.1–5.4 | `exercises/ex4/README.md` |
-| Chapter 6 – Test Data Agent | 6.1–6.5 | `exercises/ex5/README.md` |
+| Introduction | Cover page, agenda, Context + Chapter 0 | `exercises/ex_intro/README.md` |
+| Chapter 1 – Getting Started | 1.1–1.3 | `exercises/ex0/README.md` |
+| Chapter 2 – Feed the Agents | 2.1–2.2 | `exercises/ex0/README.md` (continued) |
+| Chapter 2 – Feed the Agents | 2.3 | `exercises/ex1/README.md` |
+| Chapter 3 – Scope with AI | 3.1–3.5 | `exercises/ex2/README.md` |
+| Chapter 4 – Plan with AI | 4.1–4.4 | `exercises/ex3/README.md` |
+| Chapter 5 – Generate Test Cases | 5.1–5.4 | `exercises/ex4/README.md` |
+| Chapter 6 – Generate Test Data | 6.1–6.5 | `exercises/ex5/README.md` |
 | Chapter 7 – Recap & Outlook | 7.1–7.3 | `exercises/ex6/README.md` |
 
 ### Output rules
 
-- All generated files go to `Script staging/` with prefix `YYYY.MM.DD_`
-- Move any existing file of the same name to `Script staging/archive/` before writing
+- All generated files go to `_FINAL SCRIPTS/` with prefix `YYYY.MM.DD_`
+- Existing files of the same name are archived to `_FINAL SCRIPTS/archive/` before writing
 - Always generate all three formats (.md, .html, .pdf) unless user specifies otherwise
-- Use `generate_script.py` (repo root) — run with: `py generate_script.py`
+- Use `generate_script.py` — run with: `py _dev/generate_script.py`
 
 ### HTML base href
 
-The HTML file lives in `Script staging/` but references images relative to the repo root.
+The HTML file lives in `_FINAL SCRIPTS/` but references images relative to the repo root.
 Always include this tag in `<head>`:
 ```html
 <base href="file:///C:/Users/D050168/Projects/teched2026-TM261/">
 ```
-This makes all relative paths (`exercises/exN/images/...`, `images/...`) resolve correctly for both browser preview and Chrome headless PDF generation.
+This makes all relative paths (`exercises/exN/images/...`) resolve correctly for both browser preview and Chrome headless PDF generation.
 
 ### CSS style (embed in `<style>`)
 
@@ -73,15 +73,15 @@ details summary{cursor:pointer;color:#0070f2}
 ### Chrome headless PDF command
 
 ```
-"C:/Program Files/Google/Chrome/Application/chrome.exe" --headless=new --print-to-pdf="C:/Users/D050168/Projects/teched2026-TM261/Script staging/YYYY.MM.DD_TM261_script.pdf" --print-to-pdf-no-header --no-sandbox --disable-gpu "file:///C:/Users/D050168/Projects/teched2026-TM261/Script staging/YYYY.MM.DD_TM261_script.html"
+"C:/Program Files/Google/Chrome/Application/chrome.exe" --headless=new --print-to-pdf="C:/Users/D050168/Projects/teched2026-TM261/_FINAL SCRIPTS/YYYY.MM.DD_TM261_script.pdf" --print-to-pdf-no-header --no-sandbox --disable-gpu "file:///C:/Users/D050168/Projects/teched2026-TM261/_FINAL SCRIPTS/YYYY.MM.DD_TM261_script.html"
 ```
 
 ---
 
 ## Screenshots workflow
 
-When the user pastes a screenshot in chat or names a file in `Script staging/Screenshots/`:
-1. Save/move to `Script staging/Screenshots/YYYY.MM.DD_exN_NN_descriptive_name.png`
+When the user pastes a screenshot in chat or names a file in `Prep & Material/Screenshots/`:
+1. Save/move to `Prep & Material/Screenshots/YYYY.MM.DD_exN_NN_descriptive_name.png`
 2. Copy to `exercises/exN/images/exN_NN_descriptive_name.png`
 3. Update the corresponding step in `exercises/exN/README.md`
 4. Regenerate the script
@@ -109,9 +109,11 @@ Target viewport: **1440×900 px**. Actual captured size will be ~1481×903 due t
 
 - **Workstation ID placeholder:** always `###` (never real numbers)
 - **Credentials shown in README:** `tm261-###@education.cloud.sap` / `Acce$$teched26` (OK as-is)
-- **Step headings:** n-dash: `## Step N – Title`
+- **Step headings:** n-dash: `## N.M – Title`
 - **List labels:** colon, not dash: `- **Label**: description`
 - **No em-dashes anywhere:** use n-dash in headings, commas/semicolons in prose
 - **Image naming:** `exN_NN_descriptive_name.png` (exercise prefix + step number + description)
 - **Image paths in README:** relative from README: `images/exN_NN_foo.png`
 - **Image paths in compiled script:** `exercises/exN/images/exN_NN_foo.png` (rewritten at compile time)
+- **Numbered steps with images between them:** use `**1.**`, `**2.**` bold format (not `1.` markdown lists, which restart after images)
+- **Caption numbers:** written by `generate_script.py` automatically — don't edit manually

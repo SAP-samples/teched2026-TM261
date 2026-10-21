@@ -1,4 +1,4 @@
-<!-- Chapter 2 – Build Your Input, continued from exercises/ex0/README.md -->
+<!-- Chapter 2 – Feed the Agents, continued from exercises/ex0/README.md -->
 
 ## 2.3 – Generate Requirements from an Interview Transcript
 
@@ -8,89 +8,65 @@
 
 ## What You'll Do
 
-In this step you'll use the SAP Cloud ALM Requirements app to generate a requirements document from an interview transcript. This is your first AI-assisted step; instead of drafting requirements manually, the AI reads an expert interview and structures it for you.
-
-> **Why this matters:** Good requirements are the foundation for good test cases. Without them, the scoping and planning agents in later chapters won't have enough context to produce high-quality output. You'll see this contrast directly.
+In this step you'll use the Requirements app to generate a requirements document from an interview transcript. A BJ5 process expert was interviewed and the recording transcribed; the transcript is waiting for you in the system. The AI will read through it and extract the key business rules, process steps, and constraints into a structured requirements document, automatically.
 
 ---
 
-A requirements interview with a BJ5 process expert was recorded and transcribed for you. The transcript captures all the key business rules, process steps, and constraints discussed in the expert session.
+**1.** Navigate to the **Requirements** app. There are two ways:
 
-### 2.3.1 – Open the Requirements App
-
-Navigate to the **Requirements** app. There are two ways:
-
-- **Search bar** (top center): type `require` and select **Requirements** from the results
+- **Search bar** (top center): type `requir` and select **Requirements** from the quick results
 - **Left toolbar**: click the quick-link icon that looks like a document being written on with a pen
 
 <br><img src="images/ex1_01_requirements_nav.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>01 – Requirements app</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>18 – Requirements app</em></p>
 
-### 2.3.2 – Create a Requirement via Generate
+The Requirements app opens with filters pre-set to your project and scope; confirm both show your workstation number (`###_TestProject` / `###_CustomScope`). The list is empty: no requirements exist yet.
 
-1. The Requirements app opens with the filter pre-set to your project and scope; confirm both show your **workstation number** (`###_TestProject` / `###_CustomScope`). The list is empty: no requirements exist yet.
-
-2. Click **Create**, then hover over **Requirement**: a sub-menu appears with two options:
-   - **Manual**: write the requirement yourself
-   - **Generate** ✨; let AI generate it from a source document
-
-   Click **Generate**.
+Click **Create**, then hover over **Requirement**: a sub-menu appears with two options. Select **Generate** to have AI build the requirement from a source document rather than writing it manually.
 
 <br><img src="images/ex1_02_requirements_create.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>02 – Create → Generate menu</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>19 – Create → Generate menu</em></p>
 
-### 2.3.3 – Configure the Generation Dialog
-
-The **Generate Requirement with AI** dialog opens. Fill in the fields:
+**2.** The **Generate Requirement with AI** dialog opens. Fill in the fields:
 
 | Field | Value |
 |---|---|
-| **Title** | `###_BJ5_Requirement` (replace ### with your workstation number) |
+| **Title** | `###_BJ5_Requirement` (replace ### with your workstation number, e.g. `018`, `033`) |
 | **Requirement Template** | (Not Assigned) |
 | **Scope** | `###_CustomScope` |
 | **Solution Process** | Beta_Straight Make-to-Stock Production – Discrete Manufacturing (BJ5_simple) |
 | **Documents** | ← click the selection icon to open the document picker |
 
-Click the **selection icon** next to the **Documents** field to choose the source document; the interview transcript your colleague posted.
+In the **Documents** field, click the **selection icon** to choose the source document.
 
 <br><img src="images/ex1_03_generate_dialog.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>03 – Generate Requirement with AI dialog</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>20 – Generate Requirement with AI dialog</em></p>
 
-### 2.3.4 – Select the Interview Transcript
-
-The **Assign Documents** dialog opens, showing the documents available in your project. You should see the interview transcript your colleague posted:
-
-**`###_Interview Transcript_Make-to-Stock Production – Discrete Manufacturing (BJ5_simple)`**
-
-Select it and click **Assign**.
+The **Assign Documents** dialog opens. You should see exactly one document: a transcript of a ~20-minute interview with a BJ5 process expert, covering process steps, role responsibilities, and business rules. Select it and click **Assign**.
 
 <br><img src="images/ex1_04_transcript_select.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>04 – Selecting the interview transcript</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>21 – Selecting the interview transcript</em></p>
 
-### 2.3.5 – Generate
+**3.** Back in the **Generate Requirement with AI** dialog, the transcript now appears in the **Documents** field. Everything is set. Click **Generate**.
 
-Back in the **Generate Requirement with AI** dialog, the transcript now appears in the **Documents** field. Everything is set. Click **Generate**.
-
-SAP Cloud ALM's built-in AI agent reads the full 30-minute conversation transcript and converts it into a structured requirements document; automatically. You'll be able to review the result in the next screen.
+SAP Cloud ALM's built-in AI agent reads the full conversation transcript and converts it into a structured requirements document, automatically. You'll be able to review the result in the next screen.
 
 <br><img src="images/ex1_05_generate_action.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>05 – Triggering AI generation</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>22 – Triggering AI generation</em></p>
 
-### 2.3.6 – Review and Save the Generated Requirement
-
-The AI has created the new requirement. The detail view opens automatically.
+**4.** The AI has created the new requirement. The detail view opens automatically.
 
 A few things worth noting here:
 
-- **Scroll up** to read the generated description; this is the structured requirements content extracted from your interview transcript.
-- **Scroll down** to the **Solution Processes** section: the BJ5 process has been **automatically detected and linked**: no manual assignment needed. The AI recognised the context from the document.
+- Review the generated **description**: this is the structured requirements content extracted from the interview transcript.
 - The info banner at the top reminds you that the description is editable while the status is *In Refinement*. Feel free to make adjustments if needed.
+- In the left panel, **scroll down** to the **Solution Processes** section: the *BJ5_simple* process has been **automatically linked**, no manual assignment needed.
 - At the bottom you can optionally fill in approver, priority, and other fields; skip this for now.
 
 When satisfied, click **Save and Close**.
 
 <br><img src="images/ex1_06_requirement_created.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>06 – Generated requirement: detail view</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>23 – Generated requirement: detail view</em></p>
 
 ---
 
@@ -103,4 +79,4 @@ Chapter 2 complete. The process now has everything the AI agents need:
 
 A 20-minute expert interview was converted into a structured requirements document, automatically linked to the BJ5 process. Time to head back to Joule and try what failed in Step 1.3; this time with proper input in place.
 
-Continue to [Chapter 3 – Scoping Agent](../ex2/README.md)
+Continue to [Chapter 3 – Scope with AI](../ex2/README.md)

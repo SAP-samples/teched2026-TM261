@@ -1,1 +1,1 @@
-@CLAUDE-script-staging.md
+@_dev/CLAUDE-script-staging.md

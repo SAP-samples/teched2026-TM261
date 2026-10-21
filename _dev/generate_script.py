@@ -1,13 +1,14 @@
 """
-TM261 Presenter Script Generator
+TM261 Session Guide Generator
 Run with:  py generate_script.py
 
-Reads exercise READMEs, compiles the presenter script, and writes:
-  Script staging/YYYY.MM.DD_TM261_script.md
-  Script staging/YYYY.MM.DD_TM261_script.html
-  Script staging/YYYY.MM.DD_TM261_script.pdf
+Reads exercise READMEs, normalises caption numbers in-place, compiles the session guide, and writes:
+  _FINAL SCRIPTS/YYYY.MM.DD_TM261_script.md
+  _FINAL SCRIPTS/YYYY.MM.DD_TM261_script.html
+  _FINAL SCRIPTS/YYYY.MM.DD_TM261_script.pdf
 
-Previous versions of the same file type are archived in Script staging/archive/.
+Header is read from header.md (repo root — static file, intentionally empty; edit to prepend content).
+Previous versions of the same file type are archived in _FINAL SCRIPTS/archive/.
 """
 
 import re, os, glob, shutil, subprocess
@@ -15,19 +16,21 @@ from datetime import date
 import markdown as md_lib
 
 BASE = r"C:\Users\D050168\Projects\teched2026-TM261"
-STAGING = os.path.join(BASE, "Script staging")
+STAGING = os.path.join(BASE, "_FINAL SCRIPTS")
 ARCHIVE = os.path.join(STAGING, "archive")
+HEADER_FILE = os.path.join(BASE, "header.md")
 TODAY = date.today().strftime("%Y.%m.%d")
 PREFIX = f"{TODAY}_TM261_script"
 
 EXERCISES = [
-    ("ex0", "exercises/ex0/README.md"),
-    ("ex1", "exercises/ex1/README.md"),
-    ("ex2", "exercises/ex2/README.md"),
-    ("ex3", "exercises/ex3/README.md"),
-    ("ex4", "exercises/ex4/README.md"),
-    ("ex5", "exercises/ex5/README.md"),
-    ("ex6", "exercises/ex6/README.md"),
+    ("ex_intro", "exercises/ex_intro/README.md"),
+    ("ex0",      "exercises/ex0/README.md"),
+    ("ex1",      "exercises/ex1/README.md"),
+    ("ex2",      "exercises/ex2/README.md"),
+    ("ex3",      "exercises/ex3/README.md"),
+    ("ex4",      "exercises/ex4/README.md"),
+    ("ex5",      "exercises/ex5/README.md"),
+    ("ex6",      "exercises/ex6/README.md"),
 ]
 
 CSS = """body{font-family:'Segoe UI',Arial,sans-serif;font-size:11pt;line-height:1.5;margin:0;padding:0;color:#1a1a1a}
@@ -81,19 +84,46 @@ def _archive_existing():
 
 
 def _read_header():
-    """Extract the header from the most recent staged script (before first '# Getting Started')."""
-    candidates = sorted(glob.glob(os.path.join(ARCHIVE, "*_TM261_script.md")), reverse=True)
-    if not candidates:
-        raise FileNotFoundError("No previous script found in archive to read header from.")
-    with open(candidates[0], encoding="utf-8") as f:
-        text = f.read()
-    m = re.search(r"\n# Chapter 1", text) or re.search(r"\n# Getting Started", text)
-    if not m:
-        raise ValueError("Header boundary '# Chapter 1' not found in previous script.")
-    return text[: m.start()].rstrip() + "\n\n"
+    """Read the static header file (Script staging/header.md). Returns empty string if file is empty or comment-only."""
+    if not os.path.exists(HEADER_FILE):
+        return ""
+    with open(HEADER_FILE, encoding="utf-8") as f:
+        lines = [l for l in f.read().splitlines() if not l.startswith("#")]
+    text = "\n".join(lines).strip()
+    return (text + "\n\n") if text else ""
+
+
+def _normalize_captions():
+    """Write global sequential caption numbers back into exercise READMEs.
+
+    Walks EXERCISES in order, assigns 01, 02, 03... to every <em>NN – caption.
+    Rewrites the README file only when numbers actually change.
+    Returns the total image count.
+    """
+    counter = [0]
+    for ex, rel in EXERCISES:
+        path = os.path.join(BASE, rel.replace("/", os.sep))
+        with open(path, encoding="utf-8") as f:
+            content = f.read()
+
+        def _replace(m, counter=counter):
+            counter[0] += 1
+            return f'<em>{counter[0]:02d} – '
+
+        new_content = re.sub(r'<em>\d{1,2} – ', _replace, content)
+        if new_content != content:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(new_content)
+            print(f"  renumbered captions in {rel}")
+        else:
+            print(f"  captions unchanged in {rel}")
+    total = counter[0]
+    print(f"  total images: {total}")
+    return total
 
 
 def _compile_body():
+    """Concatenate exercise READMEs, rewriting image paths for the compiled context."""
     parts = []
     for ex, rel in EXERCISES:
         path = os.path.join(BASE, rel.replace("/", os.sep))
@@ -102,14 +132,7 @@ def _compile_body():
         content = re.sub(r'src="images/', f'src="exercises/{ex}/images/', content)
         content = re.sub(r"\n\*Back to \[Table of Contents\][^\n]*\n?", "", content)
         parts.append(content.strip())
-    body = "\n\n---\n\n".join(parts) + "\n"
-    # Globally renumber image captions so the compiled script has a single ascending sequence
-    counter = [0]
-    def _inc(m):
-        counter[0] += 1
-        return f'<em>{counter[0]:02d} – '
-    body = re.sub(r'<em>\d{1,2} – ', _inc, body)
-    return body
+    return "\n\n---\n\n".join(parts) + "\n"
 
 
 def _write_md(script_md):
@@ -161,11 +184,13 @@ def _write_pdf(html_path):
 
 
 def main():
-    print(f"\nGenerating TM261 script — {TODAY}")
+    print(f"\nGenerating TM261 session guide — {TODAY}")
     print("Archiving existing files...")
     _archive_existing()
     print("Reading header...")
     header = _read_header()
+    print("Normalising caption numbers...")
+    total_images = _normalize_captions()
     print("Compiling exercise body...")
     body = _compile_body()
     script_md = header + body
@@ -177,7 +202,7 @@ def main():
     html_path = _write_html(script_md)
     _write_pdf(html_path)
     _write_pages_html(script_md)
-    print("Done.\n")
+    print(f"Done. {total_images} images globally numbered 01–{total_images:02d}.\n")
 
 
 if __name__ == "__main__":

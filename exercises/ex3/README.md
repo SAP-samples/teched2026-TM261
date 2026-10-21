@@ -1,4 +1,4 @@
-# Chapter 4 – Preparation Agent: Test Plan
+# Chapter 4 – Plan with AI
 
 **Prerequisite:** You have completed [Chapter 3](../ex2/README.md); a confirmed test case scope exists for the BJ5 process.
 
@@ -28,7 +28,7 @@ The Preparation Agent is a two-phase agent with a human review gate between the 
 > | **HITL Gate 2: Approve plan** | No test cases are written to Cloud ALM without your explicit approval. You review the plan and adjust before the agent continues into Phase 2. |
 
 <br><img src="images/ex3_01_prep_agent_flow.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>01 – Preparation Agent: pipeline up to HITL Gate 2</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>28 – Preparation Agent: pipeline up to HITL Gate 2</em></p>
 
 > ⏱️ **While the agent works: try it yourself:**
 >
@@ -49,7 +49,7 @@ By now the Preparation Agent should have returned with a test plan proposal. Swi
 **If the agent appears stuck or unresponsive**, try sending it a message to wake it up. If it has hit a timeout and lost context entirely (it may even have forgotten the prompt), you will need to repeat your request.
 
 <br><img src="images/ex3_02_agent_timeout.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>02 – Agent timeout: revise scope error and prompt retry</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>29 – Agent timeout: revise scope error and prompt retry</em></p>
 
 **When the agent returns successfully**, it presents a structured **Test Plan Summary**:
 
@@ -60,7 +60,7 @@ By now the Preparation Agent should have returned with a test plan proposal. Swi
 - **Key Features**: structural properties the agent applied, such as role isolation, balanced path coverage, and no cross-role tests
 
 <br><img src="images/ex3_03_plan_summary.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>03 – Test Plan Summary: overview, role distribution, and planned test cases</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>30 – Test Plan Summary: overview, role distribution, and planned test cases</em></p>
 
 Review the plan and consider:
 - Does the number of test cases feel right for the scope you confirmed?
@@ -75,14 +75,14 @@ Review the plan and consider:
 When you are satisfied, approve the plan. The agent will not start writing test cases until you confirm.
 
 <br><img src="images/ex3_04_plan_confirm.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>04 – HITL Gate 2: confirm or revise the test plan</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>31 – HITL Gate 2: confirm or revise the test plan</em></p>
 
 Click **Select** next to **Confirm plan** to approve and start test case generation.
 
 The agent confirms that test case generation has started, acknowledging your approved plan and the user stories it will work on.
 
 <br><img src="images/ex3_05_tc_generation_started.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>05 – Test case generation started</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>32 – Test case generation started</em></p>
 
 Joule also provides a rundown of what was created and what happens next:
 - A **generation summary**: test plan name and total test cases
@@ -92,7 +92,7 @@ Joule also provides a rundown of what was created and what happens next:
 Two quick-access prompts are offered: **Check generation progress** and **Open test plan in Test Management**.
 
 <br><img src="images/ex3_06_generation_summary.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>06 – Generation summary and next steps</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>33 – Generation summary and next steps</em></p>
 
 ---
 
@@ -103,4 +103,4 @@ The Preparation Agent has completed its planning phase and started test case gen
 - [x] Test case generation triggered for 10 test cases across user stories 3-157, 3-158, 3-159
 - [ ] Test cases: generation in progress; you will be notified when ready
 
-Continue to [Chapter 5 – Preparation Agent: Test Cases](../ex4/README.md)
+Continue to [Chapter 5 – Generate Test Cases](../ex4/README.md)
