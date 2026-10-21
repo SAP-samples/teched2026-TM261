@@ -30,8 +30,8 @@ The hands-on follows the story of a **Test Business Process Expert** preparing t
 ## Requirements
 
 - A browser (Chrome or Edge recommended)
-- Your participant credentials: `tm261-XXX@education.cloud.sap` / `Acce$$teched26`
-  (replace `XXX` with your **workstation number** shown on your desk)
+- Your participant credentials: `tm261-###@education.cloud.sap` / `Acce$$teched26`
+  (replace `###` with your **workstation number** shown on your desk)
 - No installation required — everything runs in SAP Cloud ALM
 
 ## Exercises

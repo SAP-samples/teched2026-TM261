@@ -1,0 +1,361 @@
+================================================================================
+PROCESS INTERVIEW TRANSCRIPT + USER STORIES  [v2 – reflects final flow]
+Process: Make-to-Stock Production – Discrete Manufacturing (BJ5_simple)
+Scope:   S/4HANA Private Edition – PoC scenario
+Format:  Discovery interview – UX researcher x Business Process Expert
+Participants:
+  Uma Xavier  (UX researcher, interviewer)
+  Marco Bauer (Production Planning Expert, business process owner)
+Duration (estimated): ~20 minutes
+Changes from v1:
+  – Material availability check removed (simplified scenario)
+  – Step 1 renamed to "Manual creation of production order"
+  – Quality failure N-path expanded: Post Scrap Material + Create Purchase Requisition
+  – User stories reduced from 10 to 7; Pick Components + Post GI merged
+================================================================================
+
+
+PART 1 – INTERVIEW TRANSCRIPT
+--------------------------------------------------------------------------------
+
+Uma:   Marco, good to have you again. So last time we walked through a more
+       complete version of this process. Today I want to go through the
+       simplified flow we've landed on for the demo. Same idea – just talk
+       me through it as if explaining to someone new to production.
+
+Marco: Sure. And yeah, we did simplify. The main thing we cut is the
+       material availability check upfront. In the real world that's an
+       important gate, but for what we're demonstrating here it adds
+       complexity we don't need. We're assuming materials are there. So
+       the process starts clean: demand exists, we create the order.
+
+Uma:   Let's start there then. The trigger.
+
+Marco: So something upstream has decided we need to produce. Could be a
+       sales order pulling stock, could be a reorder point being hit,
+       could be someone just looking at the forecast and making a call.
+       Doesn't matter for our purposes. The signal arrives: produce this,
+       this quantity, this date. That triggers the first step.
+
+Uma:   Which is manual creation of the production order.
+
+Marco: Right. And we call it "manual" specifically to distinguish it from
+       the MRP-driven path where the system creates planned orders and
+       you convert them. Here the planner creates the production order
+       directly. Same document, same result – it's just the starting
+       point that differs. You go into the system, specify the finished
+       product, the quantity, the target completion date. The system
+       pulls in the bill of materials – all the components you need – and
+       assigns a work center, the machine or team that'll do the work.
+       That's your production order. The instruction set for the factory.
+
+       At this point the order exists but nothing has happened yet. It's
+       not yet visible to the shop floor. That changes in the next step.
+
+Uma:   Release.
+
+Marco: Yes. Release Production Order for Subassembly is what it says in
+       our flow – the name comes from the original standard content, we
+       couldn't rename it fully, but what it means is simply: release the
+       production order. That's the formal green light. The planner has
+       reviewed the order and says yes, go ahead. After this, the operator
+       can see the order in their worklist and start acting on it.
+
+       Before release: order exists, nobody acts. After release: shop
+       floor is authorised to start. That distinction matters for control.
+       You don't want people picking materials against an order that might
+       still be changed or cancelled.
+
+Uma:   And then picking and goods issue – can you walk through those two
+       together? We've grouped them in the flow.
+
+Marco: They go hand in hand, yes. Picking is the physical side: the
+       operator goes to the storage location, pulls the components they
+       need for the production run, and stages them at the work center.
+       All five components, or ten, whatever the BOM says – they gather
+       them and bring them to where production is happening.
+
+       Goods issue is the system side of exactly the same event. It's
+       the posting that says: these components have left inventory and
+       been consumed by this production order. Stock levels drop. The
+       cost of those materials moves from the inventory account onto
+       the production order. So from a financial and traceability
+       standpoint, goods issue is when the components officially stop
+       being stock and start being work-in-progress.
+
+       The key thing a tester needs to verify here is the quantity.
+       The goods issue quantity has to match the BOM exactly. If it
+       doesn't – if someone posts more or less than planned – that's a
+       variance. Either the BOM is wrong or something went wrong on the
+       floor. Either way it needs to be caught.
+
+Uma:   And then actual production happens, and you confirm.
+
+Marco: Exactly. The operator runs the work – assembles, processes,
+       whatever it is – and then confirms the operations. That's how
+       we capture what actually happened. You enter the produced quantity,
+       the actual time it took at the work center. The system updates
+       the order status and relieves the work center capacity.
+       That machine or that team is no longer booked against this order.
+
+       And the confirmation is also where scrap gets recorded, if any
+       was produced. Some of what you started with didn't make it through.
+       That gets noted here, separately from the good quantity.
+
+Uma:   Which leads into the quality gate.
+
+Marco: Right. After confirmation there's a decision point: Quality OK?
+       Yes or no. In a full QM setup you'd have a formal inspection
+       process, an inspection lot, a usage decision by the quality team.
+       In our simplified flow it's a binary gate. Are the goods
+       acceptable or not.
+
+       If yes – and that's the happy path – we hand off to the warehouse
+       clerk for goods receipt. The finished product arrives in finished
+       goods inventory. Done.
+
+       If no – and this is where it gets interesting for the PoC – we
+       take the quality failure path.
+
+Uma:   Tell me about that path.
+
+Marco: So the goods haven't passed. First thing that happens is we scrap
+       the material. Post Scrap Material. That's a goods issue posting –
+       movement type 551 in SAP terms – which removes the output from the
+       system. The material that came off the line but failed quality
+       gets written off. A material document is created, the cost hits
+       the production order as a variance. It's documented, it's auditable.
+
+       Now, having scrapped the output, we've still got a demand to
+       fulfil. We needed to produce X units, we produced them, they
+       failed. We need more. So the next step on that path is creating
+       a purchase requisition for the replacement materials. Maybe
+       we need to buy in replacement components that we used up in the
+       failed run, or maybe we need to source the finished product from
+       a supplier while we investigate what went wrong internally.
+       Either way, a PR gets raised.
+
+Uma:   That's a different functional area though – procurement.
+
+Marco: It is. And that's exactly what makes it interesting for the test
+       data demonstration. On the happy path you've got production objects –
+       production order, material document, goods receipt. On the failure
+       path you suddenly need a purchase requisition. Different object,
+       different master data requirements. Vendor, purchasing organisation,
+       delivery date, price. The test data agent has to reach into a
+       different domain to suggest values for those fields. That's a
+       richer test.
+
+Uma:   What does the process end state look like on each path?
+
+Marco: Happy path: finished goods in stock. The warehouse clerk has posted
+       the goods receipt, the inventory account is up by the produced
+       quantity, the production order is technically complete. Downstream
+       – sales, shipping – can see the stock and plan deliveries.
+
+       Failure path: goods scrapped, replacement material requested. The
+       PR is open, someone in procurement will pick it up and create a
+       purchase order. That's outside this process scope. Our process
+       ends when the PR exists.
+
+Uma:   Last question – if you had to call out the two most important things
+       a tester must get right in this flow, what are they?
+
+Marco: Goods issue quantity – has to match the BOM, zero deviation. If
+       that's wrong your inventory is wrong, your costs are wrong, and
+       you'll be chasing it for weeks.
+
+       And goods receipt – after confirmation and quality sign-off, the
+       finished goods stock must increase by exactly the confirmed
+       quantity. Same principle. Zero deviation. And the document flow
+       from goods receipt back to the production order must be intact.
+       Complete chain, no orphaned documents.
+
+       Everything else is important but those two are where the money is.
+
+Uma:   Clear. Thank you Marco.
+
+Marco: Good luck with it.
+
+--------------------------------------------------------------------------------
+END OF TRANSCRIPT
+--------------------------------------------------------------------------------
+
+
+PART 2 – USER STORIES
+--------------------------------------------------------------------------------
+Covers the final BJ5_simple flow as published in CALM.
+Reduced from 10 to 7 stories. Pick Components and Post Goods Issue merged
+into a single execution story. Material availability check removed (step
+not in final flow). N-path stories consolidated into one.
+Format: Title / Story / Acceptance Criteria / Priority / Story Points
+--------------------------------------------------------------------------------
+
+
+US-01  MANUAL CREATION OF PRODUCTION ORDER
+Priority: High | Story Points: 3
+----------------------------------------
+As a Production Planner,
+I want to manually create a production order specifying the finished
+product, quantity, target date, and work center,
+so that the system generates a complete work instruction with all required
+component information pulled from the bill of materials.
+
+Acceptance Criteria:
+- Production order is created with status "Created"
+- BOM is exploded automatically; all required components listed with
+  correct quantities and storage locations
+- Work center is assigned
+- Target completion date is recorded
+- Order is not visible in the operator's worklist until released
+
+
+US-02  RELEASE PRODUCTION ORDER
+Priority: High | Story Points: 2
+----------------------------------------
+As a Production Planner,
+I want to release the production order when ready for production,
+so that the shop floor operator receives formal authorisation to begin
+picking and production.
+
+Acceptance Criteria:
+- Production order status changes from "Created" to "Released"
+- Released order appears in the production operator's worklist
+- System records release date and user
+- Order cannot be modified for key fields (quantity, material) after release
+  without a specific change procedure
+
+
+US-03  PICK COMPONENTS AND POST GOODS ISSUE
+Priority: High | Story Points: 3
+----------------------------------------
+As a Production Operator,
+I want to pick the required components from storage and post the goods
+issue against the production order,
+so that components are physically staged at the work center and their
+consumption is correctly recorded in inventory and cost accounting.
+
+Acceptance Criteria:
+- All components in the BOM can be identified with storage location and
+  available quantity
+- Goods issue is posted only after the order is released
+- Component stock is reduced by exactly the BOM-specified quantity;
+  zero deviation from planned consumption
+- A material document is created referencing the production order
+- Financial posting: component inventory account credited, production
+  order debited
+- Confirmation step cannot proceed before goods issue is posted
+
+
+US-04  CONFIRM PRODUCTION OPERATIONS
+Priority: High | Story Points: 3
+----------------------------------------
+As a Production Operator,
+I want to confirm completed production operations by recording the
+produced quantity and actual operation time,
+so that the production order reflects real output and work center
+capacity is correctly relieved.
+
+Acceptance Criteria:
+- Confirmation is only possible after goods issue is posted
+- Actual produced quantity and actual operation time are recorded
+- Scrap quantity is separately capturable with a reason
+- Work center capacity is relieved by the confirmed time
+- Production order status updates to "Confirmed"
+- System records confirming user and timestamp
+
+
+US-05  QUALITY ASSESSMENT GATE
+Priority: Medium | Story Points: 2
+----------------------------------------
+As a Production Planner,
+I want a quality decision point after production operations are confirmed,
+so that only goods meeting quality standards proceed to goods receipt and
+failing goods are routed to the scrap and replenishment path.
+
+Acceptance Criteria:
+- Quality decision is available only after confirmation
+- "Yes" path: process continues to goods receipt in Warehouse Clerk lane
+- "No" path: process routes to Post Scrap Material step; no goods receipt
+  is triggered
+- Decision is recorded with user and timestamp
+
+
+US-06  POST GOODS RECEIPT – FINISHED GOODS
+Priority: Very High | Story Points: 3
+----------------------------------------
+As a Warehouse Clerk,
+I want to post the goods receipt for the completed production order,
+so that finished goods are recorded in inventory and available for
+downstream sales and delivery processes.
+
+Acceptance Criteria:
+- Goods receipt is posted only after quality assessment passes
+- Finished goods stock increases by exactly the confirmed produced quantity;
+  zero deviation
+- A goods receipt material document is created referencing the production
+  order
+- Financial posting: finished goods inventory account debited, production
+  order credited
+- Production order status updates to "Delivered" or "Completed"
+- Document flow is fully navigable: goods receipt → confirmation →
+  goods issue → production order
+- End state: "Finished goods available in stock"
+
+
+US-07  QUALITY FAILURE PATH: SCRAP AND REPLENISHMENT REQUEST
+Priority: Medium | Story Points: 5
+----------------------------------------
+As a Production Planner,
+I want to post the failed output as scrap and raise a purchase requisition
+for replacement materials when production fails quality,
+so that non-conforming goods are removed from inventory, costs are
+correctly captured, and procurement is notified to source replacements.
+
+Acceptance Criteria:
+- Post Scrap Material: a goods issue (movement type 551) is posted;
+  material stock is reduced by the scrapped quantity; a material document
+  is created referencing the production order; cost variance posts to the
+  production order
+- No goods receipt is posted for scrapped quantities
+- Create Purchase Requisition: a PR is created for the replacement material
+  or components; PR contains material, quantity, plant, requested delivery
+  date, and company code
+- PR is created in "Open" status and visible to the purchasing team
+- End state: "Goods scrapped. Replacement material requested"
+- Document flow links scrap posting and PR to the originating production
+  order
+
+
+--------------------------------------------------------------------------------
+USER STORY SUMMARY
+--------------------------------------------------------------------------------
+
+ID      Title                                    Priority    Story Points
+------  ---------------------------------------  ----------  ------------
+US-01   Manual Creation of Production Order      High             3
+US-02   Release Production Order                 High             2
+US-03   Pick Components and Post Goods Issue     High             3
+US-04   Confirm Production Operations            High             3
+US-05   Quality Assessment Gate                  Medium           2
+US-06   Post Goods Receipt – Finished Goods      Very High        3
+US-07   Quality Failure: Scrap + PR              Medium           5
+------  ---------------------------------------  ----------  ------------
+        Total                                                     21
+
+What changed from v1:
+  Removed  US-02 v1 (Material Availability Check) – step not in final flow
+  Removed  US-09 v1 (Material Shortage N-path)    – step not in final flow
+  Merged   US-04 v1 (Pick Components)             – combined with Post GI
+           US-05 v1 (Post Goods Issue)             – now US-03
+  Merged   US-10 v1 (Scrap/Rework)                – expanded into US-07
+           with Create PR as explicit second step
+
+Priority rationale:
+  Very High  – core control point; failure breaks downstream inventory/finance
+  High       – essential happy-path steps; PoC demo requires all to complete
+  Medium     – important for completeness; not blocking for PoC go/no-go
+
+================================================================================
+END OF DOCUMENT
+================================================================================

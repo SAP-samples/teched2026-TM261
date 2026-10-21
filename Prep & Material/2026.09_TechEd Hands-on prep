@@ -5,6 +5,7 @@ Test Managmeent Assistant hands-on system information
 
 Access: 
 BTP System: https://emea.cockpit.btp.cloud.sap/cockpit?idp=tdct3ched1.accounts.ondemand.com#/globalaccount/4a4d94b7-7273-428b-8132-3b7af29312bb
+CALM tenant: https://tm261-000-l2fw0ndj.eu10-004.alm.cloud.sap/launchpad
 
 QU: Will all users have to go through the btp UI or do they directly get to the CALM UI?
 
@@ -73,7 +74,15 @@ OPEN
 	- how does it play into the scenario - essential or we use a "standard" process?		
 2. additional Users (40-50 ) --> not yet created
 3. additional users (90s range) --> created 
-4. "transcript to requirements" Ai feature: 2026.10.12: AI feature ID not activated, in contact with Daniel. 
+4. AI features for Test Management Assistant agents: 2026.10.12: feature IDs not yet activated, in contact with Daniel/Zaid Tariq.
+	2026.10.20: Feature IDs identified (source: Jira ticket I758574). Lookup path: Jarvis → subscreen shows AI Feature ID.
+	Tenant: 4727b51f-3494-453d-ad85-800cecf3f072 (tm261-000-l2fw0ndj)
+	Feature IDs required (TechEd + EAC customers):
+		- AI-LPR1067-BASE-0001-25Q4
+		- AI-LPR1067-ACTION-0149-26Q3
+		- AI-LPR1067-ACTION-0150-26Q4
+		- AI-LPR1067-ACTION-0151-26Q4
+	Note: AI-LPR1067-ACTION-0153-26Q3 is already GA (released) — do NOT activate separately, would incur customer costs.
 5. which business process do we want to use? 
 	- cf (1) Signavio dependendy (customer/standard process). 
 	- currently working on BKJ (from "public POC" script)

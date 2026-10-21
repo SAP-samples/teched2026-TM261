@@ -1,92 +1,96 @@
-# Exercise 4 – Generate Test Cases with AI
+# Chapter 5 – Preparation Agent: Test Cases
 
-**Prerequisite:** You have completed [Exercise 3](../ex3/README.md); a confirmed test plan exists for the BKJ process.
+**Prerequisite:** You have completed [Chapter 4](../ex3/README.md); a confirmed test plan exists for the BJ5 process, and test case generation has been triggered and is running in the background.
 
 ---
 
 ## What You'll Do
 
-In this exercise you'll unleash the **Test Case Generation Agent**: an AI agent that takes the test plan and writes detailed, executable test cases. While it works, you'll draft one test case yourself, then compare results. After that you'll dive into one of the most overlooked aspects of test case quality: **test data and parameters**.
+In this chapter you'll follow the **Test Case Generation Agent** as it takes the approved test plan and writes detailed, executable test cases. While it works, you'll draft one test case manually to appreciate the effort involved, then compare your result with what the agent produces.
 
 ---
 
-## Step 15 – Unleash the TC Generation Agent
+## 5.1 – Phase 2: Test Case Generation
 
-### 15.1 – Confirm the Plan and Prompt for Generation
+The Preparation Agent is now in its second phase. Having cleared HITL Gate 2 with your approved test plan, it is working through the following steps:
 
-1. Make sure your test plan from Exercise 3 is in its final state.
+- **Write test cases**: For each planned test case, the agent creates a complete entry in SAP Cloud ALM via ContentAssist, including test steps, expected results, preconditions, and role assignments. Progress is streamed live as test cases are written.
+- **Link cases and apply EARL**: Each test case is linked to the corresponding Requirement and Solution Process, establishing full traceability. Where available, the agent enriches the content with SAP standard test procedures from the Enterprise Architecture Reference Library (EARL).
+- **Output**: Complete, traceable test cases written to Cloud ALM Test Management, ready for review and execution.
 
-2. Open Joule and enter: **"The plan looks good. Please generate the test cases."** or **"Confirm plan, start test creation."**
-
-<!-- 📷 TODO: screenshot ex4_01_generate_prompt.png: Joule prompt to start TC generation agent, acknowledgement -->
-<br><img src="images/ex4_01_generate_prompt.png" />
-
-3. The generation agent starts. This is the most comprehensive agent; it writes detailed steps, expected results, and parameter placeholders for every test case in the plan.
-
-<!-- 📷 TODO: screenshot ex4_02_generation_running.png: TC generation agent running indicator -->
-<br><img src="images/ex4_02_generation_running.png" />
+<br><img src="images/ex4_01_tc_agent_phase2.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>01 – Preparation Agent Phase 2: test case generation pipeline</em></p>
 
 > ⏱️ **While the agent works: try it yourself:**
 >
-> Pick one test case from your plan (e.g. "Post Incoming Payment and Clear Down Payment") and try to write it manually:
+> Pick one of the planned test cases and try to write it manually:
 >
-> 1. Break it into functional units: what app? what action?
-> 2. Assign the correct role: AR Accountant
-> 3. Write the test steps at the right level of detail (not too high, not too granular)
-> 4. For each step, write the expected result
+> 1. Choose a test case from your plan (for example: "Post Goods Receipt for Finished Goods" by the Warehouse Clerk, or "Quality Assessment Gate" by the Production Planner)
+> 2. Write a clear description of what is being tested
+> 3. Assign the correct role: **Production Planner** or **Warehouse Clerk**
+> 4. Write the test steps at the right level of detail (not too high, not too granular)
+> 5. For each step, write the expected result
 >
-> **In particular:** note down any input parameters (company code, posting date, customer account, amount, house bank). Draw arrows to show dependencies; which parameter values are determined by earlier steps?
->
-> Keep your notes for Step 18.
+> Keep your notes; you'll compare them with the agent's output in Section 5.3.
 
 ---
 
-## Step 16 – Manual Test Case Work
+## 5.2 – Manual Test Case Work
 
-While the agent runs, try a more structured breakdown:
+While the agent runs, try a more structured breakdown.
 
-For your chosen test case, fill in this template:
+For the test case "Post Goods Receipt – Finished Goods" (US-06), fill in this template:
 
 | Element | Your Draft |
 |---|---|
 | **Test Case Name** | |
-| **Role** | AR Accountant |
-| **Precondition** | |
-| **App** | Post Incoming Payments (F1345) |
-| **Step 1** | Open the app, select company code |
+| **Role** | Warehouse Clerk |
+| **User Story** | BJ5_US-06: Post Goods Receipt – Finished Goods |
+| **Precondition** | Production order confirmed; quality assessment passed (Quality OK = Yes, P1 path) |
+| **App** | Goods Movements / Post Goods Receipt |
+| **Step 1** | Open the Goods Receipt app and select the confirmed production order |
 | **Step 1: Expected Result** | |
-| **Step 2** | Enter posting date and journal entry type DZ |
+| **Step 2** | Verify the quantity matches the confirmed production output |
 | **Step 2: Expected Result** | |
-| **Step 3** | Filter for Special G/L transactions, find FAZ open item |
+| **Step 3** | Select movement type and post the goods receipt |
 | **Step 3: Expected Result** | |
-| **Step 4** | Select FAZ item, choose Clear, Post |
+| **Step 4** | Verify the stock update in the storage location |
 | **Step 4: Expected Result** | |
-| **Parameters needed** | Company code, posting date, G/L account, house bank, customer, amount |
+| **Parameters needed** | Production order number, plant, storage location, finished goods material, quantity |
 
 ---
 
-## Step 17 – Review the Generated Test Case
+## 5.3 – Review the Generated Test Cases
 
-The agent has finished. Let's see what it produced.
+By now the test cases should be ready. Time to see what the agent produced.
 
-### 17.1 – Open the First Test Case
+**Finding the notifications**
 
-1. Go to the **Notification Area** and open the TC generation agent's completion notification.
+While you were working on your manual test case, the generation agent was completing its work in the background. SAP Cloud ALM sends an in-app notification for each test case created. You will see a badge on the **notifications bell** in the top-right corner of the screen.
 
-<!-- 📷 TODO: screenshot ex4_03_tc_notification.png: Notification of TC generation agent completion -->
-<br><img src="images/ex4_03_tc_notification.png" />
+<br><img src="images/ex4_02_notifications_button.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>02 – Notification badge: test cases created</em></p>
 
-2. Navigate to the first generated test case and open it in detail.
+Close the Joule panel first, then click the **notifications bell**. An overlay opens showing one entry per test case, with the test case name and a timestamp.
 
-<!-- 📷 TODO: screenshot ex4_04_tc_overview.png: Generated test case list overview -->
-<br><img src="images/ex4_04_tc_overview.png" />
+<br><img src="images/ex4_03_notifications_overlay.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>03 – Notification overlay: one entry per generated test case</em></p>
 
-<!-- 📷 TODO: screenshot ex4_05_tc_detail.png: Single test case detail: steps, expected results, parameters, traceability -->
-<br><img src="images/ex4_05_tc_detail.png" />
+**Opening and browsing a test case**
 
-### 17.2 – Quality Check
+Click on any notification to open the test case directly in the SAP Cloud ALM Test Preparation interface. Take a few minutes to browse:
 
-Review the generated test case against these criteria:
+- The **Content** tab: a **Purpose** section describing the business objective, the **Acceptance Criteria** linked from the user story, and the full set of **test steps** with instructions and expected results
+- The **General Information** tab: traceability links to the Solution Process and Requirement, and the source indicator: "Manual Test Case – created with AI assistance"
+- The **Relations** tab: connection to the scope item and test plan entry
+- The **References** tab: any EARL standard content applied
+
+<br><img src="images/ex4_04_tc_detail.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>04 – Test case detail: Content tab with purpose, acceptance criteria, and test steps</em></p>
+
+**Quality check**
+
+Review the test case against these criteria:
 
 | Quality Criterion | Check |
 |---|---|
@@ -97,53 +101,22 @@ Review the generated test case against these criteria:
 | Traceable to a user story or requirement | ☐ |
 | Logical grouping of steps | ☐ |
 
-> **Compare with your manual draft:** Did the agent's version match what you wrote? What did it do better? What would you change?
+> **Compare with your manual draft from Step 5.2:** Did the agent's version match what you wrote? What did it do better? What would you change?
 
----
+**What you have learned**
 
-## Step 18 – Understand Test Data Parameters
+The agent produced a complete, structured test case, with a business purpose, traceability to acceptance criteria, executable test steps, and expected results, in the time it took you to draft one manually.
 
-This is where test preparation often gets underestimated. Let's go deeper.
-
-### 18.1 – Identify the Parameters
-
-Open the test case you've been looking at (the payment posting case, or any other complex one) and focus on the **input parameters**: the specific values that must be entered to execute each step.
-
-1. For each step in the test case, note down all parameter fields (not the values yet, just the parameter names).
-
-<!-- 📷 TODO: screenshot ex4_06_parameters.png: Test case with parameter fields highlighted / annotated -->
-<br><img src="images/ex4_06_parameters.png" />
-
-2. Now think about **dependencies** between parameters. For the BKJ process:
-
-   - The **Sales Organization** (e.g. 1010) determines which **Distribution Channel** and **Division** are available
-   - The **Sold-to Party** (customer) determines the **Ship-to Party** and **Payer**
-   - The **Plant** (e.g. 1010) determines which **Storage Location** is available
-   - The **Material** type determines which **Item Category** is auto-assigned (CBAO, CTAD, or CTAX)
-
-   Draw or describe these dependency relationships; which parameter determines which others?
-
-<!-- 📷 TODO: screenshot ex4_07_dependencies.png: Whiteboard or annotation showing parameter dependency relationships -->
-<br><img src="images/ex4_07_dependencies.png" />
-
-> **This dependency map is what the Data Agent will use in Exercise 5**: it's not just about picking values, it's about picking consistent combinations.
-
-### 18.2 – Note the Test Case ID
-
-1. Note down the **test case ID** of the case you've been reviewing. You'll use it to prompt the data agent in Exercise 5.
-
-<!-- 📷 TODO: screenshot ex4_08_tc_id.png: Test case ID highlighted in the test case header -->
-<br><img src="images/ex4_08_tc_id.png" />
+Look closely at the test steps: they contain **parameter placeholders**: fields like plant, production order number, or material code that have been identified but not yet filled in with actual system values. Resolving these parameters is the job of the next agent in the pipeline: the **Test Data Management Agent**, covered in Chapter 6.
 
 ---
 
 ## Summary
 
-The TC generation agent wrote detailed, executable test cases for the full BKJ scope; complete with steps, expected results, and parameter placeholders.
+The Preparation Agent's Phase 2 wrote detailed, executable test cases for the full BJ5 scope; complete with steps, expected results, and parameter placeholders.
 
-You now understand:
-- What a high-quality AI-generated test case looks like
-- How to evaluate it for correctness, completeness, and traceability
-- That **test data and parameters** are a critical dimension that needs its own attention
+- [x] Test cases generated and reviewed
+- [x] Quality criteria checked: role assignment, step clarity, traceability, expected results
+- [ ] Test data values: parameter placeholders identified; to be resolved in Chapter 6
 
-Continue to [Exercise 5 – Generate Test Data with AI](../ex5/README.md)
+Continue to [Chapter 6 – Test Data Management Agent](../ex5/README.md)

@@ -1,133 +1,140 @@
-# Exercise 2 – Scope Your Tests with AI
+# Chapter 3 – Scoping Agent
 
-**Prerequisite:** You have completed [Exercise 1](../ex1/README.md); the BKJ process has linked requirements, user stories, and solution documentation.
+**Prerequisite:** You have completed [Chapter 2](../ex1/README.md); the BJ5 process has linked requirements and user stories.
 
 ---
 
 ## What You'll Do
 
-In this exercise you'll unleash the **Scoping Agent**: an AI agent that reads all your linked process documentation and proposes a structured set of test cases. While the agent works, you'll experience what manual scoping looks like, so you can appreciate the comparison.
+In this chapter you'll unleash the **Scoping Agent**: an AI agent that reads all your linked process documentation and proposes a structured set of test cases. While the agent works, you'll experience what manual scoping looks like, so you can appreciate the comparison.
 
 ---
 
-## Step 6 – Unleash the Scoping Agent
+## 3.1 – Trigger the Scoping Agent
 
 Time to try again; with proper input now in place.
 
-### 6.1 – Prompt Joule (same as before)
+### 3.1.1 – Prompt Joule (same as Step 1.3)
 
-1. Open Joule and send the **same prompt** as in Step 3:
+1. Open a new conversation in Joule and send the **same prompt** as in Step 1.3:
 
-   > *"I want to test and need test cases for: Process "Custom Sales Order Processing with Customer Down Payment (BKJ)", Project "XXX_TestProject""*
+   > *"I need to test process "Beta_Straight Make-to-Stock Production – Discrete Manufacturing (BJ5_simple)" in project "###_TestProject""*
+   >
+   > Replace **###** with your workstation number.
 
-   You can see your newly created requirement in the list on the left; status *In Refinement*, already linked to the BKJ process.
+2. The scoping agent starts working in the background. You'll see a notification or progress indicator.
 
-<br><img src="images/ex2_01_joule_prompt.png" />
-
-3. The scoping agent starts working in the background. You'll see a notification or progress indicator.
-
-<!-- 📷 TODO: screenshot ex2_02_agent_running.png: Scoping agent running indicator / notification area -->
 <br><img src="images/ex2_02_agent_running.png" />
-
-> ⏱️ **While the agent works: try it yourself:**
->
-> The scoping agent is analyzing your requirements, user stories, solution description, and process structure. This typically takes a few minutes.
->
-> In that time, try to do the same thing manually:
->
-> 1. Look at the BKJ process (9 user stories, the solution steps)
-> 2. **On paper (or in your head):** Try to outline test cases; think about: what apps are involved? What roles? What are the happy path steps? What could go wrong?
-> 3. How many distinct test cases would you define? How long would it take to write them all out properly?
->
-> This is what test preparation normally looks like.
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>02 – Scoping agent running</em></p>
 
 ---
 
-## Step 7 – What's Happening? (Narration)
+## 3.2 – What's Happening? (Narration)
 
-> **Presenter narration:** While the agent works, here's what it's doing under the hood:
->
+<br><img src="images/ex2_03_scoping_agent_flow.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>03 – Scoping agent methodology</em></p>
+
 > The scoping agent applies a structured methodology:
-> 1. It reads all linked documentation (requirements, user stories, solution design)
-> 2. It identifies distinct **process paths**: the happy path, role-based variations, error paths
-> 3. It maps each path to **acceptance criteria** from the user stories
-> 4. It groups paths into **test cases** with names, descriptions, and scope assignments
+> 1. It resolves the process name, requirements, and user stories to exact identifiers in SAP Cloud ALM
+> 2. It validates that the required input exists; if not, it blocks and returns clear instructions on what to fix
+> 3. It classifies each input: process scope variants or detailed reference steps
+> 4. It enriches the scope with SAP standard test baselines and extracts acceptance criteria from your linked content
+> 5. It scores each scope item for completeness, ranks items by priority, and flags coverage gaps
+> 6. It presents the result for your review and sign-off; no downstream work starts without your approval (HITL Gate 1)
 >
 > This is the same analysis a skilled test architect would do, but compressed from hours into minutes.
 
 ---
 
-## Step 8 – Manual Scoping: Break It Down Yourself
+## 3.3 – Manual Scoping Exercise
 
 While you wait for the agent, try a structured manual scoping exercise.
 
-For the BKJ process, work through these dimensions on a piece of paper or sticky note:
+For the BJ5 process, work through these dimensions on a piece of paper or sticky note:
 
 | Dimension | Your Answer |
 |---|---|
+| What **acceptance criteria** can you identify from the user stories and requirements? | |
 | How many distinct **apps/UIs** are involved? | |
 | How many **roles** participate? | |
 | What are the main **process paths** (happy path + variants)? | |
 | Which steps have **blocking conditions** worth testing? | |
 | What **error scenarios** should be covered? | |
 
-> Hint: The BKJ process involves at least 4 roles (Internal Sales Rep, Billing Clerk, AR Accountant, Shipping Specialist) and 8 distinct Fiori apps. The process has 2 critical gates: the billing block release and the delivery gate after payment clearance.
+> Hint: The BJ5 process involves 2 roles (Production Planner and Warehouse Clerk) and spans the full make-to-stock cycle from production order creation to finished goods receipt. There is 1 critical quality gate where output is assessed before goods receipt, and a separate failure path for scrap and replenishment.
 
 Keep your notes; you'll compare them to the agent's output next.
 
 ---
 
-## Step 9 – Review the Scoping Agent's Work
+## 3.4 – Review the Scoping Agent's Work
 
-The agent is done (you'll see a notification). Let's review what it produced.
+### 3.4.1 – Open the Agent's Output
 
-### 9.1 – Open the Agent's Output
+When the agent is ready, it replies directly in the Joule chat window with a **Test Scope Summary**. The response is detailed; switch Joule to **full-screen mode** first using the **expand icon** (⤢) in the top-right of the Joule panel for a much easier reading experience.
 
-1. Go to the **Notification Area** (bell icon) and open the scoping agent's completion notification.
+The response gives you:
 
-2. This takes you to the proposed test case scope; a list of test cases the agent has defined for the BKJ process.
+- **Process context**: the solution process, flow diagram, and applicable countries it resolved
+- A **summary of identified process flow paths**, reflecting any splits or variants in the process structure
+- An overview of the **items it ingested**: your requirement and the 7 user stories
+- Related **standard process procedures** retrieved from the SAP Enterprise Architecture Reference Library (EARL)
+- A conclusive list of **acceptance criteria** derived from all of the above
 
-<!-- 📷 TODO: screenshot ex2_03_scope_notification.png: Notification area showing scoping agent completion -->
-<br><img src="images/ex2_03_scope_notification.png" />
-
-<!-- 📷 TODO: screenshot ex2_04_scope_result.png: Generated test case scope list, showing test case names and descriptions -->
 <br><img src="images/ex2_04_scope_result.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>04 – Test Scope Summary in Joule</em></p>
 
-### 9.2 – Evaluate the Scope
-
-Review the proposed test cases. For each one, check:
-
-- **Name and description**: does it clearly describe what's being tested?
-- **Linked acceptance criteria**: is it traceable back to a user story or requirement?
-- **Role**: is the correct role assigned to each test case?
-- **Coverage**: does the overall set cover happy path, role boundaries, and the two key gates?
-
-<!-- 📷 TODO: screenshot ex2_05_scope_detail.png: Single test case detail showing acceptance criteria and role assignment -->
-<br><img src="images/ex2_05_scope_detail.png" />
-
-> **Compare with your manual notes:** Did the agent catch everything you identified? Did it find things you missed? This comparison is a key learning moment.
+> **HITL Gate 1: Test Scope Summary.** This is the first checkpoint in the agentic workflow. The agent stops, presents its detailed structured analysis, and waits for your review and sign-off. Nothing proceeds until you confirm.
 
 ---
 
-## Step 10 – (Optional) Refine the Scope in Joule
+### 3.4.2 – Evaluate and Compare
 
-The scope is a starting point, not a final decision. Joule lets you refine it through conversation.
+Take a few minutes to work through the proposed scope. For each item, check:
+- **Name and description**: does it clearly describe what's being tested?
+- **Linked acceptance criteria**: is it traceable back to a user story or requirement?
+- **Role separation**: are Production Planner tasks and Warehouse Clerk tasks kept in separate test cases?
+- **Coverage**: does the overall set cover the happy path (P1), the quality gate failure path (P2), and the scrap/replenishment scenario?
 
-Try one of these refinements:
+> **Compare with your manual notes from Step 3.3:** Did the agent catch everything you identified? Did it find things you missed? This is the key learning moment of this chapter.
 
-- **Drop an acceptance criterion:** "Remove the batch management acceptance criterion from test case X; it's out of scope for our project."
-- **Split a test case by role:** "Split test case Y into two cases; one for the Internal Sales Rep and one for the Billing Clerk."
-- **Add coverage:** "Add a negative test case for the delivery block scenario."
+---
 
-<!-- 📷 TODO: screenshot ex2_06_refine_scope.png: Joule conversation refining the scope, showing updated test case list -->
-<br><img src="images/ex2_06_refine_scope.png" />
+## 3.5 – Refine the Scope in Joule
+
+The first scoping suggestion is your starting point. Joule lets you refine it through conversation.
+
+> **Note for participants sharing a system:** The agents run on shared infrastructure. To avoid overloading the system with concurrent calls, keep your refinement focused. We recommend limiting the scope to **user stories 5, 6, and 7** (the quality gate, goods receipt, and failure path).
+
+**Option 1: Use the built-in Revise Scope shortcut**
+
+Click the **Select** button in the Joule output panel, then choose **Revise Scope** from the dropdown. Joule converts your selection into a refinement prompt and sends it to the agent automatically.
+
+<!-- 📷 TODO: screenshot ex2_06_revise_button.png: Select button → dropdown → Revise Scope / "No, let me revise" option -->
+<br><img src="images/ex2_06_revise_button.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>06 – Built-in Revise Scope option</em></p>
+
+**Option 2: Write your own prompt**
+
+You can also type your refinement directly in the Joule chat window. Use this starting point:
+
+> *"Focus on user stories [insert three user story IDs from your scope, format 3-456, for example the last three focusing on the decision point / path split]. In particular take care of roles and create test cases which do NOT cross multiple roles."*
+
+<br><img src="images/ex2_05_refine_scope.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>05 – Refinement prompt: focusing on three user stories</em></p>
+
+Or try one of these:
+- **Narrow the scope:** "Remove user stories 1–4 from the scope for now; focus only on the quality gate, goods receipt, and scrap path."
+- **Split a test case by role:** "Split the goods issue test case into two; one for the Production Planner and one for the Warehouse Clerk."
 
 ---
 
 ## Summary
 
+When you're satisfied with the scope, signal your approval in Joule. This is **HITL Gate 1**: the preparation agent will not begin building the test plan until you confirm.
+
 The scoping agent analyzed all your linked process artifacts and proposed a structured test case scope; with traceability to requirements and user stories; in the time it took you to sketch a rough outline manually.
 
 You now have a **confirmed test case scope** ready for test planning.
 
-Continue to [Exercise 3 – Plan Your Tests with AI](../ex3/README.md)
+Continue to [Chapter 4 – Preparation Agent: Test Plan](../ex3/README.md)

@@ -1,161 +1,160 @@
-# Exercise 5 – Generate Test Data with AI
+# Chapter 6 – Test Data Management Agent
 
-**Prerequisite:** You have completed [Exercise 4](../ex4/README.md); generated test cases exist and you have noted a test case ID.
+Good test data is one of the most underestimated parts of test preparation. A single wrong value (an invalid material, the wrong plant, a date outside the planning horizon) is enough to make a test fail for the wrong reasons, wasting time and masking real defects. Yet gathering valid, consistent test data for a business process like BJ5 traditionally demands expert knowledge of both the process and the system configuration.
+
+**Prerequisite:** You have completed [Chapter 5](../ex4/README.md); test cases have been generated for the BJ5 process and are visible in Test Preparation.
 
 ---
 
 ## What You'll Do
 
-In this exercise you'll unleash the **Data Agent**: an AI agent that analyzes your test cases and proposes meaningful test data: parameter values with the right combinations, boundary cases, and reasoning for each choice. This is the final AI-assisted stage of test preparation.
+In this chapter you'll work with the **Test Data Management Agent**. In its current Phase 1 form, the agent reads a test case and extracts every parameter placeholder: the fields where a tester will need a specific system value to execute the step. It classifies them by data category and applies fixed project-level values (company code, plant, client) automatically.
+
+This is the foundation for a longer roadmap: future phases will suggest actual values retrieved from test or productive systems, and eventually write clean test data directly into target systems. For now, Phase 1 turns unstructured test step text into a structured, actionable parameter checklist.
 
 ---
 
-## Step 19 – Unleash the Data Agent
+## 6.1 – Understanding the Agent
 
-### 19.1 – Prompt Joule with Your Test Case
+The diagram below shows the full pipeline of the Test Data Management Agent in Phase 1.
 
-1. Open Joule.
+<br><img src="images/ex5_01_tdm_agent_flow.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>01 – Test Data Management Agent: Phase 1 pipeline</em></p>
 
-2. Enter a prompt that references the test case ID you noted in Exercise 4. Something like: **"Please suggest test data for test case [your-TC-ID]."**
-
-<!-- 📷 TODO: screenshot ex5_01_data_prompt.png: Joule prompt referencing a specific test case ID, acknowledgement response -->
-<br><img src="images/ex5_01_data_prompt.png" />
-
-3. The data agent queues and starts analyzing the test case; reading its steps, identifying parameters, and cross-referencing the master data requirements from the solution design.
-
-<!-- 📷 TODO: screenshot ex5_02_data_agent_running.png: Data agent running indicator -->
-<br><img src="images/ex5_02_data_agent_running.png" />
-
-> ⏱️ **While the agent works:**
->
-> Think about what makes good test data:
-> - Values that are **valid but exercise boundaries** (e.g. a down payment that is exactly 50% of the order value)
-> - Values that are **invalid** but in realistic ways (e.g. insufficient stock, wrong billing type)
-> - Values that **respect dependencies** (sales org determines customer pool, plant determines storage)
->
-> What would you suggest as test data for the payment posting test case?
-
----
-
-## Step 20 – What's Happening? (Narration)
-
-> **The challenge:** Finding valid test data demands expert knowledge that doesn't scale; wrong data corrupts test results and steals time from actual testing.
->
-> **The solution:** The **Test Data Management Agent** identifies every required data parameter from test case instructions; the tester looks up the known targets; no expert required. *(This is Phase 1 of a longer roadmap.)*
->
-> Here is what the agent is working through right now:
->
-> | Stage | What happens |
-> |---|---|
-> | **Fetch test case** | Reads the test case and all its activity steps from Cloud ALM via MCP (TL102). ⚠️ If the test case is not found, has no activities, or the text is empty; the agent stops and asks you to verify the input. |
-> | **Extract parameters** | Identifies every required SAP business object and field value from the instruction text; every line of "Enter Sales Organization…" becomes a structured parameter. |
-> | **Classify parameters** | Labels each parameter by category: **Org Data · Master Data · Config Data · Transactional Data**. |
-> | **Apply project context** | Obtains fixed values (company code, plant, client) from the Cloud ALM project record; so you don't have to look those up yourself. |
-> | **Output** | A read-only parameter table per category. Structured guidance for the tester who locates the actual system values manually. |
->
-> **Phase 1 scope note:** The agent identifies and classifies parameters; it does not yet automatically look up system values. That's the tester's final step: use the table as a checklist to find values in the target system.
-
----
-
-## Step 21 – Review the Test Data Agent Output
-
-### 21.1 – Open the Suggested Data
-
-1. Go to the **Notification Area** and open the data agent's completion.
-
-<!-- 📷 TODO: screenshot ex5_03_data_notification.png: Data agent completion notification -->
-<br><img src="images/ex5_03_data_notification.png" />
-
-2. Review the suggested test data; you should see a structured set of parameter values with explanations.
-
-<!-- 📷 TODO: screenshot ex5_04_data_result.png: Test data suggestion: parameter table with values and reasoning -->
-<br><img src="images/ex5_04_data_result.png" />
-
-### 21.2 – Evaluate the Data Quality
-
-For each parameter group, check:
-
-| Aspect | What to look for |
+| Stage | What happens |
 |---|---|
-| **Completeness** | Are all required parameters covered? Any missing? |
-| **Consistency** | Are the values consistent with each other (e.g. correct sales org + customer combination)? |
-| **Coverage** | Does the set include both valid (happy path) and invalid (negative test) values? |
-| **Reasoning** | Does the agent explain *why* specific values were chosen? |
-| **Boundary cases** | Are there values that test edge conditions (max amount, exact threshold)? |
+| **INPUT** | A test case ID or title, provided by the tester or passed from the Preparation Agent |
+| **Fetch test case** | Reads the test case and all its activity steps from SAP Cloud ALM via MCP (TL102). If the test case is not found, has no activities, or the text is empty, the agent stops and asks you to verify the input. |
+| **Extract parameters** | Identifies every required SAP business object and field value from the instruction text; every line of "Enter Material…" or "Select Plant…" becomes a structured parameter entry. |
+| **Classify parameters** | Labels each parameter by category: **Org Data · Master Data · Config Data · Transactional Data** |
+| **Apply project context** | Obtains fixed values (company code, plant, client) from the Cloud ALM project record automatically |
+| **OUTPUT** | A read-only parameter table per category; structured guidance for the tester who then locates the actual values in the system |
 
-<!-- 📷 TODO: screenshot ex5_05_data_evaluation.png: Detailed data suggestion showing reasoning for a specific parameter -->
-<br><img src="images/ex5_05_data_evaluation.png" />
-
----
-
-## Step 22 – Go Deeper into Data Understanding
-
-### 22.1 – Explore Dependencies
-
-1. In Joule, ask: **"What are the dependencies between these parameters?"** or **"Which parameters drive the values of other parameters?"**
-
-   The agent should outline the dependency chain; for example, that the Sales Organization determines which customers and materials are valid.
-
-<!-- 📷 TODO: screenshot ex5_06_dependencies.png: Joule response outlining parameter dependencies -->
-<br><img src="images/ex5_06_dependencies.png" />
-
-> **Key insight:** The dependency map the agent produces here is exactly what you started sketching in Exercise 4, Step 18. Notice how parameters like Sales Organization (1010), Plant (1010), and Material type cascade into choices for all other fields.
-
-### 22.2 – Reference Data in Context
-
-For the BKJ process, the core master data values are:
-
-| Parameter | Value (Demo System) | Determines |
-|---|---|---|
-| Sales Organization | 1010 | Dist. Channel, Division, Customer pool |
-| Distribution Channel | 10 (Direct Sales) | Available customers |
-| Division | 00 | – |
-| Sold-to Party | 10100004 | Ship-to, Payer |
-| Plant | 1010 | Storage location, available materials |
-| Storage Location | 101A | – |
-| Material | TG11 / TG12 | Item Category (CBAO) |
-| Item Category | CBAO | Billing plan type |
-| Shipping Point | 1010 | Delivery creation |
-| House Bank | DEBK1 / DEAC1 | Payment posting |
-
-> **Additional scenario:** The agent's real value shows when you have **unexpected combinations**: e.g. what happens if a non-stock material (NS0002) is used instead of a trading good? The item category changes to CTAX, which uses a different billing plan configuration. These scenarios are hard to spot manually but the agent flags them as meaningful test variants.
-
-<!-- 📷 TODO: screenshot ex5_07_variants.png: Test data variants showing different material type combinations or other meaningful edge cases -->
-<br><img src="images/ex5_07_variants.png" />
+> **Phase 1 scope note:** The agent identifies and classifies parameters; it does not yet look up or suggest actual system values. The tester uses the output as a structured checklist.
 
 ---
 
-## Step 23 – Recap: Value Created
+## 6.2 – Identify the Parameters in Your Test Case
 
-Let's step back and look at what you've accomplished in this hands-on.
+Before triggering the agent, try it yourself. Open one of your generated test cases in Test Preparation, go to the **Content** tab, and read through the test steps. For each step, note every place where the tester will need to enter a specific value.
 
-### Time comparison
+Look for patterns like these:
 
-| Stage | Manual Effort (estimate) | AI-Assisted |
-|---|---|---|
-| Requirements from transcript | 2–4 hours (BA writing) | ~2 minutes (generation) + review |
-| Test case scoping | 4–8 hours (architect) | ~3 minutes (agent) + review |
-| Test plan creation | 2–4 hours (test analyst) | ~3 minutes (agent) + review |
-| Test case writing | 1–2 days (test analyst) | ~5 minutes (agent) + review |
-| Test data suggestion | 4–8 hours (analyst + BA) | ~2 minutes (agent) + review |
-| **Total** | **3–5 days** | **< 30 minutes** |
+- **Material**: `<replacement material number>`; must exist in the system
+- **Plant**: `<plant>`; the plant where the production operation takes place
+- **Order Type**: PP01; a configuration value, already fixed here
+- **Total Qty**: `<required quantity>`; must be valid for the material and order
+- **Basic Finish Date**: `<planned finish date>`; must fall within the planning horizon
 
-<!-- 📷 TODO: screenshot ex5_08_recap.png: Optional: summary view, completed test cases in system, or any "done" state overview -->
-<br><img src="images/ex5_08_recap.png" />
+For a make-to-stock production and warehousing process like BJ5, you'll typically also encounter:
 
-> **The shift:** You didn't just save time; you changed the nature of the work. Instead of *creating* artifacts from scratch, you spent your time *reviewing and validating* AI-generated artifacts. That's the role of the future test expert: quality judgment, not manual production.
+- **Company code**: fixed from the project configuration
+- **Work center**: must exist in the plant and be assigned to the correct cost center
+- **Storage location**: must be valid for the plant and movement type
+- **Production order number**: a transactional reference that only exists after the order is created
+- **Confirmed quantity**: depends on the output of a prior step
+
+Note the distinction: some values are fixed (company code, plant), some are looked up once before the test (material, work center), and some are only generated at runtime (production order number). This is exactly the classification the agent applies.
+
+<br><img src="images/ex5_02_tc_parameters.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>02 – Test case parameters: placeholder values in the instruction text</em></p>
+
+---
+
+## 6.3 – Trigger the Data Agent
+
+Unlike the previous agents, the Test Data Management Agent does not start automatically after test case generation. This is intentional: test data is a separate output, used alongside test case steps rather than embedded in them. A test case describes *what* to do; test data provides *with what* to do it. These two artefacts have different lifecycles in SAP Cloud ALM, and the decision of when to enrich a test case with data is typically made by the person preparing for execution; in many projects initially a key user, and later the tester directly.
+
+There is also a practical reason: the generated test cases need to be processed and indexed by Cloud ALM before the agent can read them. Starting a fresh Joule conversation ensures a clean context.
+
+**Finding the test case ID**
+
+**1.** Switch to the **General Information** tab of the test case you reviewed in Step 6.2.
+
+**2.** Scroll to the **Object** section at the bottom. Note down the **ID** shown there; it follows the format `8-1-123`.
+
+**Triggering the agent**
+
+**3.** Open a **new Joule conversation** (click the new conversation icon or close and reopen the Joule panel).
+
+**4.** Send this prompt, replacing `###` with your workstation number and inserting the ID from step 2:
+
+> *"Please suggest test data for test case [your test case ID] in project "###_TestProject""*
+
+<br><img src="images/ex5_03_tdm_trigger.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>03 – New Joule conversation: triggering the Test Data Management Agent</em></p>
+
+The agent starts working: it fetches the test case, reads all activity steps, extracts and classifies every parameter, and applies the project context.
+
+---
+
+## 6.4 – Review the Agent's Output
+
+When the agent returns, it presents a structured table of all data parameters identified in the test case, grouped into four categories.
+
+**Organisational data**
+The fixed organisational frame: company code, sales organisation, distribution channel, division, and dependent org units such as plant and storage location. These values are typically the same across all test cases in a project and are applied automatically from the project context wherever possible.
+
+**Master data**
+Objects that must exist in the system before the test can run: materials valid for the sales area and plant, business partners in the correct role (for example: sold-to party, ship-to, payer), and any dependencies between them. A sold-to party determines which ship-to and payer are valid; a material type determines which item category is auto-assigned.
+
+**Configuration data**
+System settings that affect process behaviour: pricing procedures, document types, workflow configurations, authorisation roles. These rarely change between test runs but must be verified to exist and be correctly set up before testing.
+
+**Transactional data**
+Values that are either chosen by the tester at runtime or generated on the fly during execution: quantities, dates, and document numbers (order numbers, delivery numbers, production order IDs) that only exist after a preceding step has been completed.
+
+**Why dependencies matter**
+
+The agent does not just list parameters; it explains which values drive which others. This is more valuable than it first appears. Consider a quantity of "10" entered in a production order step: taken in isolation it looks arbitrary. Trace it forward through the process and that same quantity must arrive at a picking step where the storage location needs to hold sufficient stock. If it does not, the test will fail for the wrong reasons: not a defect, but a data setup problem. Understanding these dependencies upfront is the prerequisite for future agent phases to run automated checks and resolve such blocking conditions before a test is even started.
+
+<br><img src="images/ex5_04_tdm_output.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>04 – Test Data Management Agent output: parameters grouped by category with example values and reasoning</em></p>
+
+**Evaluate the output**
+
+Compare the agent's parameter table against your manual notes from Step 6.2:
+
+| Quality check | What to look for |
+|---|---|
+| **Completeness** | Are all parameter placeholders from the test steps in the table? Are there steps where a value is clearly needed but not captured? |
+| **Classification** | Are categories assigned correctly? Company code = Org Data; material = Master Data; production order number = Transactional Data |
+| **Project context** | Are fixed values like plant and company code already populated from the project record? |
+| **Reasoning** | Does the agent trace each parameter back to the test step it came from and explain why it is needed? |
+| **Dependencies** | Does the output indicate which parameters drive or constrain others? Use the follow-up prompt below if not. |
+
+> **Compare with your manual notes from Step 6.2:** Did the agent capture everything you identified? Did it find parameters you missed?
+
+At the end of its response, the agent offers suggestions for next steps; one of the most useful is an analysis of the dependencies between the parameter groups. Try sending one of the offered follow-up prompts, or write your own:
+
+> *"Outline the dependencies between the parameters you identified."*
+
+The agent will map which values must be consistent with which others; useful both for manual data lookup and as a foundation for future automated data preparation.
 
 ---
 
 ## Summary
 
-The data agent provided meaningful, dependency-aware test data suggestions with reasoning; turning a multi-hour analysis task into a review exercise.
+The Test Data Management Agent turned unstructured test step text into a structured parameter checklist; classifying every placeholder by data category and applying fixed project values automatically.
 
-You've now completed the full AI-assisted test preparation cycle:
-1. ✅ Requirements generated from interview transcript
-2. ✅ Test case scope proposed by scoping agent
-3. ✅ Test plan structured by planning agent
-4. ✅ Test cases written by TC generation agent
-5. ✅ Test data suggested by data agent
+- [x] Test case parameters extracted and classified by the agent
+- [x] Parameter dependencies and categories understood
+- [ ] Actual system values: to be looked up by the tester using the agent's output as a checklist
 
-Continue to [Exercise 6 – Recap & What's Next](../ex6/README.md)
+You have now completed the full AI-assisted test preparation cycle:
+- [x] Requirements generated from interview transcript (Chapter 2)
+- [x] Test scope proposed by Scoping Agent (Chapter 3)
+- [x] Test plan structured by Preparation Agent: Phase 1 (Chapter 4)
+- [x] Test cases written by Preparation Agent: Phase 2 (Chapter 5)
+- [x] Test case parameters identified and classified (Chapter 6)
+
+| Stage | Manual effort (estimate) | AI-assisted |
+|---|---|---|
+| Requirements from transcript | 2–4 hours (BA) | ~2 minutes + review |
+| Test case scoping | 4–8 hours (architect) | ~3 minutes + review |
+| Test plan creation | 2–4 hours (test analyst) | ~3 minutes + review |
+| Test case writing | 1–2 days (test analyst) | ~5 minutes + review |
+| Test data parameters | 2–4 hours (analyst) | ~2 minutes + review |
+| **Total** | **3–5 days** | **< 30 minutes** |
+
+Continue to [Chapter 7 – Recap & Outlook](../ex6/README.md)

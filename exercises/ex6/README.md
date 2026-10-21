@@ -1,108 +1,76 @@
-# Exercise 6 – Recap & What's Next
-
-**Prerequisite:** You have completed Exercises 0–5.
+# Chapter 7 – Recap & Outlook
 
 ---
 
-## Step 24 – Recap: A Day in the Life
+## 7.1 – What You Accomplished
 
-You just experienced a complete AI-assisted test preparation workflow; from zero context to ready-to-execute test cases with test data; for a real, complex SAP S/4HANA business process.
+You just worked through a complete AI-assisted test preparation cycle for a real SAP S/4HANA business process. Here is what you did, and what the agents did alongside you.
 
-Here's the journey you took:
+| Stage | What you did | What AI contributed |
+|---|---|---|
+| **Orientation** | Explored the BJ5 process in Cloud ALM; assigned user stories; reviewed the process flow | Joule demonstrated the quality gate: no input, no output |
+| **Build input** | Reviewed the interview transcript; connected requirement and user stories to the process | Joule generated a structured requirement from a raw transcript |
+| **Scoping** | Mapped the process manually on paper; evaluated role boundaries and process paths | Scoping Agent analyzed all linked artifacts and produced a traceable test scope in minutes |
+| **Test planning** | Drafted a test plan entry manually for one scope item | Preparation Agent structured the full scope into a test plan with roles, paths, and acceptance criteria |
+| **Test cases** | Wrote one test case manually in a template | Preparation Agent wrote complete, executable test cases for the full scope |
+| **Test data** | Identified parameter placeholders in a test case step by step | Test Data Management Agent extracted and classified all parameters, explained dependencies |
 
-```
-Day starts → Process assigned (BKJ)
-     │
-     ├─ Requirements generated from expert interview transcript
-     │     └─ No BA time, no writing; AI reads and structures
-     │
-     ├─ Scoping agent analyzes process artifacts
-     │     └─ Produces test case scope with traceability
-     │
-     ├─ Planning agent structures the scope
-     │     └─ Test plan with roles, preconditions, groupings
-     │
-     ├─ TC generation agent writes the test cases
-     │     └─ Executable steps with expected results
-     │
-     └─ Data agent suggests test data
-           └─ Parameter values, dependencies, variants
-```
+What would have taken a test team several days, end to end, was completed by the agents in the time it took you to work through the manual exercises. Not as a replacement for your judgment, but as the first draft you review rather than the blank page you fill.
 
-**What used to take 3–5 days now takes < 30 minutes of AI-driven generation + your expert review.**
-
-The key shift: you moved from *producing* test artifacts to *judging* them. Your expertise is applied where it matters most; validating quality, not filling templates.
+**The shift:** you moved from *producing* test artifacts to *reviewing* them. The expert role does not disappear; it changes. Instead of writing test steps, you validate whether the agent got the scenario right. Instead of looking up master data, you confirm whether the classifications make sense. That judgment is irreplaceable; the mechanical production of structured content is not.
 
 ---
 
-## Step 25 – Outlook: What's Coming Next
+## 7.2 – What's Coming Next
 
-### What You Saw Today Is Just the Beginning
+The capabilities you worked with today are Phase 1. The roadmap has three main directions.
 
-The AI capabilities you worked with are the first wave. Here's where SAP Cloud ALM Test Management is heading:
+**Scoping Agent: broader input sources**
 
-<!-- 📷 TODO: screenshot ex6_01_roadmap.png: Product roadmap slide or planned feature overview -->
-<br><img src="images/ex6_01_roadmap.png" />
+Today the Scoping Agent reads from SAP Cloud ALM. In future waves it will be able to consume additional input types: Jira requirements, Signavio process models, output from other SAP AI assistants in the multi-model architecture (MMA), and more. Scoping will become source-agnostic and will work across the landscape your project actually uses, not just what lives inside Cloud ALM.
 
-**Wave 2: Coming enhancements:**
+**Test Data Management Agent: from identification to execution**
 
-| Capability | What it means |
-|---|---|
-| **Test execution assistance** | AI guides the tester through steps in real time, compares system state to expected results |
-| **Defect auto-classification** | AI analyzes failures and suggests root cause categories |
-| **Coverage gap detection** | AI identifies process areas with insufficient test coverage |
-| **Cross-scope impact analysis** | AI flags when a scope item change affects existing test cases |
-| **EARL knowledge integration** | Deeper use of SAP Best Practice content (EARL) for more precise step generation |
+Today the agent identifies and classifies parameters. The next phases extend this into active data management: reading existing data from connected S/4HANA systems, suggesting values from productive data that fit the test context, and eventually writing clean test data directly into test systems before execution. This closes the loop from "what do I need?" to "the data is ready".
 
-> **The bigger picture:** SAP Cloud ALM is building toward a **360° test expert role**: someone who orchestrates AI agents across the full test lifecycle rather than manually executing each stage. Today you got a preview of that future.
+**Test Management Agent: staying on top of the project**
+
+The pipeline is not complete without the management layer. A dedicated agent for test managers is in development to support project oversight: tracking progress against timelines, handling the integration with external test execution automation providers, and processing feedback from execution runs including defects and retest cycles. The goal is a closed loop from test preparation through execution to defect management.
 
 ---
 
-## Step 26 – This Is a Beginning, Not the End
+## 7.3 – Key Takeaways
 
-### Key Takeaways
+1. **AI enhances what is already there.** The agents worked because the content was in the system: linked requirements, user stories with acceptance criteria, a process model. AI amplifies existing structured content; it does not create quality from nothing. Investing in good process documentation and structured requirements pays off twice.
 
-1. **Input quality drives output quality.** The agents worked well because you provided complete, high-quality input: requirements, user stories, solution description. Garbage in, garbage out; still applies to AI.
+2. **Human judgment is the irreplaceable layer.** Every agent in the pipeline includes a human review gate. The agents produced the first draft; you provided the quality check. Catching a role mismatch, a missing precondition, a scope item that does not belong: that is the test expert's contribution, and it matters as much as ever.
 
-2. **Human judgment is the irreplaceable layer.** The agents produced the first draft. You provided the quality review; catching role mismatches, missing preconditions, incorrect scope. That's not going away.
+3. **This is not a separate tool; it binds into Cloud ALM.** Everything generated lives in Cloud ALM Test Management structures: test plans, test cases with tabs for content, relations, and references; notifications; traceability links. The agents work within and strengthen the existing SAP Cloud ALM architecture, not alongside it. Your test team's existing workflows, reports, and integrations remain intact.
 
-3. **The workflow is the product.** It's not about any single AI feature. It's about the **end-to-end pipeline** from process documentation to executable test cases; with AI at every stage.
-
-4. **Traceability is preserved.** Every generated artifact is linked back through the chain: test data → test case → test plan → scope → user story → requirements → process. This is what makes AI-generated content auditable and trustworthy.
+4. **Traceability is what makes it trustworthy.** Every artifact in the chain links back to its source: test case to test plan, plan to scope, scope to user story, user story to requirement, requirement to process. When a test passes, you can trace exactly what was proven and which acceptance criterion it covers. That chain is what allows you to demonstrate testing assurance to auditors, project managers, and stakeholders with confidence.
 
 ---
 
 ## Questions & Discussion
 
-<!-- 📷 TODO: screenshot ex6_02_closing.png: Optional: closing slide or Q&A prompt -->
+Some questions to take into the discussion:
 
-<details>
-    <summary>📷 View session closing screenshot</summary>
-    <br><img src="images/ex6_02_closing.png" />
-</details>
-
-**Some questions to discuss:**
-
-1. Where in your current testing process would AI agents save you the most time?
-2. What inputs do you have today that you'd want to feed to a scoping agent?
-3. What does "human in the loop" mean for your team; at which stage would you want to review and confirm?
+1. Where in your current testing process would agents like these save the most time?
+2. What inputs do you have today that you would want to feed to a scoping agent? (Requirements in Jira? Process models in Signavio? Interview recordings?)
+3. At which stage would your team want to review and confirm before the agent continues? Where does the human gate matter most?
 
 ---
 
 ## Feedback
 
-We'd love to hear from you:
-- [Leave feedback via the QR code at the front of the room]
-- [Or at the session feedback survey link]
+We would love to hear what you think. You will find us after the session, or reach us through the session feedback channels at the event.
 
 ---
 
 ## Thank You
 
-**TM261: AI-Powered Test Management with SAP Cloud ALM**
+Thank you for your time, your curiosity, and your engagement today.
 
-This material will remain available after the session at the SAP TechEd GitHub repository.
+**TM261 – Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM**
 
----
-
-*Back to [Table of Contents](../../README.md)*
+This material remains available after the session at the SAP TechEd GitHub repository.
