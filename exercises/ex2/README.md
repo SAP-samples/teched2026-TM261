@@ -1,12 +1,12 @@
 # Chapter 3 – Scope with AI
 
-**Prerequisite:** You have completed [Chapter 2](../ex1/README.md); the *BJ5_simple* process has linked requirements and user stories.
+**Prerequisite:** You have completed [Chapter 2](../ex1/README.md); the *BJ5_simple* process has linked *Requirements* and *User Stories*.
 
 ---
 
 ## What You'll Do
 
-In this chapter you'll trigger the **Scoping Agent**: an AI agent that reads your linked process documentation and proposes a structured test case scope. While it works in the background, you'll run a quick manual scoping exercise; when the result arrives, you can see exactly what the AI found versus what you identified.
+In this chapter you'll trigger the **Scoping Agent**: an AI agent that reads your linked process documentation and proposes a structured *Test Case* scope. While it works in the background, you'll run a quick manual scoping exercise; when the result arrives, you can see exactly what the AI found versus what you identified.
 
 ---
 
@@ -22,22 +22,22 @@ Time to try again; with proper input now in place.
 
 **2.** The scoping agent starts working in the background. You'll see a notification or progress indicator.
 
-<br><img src="images/ex2_02_agent_running.png" />
+<br><img src="images/ex2_02_agent_running.png" style="border:1px solid #ddd;border-radius:4px;" />
 <p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>24 – Scoping agent running</em></p>
 
 ---
 
 ## 3.2 – What's happening in the background?
 
-<br><img src="images/ex2_03_scoping_agent_flow.png" />
+<br><img src="images/ex2_03_scoping_agent_flow.png" style="border:1px solid #ddd;border-radius:4px;" />
 <p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>25 – Scoping agent methodology</em></p>
 
 > **The scoping agent applies a structured methodology:**
-> 1. It resolves the process name, requirements, and user stories to exact identifiers in SAP Cloud ALM
+> 1. It resolves the process name, *Requirements*, and *User Stories* to exact identifiers in SAP Cloud ALM
 > 2. It validates that the required input exists; if not, it blocks and returns clear instructions on what to fix
 > 3. It classifies each input: process scope variants or detailed reference steps
-> 4. It enriches the scope with SAP standard test baselines and extracts acceptance criteria from your linked content
-> 5. It scores each scope item for completeness, ranks items by priority, and flags coverage gaps
+> 4. It enriches the scope with SAP standard test baselines and extracts Acceptance Criteria from your linked content
+> 5. It scores each *Scope Item* for completeness, ranks items by priority, and flags coverage gaps
 > 6. It presents the result for your review and sign-off; no downstream work starts without your approval (the "Human in the Loop", or HITL, Gate 1)
 >
 > This is the same analysis a skilled test architect would do, but compressed from hours into minutes.
@@ -53,7 +53,7 @@ Return to the Processes app and for the *BJ5_simple* process, think through thes
 | Dimension | Your Answer |
 |---|---|
 | What are the main **process paths** (happy path + variants)? | |
-| What **acceptance criteria** can you identify from the user stories and requirements? | |
+| What **acceptance criteria** can you identify from the *User Stories* and *Requirements*? | |
 | How many distinct **apps/UIs** are involved? | |
 | How many **roles** participate? | |
 | Which steps have **blocking conditions** worth testing? | |
@@ -69,13 +69,13 @@ Return to the Processes app and for the *BJ5_simple* process, think through thes
 
 The response typically gives you:
 
-- **Process context**: the solution process, flow diagram, and applicable countries it resolved
+- **Process context**: the *Solution Process*, flow diagram, and applicable countries it resolved
 - A **summary of identified process flow paths**, reflecting any splits or variants in the process structure
-- An overview of the **items it ingested** (your requirement and the 7 user stories)
+- An overview of the **items it ingested** (your *Requirement* and the 7 *User Stories*)
 - Related **standard process procedures** retrieved from the SAP Enterprise Architecture Reference Library (EARL)
 - A conclusive list of **acceptance criteria** derived from all of the above, augmented with patterns from SAP's standard process baselines
 
-<br><img src="images/ex2_04_scope_result.png" />
+<br><img src="images/ex2_04_scope_result.png" style="border:1px solid #ddd;border-radius:4px;" />
 <p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>26 – Test Scope Summary in Joule</em></p>
 
 After the response, the agent asks you whether to confirm the scope as is or revise it.
@@ -84,8 +84,8 @@ After the response, the agent asks you whether to confirm the scope as is or rev
 
 **2.** Before making that decision, take a few minutes to work through the proposed scope. For each item, check:
 - **Name and description**: does it clearly describe what's being tested?
-- **Linked acceptance criteria**: is it traceable back to a user story or requirement?
-- **Role separation**: are Production Planner tasks and Warehouse Clerk tasks kept in separate test cases?
+- **Linked acceptance criteria**: is it traceable back to a *User Story* or *Requirement*?
+- **Role separation**: are Production Planner tasks and Warehouse Clerk tasks kept in separate *Test Cases*?
 - **Coverage**: does the overall set cover the happy path (P1), the quality gate failure path (P2), and the scrap/replenishment scenario?
 
 > **Compare with your manual notes from Step 3.3:** Did the agent catch everything you identified? Or did it find things you missed? That's exactly the kind of task AI agents excel at: ingesting text, inferring structure, and surfacing patterns at speed.
@@ -106,15 +106,15 @@ Click the **Select** button in the Joule output panel, then choose **Revise Scop
 
 **Option 2: Write your own prompt**
 
-You can also type your refinement directly in the Joule chat window. Navigate to user stories US-05, US-06, and US-07 and note their Display IDs (format: `3-xxx`), then use a prompt like:
+You can also type your refinement directly in the Joule chat window. Navigate to *User Stories* US-05, US-06, and US-07 and note their Display IDs (format: `3-xxx`), then use a prompt like:
 
-> "Focus on user stories **[enter the Display IDs]**. In particular take care of roles and create test cases which do NOT cross multiple roles."
+> "Focus on *User Stories* **[enter the Display IDs]**. In particular take care of roles and create *Test Cases* which do NOT cross multiple roles."
 
-<br><img src="images/ex2_05_refine_scope.png" />
+<br><img src="images/ex2_05_refine_scope.png" style="border:1px solid #ddd;border-radius:4px;" />
 <p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>27 – Refinement prompt: focusing on three user stories</em></p>
 
 You may try other refinements too:
-- **Narrow the scope:** "Remove user stories 1–4 from the scope for now; focus only on the quality gate, goods receipt, and scrap path."
+- **Narrow the scope:** "Remove *User Stories* 1–4 from the scope for now; focus only on the quality gate, goods receipt, and scrap path."
 - **Narrow by role:** "Drop the Production Planner for now, and consider only the process steps relevant for the Warehouse Clerk."
 
 The agent re-runs its scoping logic and returns faster than the first pass. It presents the revised scope and pauses for your sign-off again. This time, click **Confirm** to accept the scope and move to the next stage.
@@ -123,7 +123,7 @@ The agent re-runs its scoping logic and returns faster than the first pass. It p
 
 ## Summary
 
-The scoping agent analyzed all your linked process artifacts and proposed a structured test case scope, with traceability to requirements and user stories, in the time it took you to sketch a rough outline manually.
+The scoping agent analyzed all your linked process artifacts and proposed a structured *Test Case* scope, with traceability to *Requirements* and *User Stories*, in the time it took you to sketch a rough outline manually.
 
 You now have a **confirmed test case scope** that moves automatically into test planning.
 
