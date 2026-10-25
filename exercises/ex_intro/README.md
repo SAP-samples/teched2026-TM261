@@ -2,7 +2,7 @@
 
 # TM261 – Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM
 
-**Date:** Thursday, 29 October 2026 · SAP TechEd 2026, Berlin  
+**Date:** Wednesday, 28 October 2026 · SAP TechEd 2026, Berlin  
 **Presenters:** Christina Pickhardt · Niclas Weidner · Tobias Keller · Daniel Lorenz  
 **Scenario:** Make-to-Stock Production – Discrete Manufacturing (BJ5)
 

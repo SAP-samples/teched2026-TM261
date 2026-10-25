@@ -7,19 +7,20 @@
 This repository contains the hands-on exercise material for **SAP TechEd 2026 Session TM261**.
 
 **Session:** Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM  
-**Date:** Thursday, 29 October 2026  
+**Date:** Wednesday, 28 October 2026  
 **Location:** SAP TechEd 2026, Berlin  
-**Presenters:** Christina Pickhardt · Niclas Weidner · Tobias Keller · Daniel Lorenz
+**Presenters:** SAP Cloud ALM Product Ownership: 
+Christina Pickhardt · Daniel Lorenz · Niclas Weidner · Tobias Keller 
 
 In this session you'll experience how AI agents in SAP Cloud ALM Test Management accelerate every stage of test preparation — from generating requirements from an interview transcript to writing executable test cases and suggesting test data — for a Make-to-Stock Production process customisation scenario.
 
 ## Start here
 
-👉 **[Introduction & Exercise Guide](exercises/ex_intro/README.md)**
+👉 **[Introduction & Exercise Guide](exercises/ex_intro/README.md)** 
 
 The introduction covers the scenario context and session agenda. Each exercise links to the next, so you can work through the full guide sequentially.
 
-For the styled HTML version of the full guide: [TM261 Session Guide (GitHub Pages)](https://sap-samples.github.io/teched2026-TM261/)
+For downloading the styled HTML or PDF version of the full guide: <a href="https://github.com/SAP-samples/teched2026-TM261/tree/main/_FINAL%20SCRIPTS" target="_blank">TM261 Script Downloads (_FINAL SCRIPTS folder)</a>
 
 ## Session overview
 

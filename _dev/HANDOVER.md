@@ -6,7 +6,7 @@ Use this file to brief a new Claude Code session. Say: "read _dev/HANDOVER.md an
 
 ## Project
 
-SAP TechEd 2026, Berlin, 29 October 2026.
+SAP TechEd 2026, Berlin, 28 October 2026.
 Session TM261 – Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM.
 Presenters: Christina Pickhardt · Niclas Weidner · Tobias Keller · Daniel Lorenz.
 Scenario: BJ5_simple – Make-to-Stock Production – Discrete Manufacturing.
