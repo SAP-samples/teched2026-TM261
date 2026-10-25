@@ -18,8 +18,8 @@ You just worked through a complete AI-assisted Test Preparation cycle for a real
 What would have taken a test team several days, end to end, was completed by the agents in the time it took you to work through the manual exercises. Not as a replacement for your judgment, but as the first draft you review rather than the blank page you fill.
 
 **The shift:** you moved from *producing* test artifacts to *reviewing* them. The expert role does not disappear; it changes:
-Instead of writing Test Steps, you validate whether the agent got the scenario right. 
-Instead of looking up master data, you confirm whether the classifications make sense. 
+Instead of writing Test Steps, you validate whether the agent got the scenario right.
+Instead of looking up master data, you confirm whether the classifications make sense.
 That judgment is irreplaceable; the mechanical production of structured content is not.
 
 ---
@@ -36,9 +36,9 @@ Today the Scoping Agent reads from SAP Cloud ALM. In future waves it will be abl
 
 Today the agent identifies and classifies parameters. The next phases extend this into active data management: reading existing data from connected S/4HANA systems, suggesting values from productive data that fit the test context, and eventually writing clean test data directly into test systems before execution. This closes the loop from "what do I need?" to "the data is ready".
 
-**Test Execution: from completed to signed off**
+**Managing execution of tests: from completed to signed off**
 
-Formal completion and genuine test validation are not the same thing; that gap is invisible in execution statistics and only surfaces at go-live. The next agent closes it: monitoring execution quality continuously, verifying that Test Steps were documented rather than clicked through, detecting anomalies such as suspiciously high pass rates relative to known system issues, and evaluating whether reported *Defects* carry enough detail for proper resolution. When the checks pass, it generates a structured test report automatically, including a sign-off block ready for the Test Manager's approval and a full *Scope Item* → *Test Case* → result traceability matrix.
+Formal completion and genuine test validation are not the same thing; that gap is invisible in execution statistics and only surfaces at go-live. The next agent aims to close it: monitoring execution quality continuously, verifying that Test Steps were documented rather than clicked through, detecting anomalies such as suspiciously high pass rates relative to known system issues, and evaluating whether reported *Defects* carry enough detail for proper resolution. When the checks pass, it will produce a structured test report and a full *Scope Item* → *Test Case* → result traceability matrix, ready for the Test Manager's approval and sign-off.
 
 ---
 
