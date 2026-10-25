@@ -1,3 +1,4 @@
+<img src="exercises/ex_intro/images/Kapitelbanner_Welcome.png" style="width:100%;margin-bottom:1em;" />
 # TM261 — Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM
 
 ## Description
