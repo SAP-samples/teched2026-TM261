@@ -9,8 +9,8 @@ This repository contains the hands-on exercise material for **SAP TechEd 2026 Se
 **Session:** Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM  
 **Date:** Wednesday, 28 October 2026  
 **Location:** SAP TechEd 2026, Berlin  
-**Presenters:** SAP Cloud ALM Product Ownership: 
-Christina Pickhardt · Daniel Lorenz · Niclas Weidner · Tobias Keller 
+**Presenters:** SAP Cloud ALM Product Ownership:  
+Christina Pickhardt · Daniel Lorenz · Niclas Weidner · Tobias Keller
 
 In this session you'll experience how AI agents in SAP Cloud ALM Test Management accelerate every stage of test preparation — from generating requirements from an interview transcript to writing executable test cases and suggesting test data — for a Make-to-Stock Production process customisation scenario.
 
