@@ -2,6 +2,8 @@
 
 # TM261 — Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/teched2026-TM261)](https://api.reuse.software/info/github.com/SAP-samples/teched2026-TM261)
+
 ## Description
 
 This repository contains the hands-on exercise material for **SAP TechEd 2026 Session TM261**.

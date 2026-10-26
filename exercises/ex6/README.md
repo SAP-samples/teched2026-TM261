@@ -66,7 +66,12 @@ Some questions to take into the discussion:
 
 ## Feedback
 
-We would love to hear what you think. You will find us after the session, or reach us through the session feedback channels at the event.
+Please rate this session using the official SAP TechEd survey — open the SAP Events app, add this session to My Schedule, then scan:
+
+<br><img src="images/ex6_01_teched_survey_qr.png" />
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>41 – SAP TechEd session survey</em></p>
+
+You will also find us after the session if you have further questions or want to share observations directly.
 
 ---
 
