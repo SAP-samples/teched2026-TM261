@@ -66,12 +66,29 @@ Some questions to take into the discussion:
 
 ## Feedback
 
-Please rate this session using the official SAP TechEd survey — open the SAP Events app, add this session to My Schedule, then scan:
+Please rate this session using the official SAP TechEd survey: open the SAP Events app, add this session to My Schedule, then scan:
 
 <br><img src="images/ex6_01_teched_survey_qr.png" />
 <p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>41 – SAP TechEd session survey</em></p>
 
 You will also find us after the session if you have further questions or want to share observations directly.
+
+---
+
+## Share Your First Impressions
+
+Help us shape what comes next. Beyond the official session rating, this short survey captures your first impressions: what worked, what surprised you, and where you see the most value. Your responses feed directly into how we prioritise the next development steps for the Test Management Assistant.
+
+If you have ideas or questions that go beyond the survey, find us after the session or leave your contact details in the open question.
+
+<div style="text-align:center;margin:1.5em auto;max-width:260px;background:#f0f6ff;border-radius:10px;padding:1.2em 1.5em;border:1px solid #c0d8f0">
+<p style="margin:0 0 0.8em;color:#0057b8;font-weight:600;font-size:10.5pt">10 questions &middot; ~5 min</p>
+<a href="https://www.menti.com/alsqqf11whm5" target="_blank">
+<img src="images/ex6_02_mentimeter_qr.png" style="width:160px;height:auto;display:block;margin:0 auto;border:none;border-radius:4px" />
+</a>
+<p style="margin:0.7em 0 0;font-size:10pt"><a href="https://www.menti.com/alsqqf11whm5" style="color:#0070f2;font-weight:600" target="_blank">menti.com/alsqqf11whm5</a></p>
+</div>
+<p style="font-size:9pt;color:#888;margin-top:0.5em"><em>42 – Share your first impressions (Mentimeter)</em></p>
 
 ---
 
