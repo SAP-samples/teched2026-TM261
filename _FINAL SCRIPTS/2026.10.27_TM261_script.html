@@ -15,9 +15,9 @@ pre{background:#f4f4f4;padding:1em;border-radius:4px;overflow-x:auto}
 hr{border:none;border-top:1px solid #ccc;margin:2em 0}
 details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw"><p><img src="exercises/ex_intro/images/Kapitelbanner_Welcome.png" style="width:100%;margin-bottom:1em;" /></p>
 <h1>TM261 – Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM</h1>
-<p><strong>Date:</strong> Thursday, 29 October 2026 · SAP TechEd 2026, Berlin<br />
-<strong>Presenters:</strong> Christina Pickhardt · Niclas Weidner · Tobias Keller · Daniel Lorenz<br />
-<strong>Scenario:</strong> Make-to-Stock Production – Discrete Manufacturing (BJ5)</p>
+<p><strong>Date:</strong> Wednesday, 28 October 2026 · SAP TechEd 2026, Berlin<br />
+<strong>Presenters:</strong> SAP Cloud ALM Product Ownership:<br />
+Christina Pickhardt · Daniel Lorenz · Niclas Weidner · Tobias Keller</p>
 <hr />
 <h2>Agenda</h2>
 <table>
@@ -32,7 +32,7 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 <tr>
 <td>–</td>
 <td>Introduction</td>
-<td>Test Management Assistant: context and agent overview</td>
+<td>Test Management Assistant: context and functional agent overview</td>
 </tr>
 <tr>
 <td>1</td>
@@ -80,33 +80,18 @@ details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw
 <p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>01 – Seven SAP Migration & Modernization Assistants</em></p>
 
 <p>The <strong>Test Management Assistant</strong> is one of these seven, and Test Management is an area where the shift from manual to AI-driven work matters most:</p>
-<table>
-<thead>
-<tr>
-<th>Current State</th>
-<th>Future State</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>E2E Test Management is still heavily dependent upon business and IT personnel; it's a cost driver for transitions.</td>
-<td>AI automates test scope, cases, data, execution and validation across the test stages.</td>
-</tr>
-<tr>
-<td>Regression scenarios increase complexity and manual effort consistently and beyond implementation phases.</td>
-<td>Continuous validation reduces effort and user dependency, links &amp; limits test scope to changes occurring.</td>
-</tr>
-</tbody>
-</table>
-<p>The TMA targets the upstream side of this: the preparation of manual end-to-end testing. It sits at the quality gate of every migration, and as you'll see today, it's where AI can compress days of manual work into minutes of guided review.</p>
+<p>End-to-end test management for SAP migrations and modernizations is still heavily dependent on business and IT personnel. It is a consistent cost driver across transition projects, and complexity grows with every regression cycle: more scenarios, more variants, more manual effort.</p>
+<p>The Test Management Assistant targets the upstream side of this: the preparation of manual end-to-end testing. It applies AI to test scoping, test case writing, and test data preparation; these are the stages where expert effort is highest and where days of work can be compressed into minutes of guided review.</p>
+<p>Test execution itself is outside the current scope of the assistant. That stage is covered by the partner ecosystem: Tricentis, SAP's strategic partner for test automation, provides execution capabilities that complement the AI-driven preparation in SAP Cloud ALM.</p>
 <h2>What is the Test Management Assistant?</h2>
 <p>The Test Management Assistant is not a single AI feature; it's a pipeline of four specialized agents, each transforming a stage of manual Test Preparation into an AI-driven capability:</p>
 <p><br><img src="exercises/ex_intro/images/intro_agent_architecture.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
 <p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>02 – Test Management Assistant: four-agent pipeline</em></p>
 
+<p>The Scoping, Preparation, and Test Data Management agents (Phase 1*) have been released and are currently in Early Adopter Care with selected customers. GA is targeted before the end of this year. The Test Execution Quality Management agent is planned for 2027**.</p>
 <blockquote>
-<p><strong>Today's hands-on covers the first three agents</strong>: Scoping, Preparation, and Data Management. Execution Management is on the roadmap.</p>
-<p><em>* Partly available and **planned functionality. Subject to change by SAP at any time without notice.</em></p>
+<p><em>* Partly available; **planned functionality. Subject to change by SAP at any time without notice.</em></p>
+<p><strong>Today's hands-on covers the three agents available today</strong>: Scoping, Preparation, and Data Management. Execution Management is on the roadmap.</p>
 </blockquote>
 <p>Continue to <a href="../ex0/README.md">Chapter 1 – Getting Started</a></p>
 <hr />
@@ -922,7 +907,7 @@ Values that are either chosen by the tester at runtime or generated on the fly d
 <tr>
 <td><strong>Build input</strong></td>
 <td>Reviewed the interview transcript; connected <em>Requirement</em> and <em>User Stories</em> to the process</td>
-<td>Joule generated a structured <em>Requirement</em> from a raw transcript</td>
+<td>In-built AI feature generated a structured <em>Requirement</em> from a raw transcript</td>
 </tr>
 <tr>
 <td><strong>Scoping</strong></td>
@@ -937,7 +922,7 @@ Values that are either chosen by the tester at runtime or generated on the fly d
 <tr>
 <td><strong>Test cases</strong></td>
 <td>Wrote one <em>Test Case</em> manually in a template</td>
-<td>Preparation Agent wrote complete, executable <em>Test Cases</em> for the full scope</td>
+<td>Preparation Agent wrote complete, executable <em>Test Cases</em> for the confirmed scope</td>
 </tr>
 <tr>
 <td><strong>Test data</strong></td>
@@ -947,30 +932,33 @@ Values that are either chosen by the tester at runtime or generated on the fly d
 </tbody>
 </table>
 <p>What would have taken a test team several days, end to end, was completed by the agents in the time it took you to work through the manual exercises. Not as a replacement for your judgment, but as the first draft you review rather than the blank page you fill.</p>
-<p><strong>The shift:</strong> you moved from <em>producing</em> test artifacts to <em>reviewing</em> them. The expert role does not disappear; it changes. Instead of writing Test Steps, you validate whether the agent got the scenario right. Instead of looking up master data, you confirm whether the classifications make sense. That judgment is irreplaceable; the mechanical production of structured content is not.</p>
+<p><strong>The shift:</strong> you moved from <em>producing</em> test artifacts to <em>reviewing</em> them. The expert role does not disappear; it changes:<br />
+Instead of writing Test Steps, you validate whether the agent got the scenario right.<br />
+Instead of looking up master data, you confirm whether the classifications make sense.<br />
+That judgment is irreplaceable; the mechanical production of structured content is not.</p>
 <hr />
 <h2>7.2 – What's Coming Next</h2>
-<p>The capabilities you worked with today are Phase 1. The roadmap has three main directions.</p>
+<p>The capabilities you worked with today are Phase 1 of the Test Management Assistant in SAP Cloud ALM. The roadmap has three main directions.</p>
 <p><strong>Scoping Agent: broader input sources</strong></p>
 <p>Today the Scoping Agent reads from SAP Cloud ALM. In future waves it will be able to consume additional input types: Jira <em>Requirements</em>, Signavio process models, output from other SAP AI assistants in the multi-model architecture (MMA), and more. Scoping will become source-agnostic and will work across the landscape your project actually uses, not just what lives inside Cloud ALM.</p>
 <p><strong>Test Data Management Agent: from identification to execution</strong></p>
 <p>Today the agent identifies and classifies parameters. The next phases extend this into active data management: reading existing data from connected S/4HANA systems, suggesting values from productive data that fit the test context, and eventually writing clean test data directly into test systems before execution. This closes the loop from "what do I need?" to "the data is ready".</p>
-<p><strong>Test Management Agent: staying on top of the project</strong></p>
-<p>The pipeline is not complete without the management layer. A dedicated agent for test managers is in development to support project oversight: tracking progress against timelines, handling the integration with external Test Execution automation providers, and processing feedback from execution runs including <em>Defects</em> and retest cycles. The goal is a closed loop from Test Preparation through execution to <em>Defect</em> management.</p>
+<p><strong>Managing execution of tests: from completed to signed off</strong></p>
+<p>Formal completion and genuine test validation are not the same thing; that gap is invisible in execution statistics and only surfaces at go-live. The next agent aims to close it: monitoring execution quality continuously, verifying that Test Steps were documented rather than clicked through, detecting anomalies such as suspiciously high pass rates relative to known system issues, and evaluating whether reported <em>Defects</em> carry enough detail for proper resolution. When the checks pass, it will produce a structured test report and a full <em>Scope Item</em> → <em>Test Case</em> → result traceability matrix, ready for the Test Manager's approval and sign-off.</p>
 <hr />
 <h2>7.3 – Key Takeaways</h2>
 <ol>
 <li>
-<p><strong>AI enhances what is already there.</strong> The agents worked because the content was in the system: linked <em>Requirements</em>, <em>User Stories</em> with Acceptance Criteria, a process model. AI amplifies existing structured content; it does not create quality from nothing. Investing in good process documentation and structured <em>Requirements</em> pays off twice.</p>
+<p><strong>This is not a separate tool; it binds into Cloud ALM.</strong> Everything generated lives in Cloud ALM Test Management structures: <em>Test Plans</em>, <em>Test Cases</em> with tabs for content, relations, and references; notifications; traceability links. The agents work within and strengthen the existing SAP Cloud ALM architecture, not alongside it. Your test team's existing workflows, reports, and integrations remain intact.</p>
+</li>
+<li>
+<p><strong>AI enhances what is already there.</strong> The agents worked because the content was in the system: linked <em>Requirements</em>, <em>User Stories</em> with Acceptance Criteria, a process model. AI leverages existing structured content; it does not create quality from nothing. Investing in good process documentation and structured <em>Requirements</em> pays off twice.</p>
 </li>
 <li>
 <p><strong>Human judgment is the irreplaceable layer.</strong> Every agent in the pipeline includes a human review gate. The agents produced the first draft; you provided the quality check. Catching a role mismatch, a missing precondition, a <em>Scope Item</em> that does not belong: that is the test expert's contribution, and it matters as much as ever.</p>
 </li>
 <li>
-<p><strong>This is not a separate tool; it binds into Cloud ALM.</strong> Everything generated lives in Cloud ALM Test Management structures: <em>Test Plans</em>, <em>Test Cases</em> with tabs for content, relations, and references; notifications; traceability links. The agents work within and strengthen the existing SAP Cloud ALM architecture, not alongside it. Your test team's existing workflows, reports, and integrations remain intact.</p>
-</li>
-<li>
-<p><strong>Traceability is what makes it trustworthy.</strong> Every artifact in the chain links back to its source: <em>Test Case</em> to <em>Test Plan</em>, plan to scope, scope to <em>User Story</em>, <em>User Story</em> to <em>Requirement</em>, <em>Requirement</em> to process. When a test passes, you can trace exactly what was proven and which acceptance criterion it covers. That chain is what allows you to demonstrate testing assurance to auditors, project managers, and stakeholders with confidence.</p>
+<p><strong>Traceability is what makes it trustworthy.</strong> The chain runs in two directions at once. Every <em>Test Case</em> links to the <em>Test Plan</em> and the scope; every <em>Scope Item</em> in that scope links to the process, the <em>User Stories</em>, and the Acceptance Criteria that defined it. These two structures meet at scope, which means a test result traces all the way back to a specific process path and the acceptance criterion it was designed to prove. When a test passes, you know what passed, what it means for the process, and which criterion it covers. That chain is what allows you to demonstrate testing assurance to auditors, project managers, and stakeholders with confidence.</p>
 </li>
 </ol>
 <hr />
@@ -983,7 +971,24 @@ Values that are either chosen by the tester at runtime or generated on the fly d
 </ol>
 <hr />
 <h2>Feedback</h2>
-<p>We would love to hear what you think. You will find us after the session, or reach us through the session feedback channels at the event.</p>
+<p>Please rate this session using the official SAP TechEd survey: open the SAP Events app, add this session to My Schedule, then scan:</p>
+<p><br><img src="exercises/ex6/images/ex6_01_teched_survey_qr.png" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>41 – SAP TechEd session survey</em></p>
+
+<p>You will also find us after the session if you have further questions or want to share observations directly.</p>
+<hr />
+<h2>Share Your First Impressions</h2>
+<p>Help us shape what comes next. Beyond the official session rating, this short survey captures your first impressions: what worked, what surprised you, and where you see the most value. Your responses feed directly into how we prioritise the next development steps for the Test Management Assistant.</p>
+<p>If you have ideas or questions that go beyond the survey, find us after the session or leave your contact details in the open question.</p>
+<div style="text-align:center;margin:1.5em auto;max-width:260px;background:#f0f6ff;border-radius:10px;padding:1.2em 1.5em;border:1px solid #c0d8f0">
+<p style="margin:0 0 0.8em;color:#0057b8;font-weight:600;font-size:10.5pt">10 questions &middot; ~5 min</p>
+<a href="https://www.menti.com/alsqqf11whm5" target="_blank">
+<img src="exercises/ex6/images/ex6_02_mentimeter_qr.png" style="width:160px;height:auto;display:block;margin:0 auto;border:none;border-radius:4px" />
+</a>
+<p style="margin:0.7em 0 0;font-size:10pt"><a href="https://www.menti.com/alsqqf11whm5" style="color:#0070f2;font-weight:600" target="_blank">menti.com/alsqqf11whm5</a></p>
+</div>
+<p style="font-size:9pt;color:#888;margin-top:0.5em"><em>42 – Share your first impressions (Mentimeter)</em></p>
+
 <hr />
 <h2>Thank You</h2>
 <p>Thank you for your time, your curiosity, and your engagement today.</p>

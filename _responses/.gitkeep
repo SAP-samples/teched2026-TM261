@@ -1,3 +1,0 @@
-# Survey responses land here as ws001_survey.json, ws017_survey.json, etc.
-# Files are encrypted — run _dev/decrypt_responses.py after the session to read them.
-# This file exists only to keep the folder tracked by git.
