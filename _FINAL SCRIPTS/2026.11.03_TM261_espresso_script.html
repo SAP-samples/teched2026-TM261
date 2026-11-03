@@ -1,0 +1,871 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><base href="file:///C:/Users/D050168/Projects/teched2026-TM261/"><title>TM261 Espresso Script</title><style>body{font-family:'Segoe UI',Arial,sans-serif;font-size:11pt;line-height:1.5;margin:0;padding:0;color:#1a1a1a}.pw{max-width:900px;margin:0 auto;padding:20mm}h1{color:#0070f2;font-size:18pt;page-break-before:always;margin-top:0}h1:first-of-type{page-break-before:avoid}h2{color:#0057b8;font-size:13pt;margin-top:1.8em}h3{color:#333;font-size:11pt;margin-top:1.4em}table{border-collapse:collapse;width:100%;margin:1em 0;font-size:10pt}th{background:#0070f2;color:#fff;padding:6px 10px;text-align:left}td{padding:5px 10px;border-bottom:1px solid #ddd;vertical-align:top}tr:nth-child(even) td{background:#f5f9ff}img{max-width:100%;height:auto;display:block;margin:1em 0;border:1px solid #ddd;border-radius:4px}blockquote{border-left:4px solid #0070f2;margin:1em 0;padding:.5em 1em;background:#f0f6ff;color:#333}code{background:#f4f4f4;padding:1px 4px;border-radius:3px;font-size:9.5pt}pre{background:#f4f4f4;padding:1em;border-radius:4px;overflow-x:auto}hr{border:none;border-top:1px solid #ccc;margin:2em 0}details summary{cursor:pointer;color:#0070f2}</style></head><body><div class="pw"><p><img src="exercises/ex_intro/images/Kapitelbanner_Welcome.png" style="width:100%;margin-bottom:1em;" /></p>
+<h1>TM261 – Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM</h1>
+<p><strong>Cloud ALM Summit 2026 – Express Guide</strong>
+<strong>Presenters:</strong> SAP Cloud ALM Product Ownership:
+Christina Pickhardt · Daniel Lorenz · Niclas Weidner · Tobias Keller · Tobias Meinzer</p>
+<hr>
+<hr>
+<h1>TM261 – Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM</h1>
+<p><strong>Cloud ALM Summit 2026</strong><br>
+<strong>Presenters:</strong> SAP Cloud ALM Product Ownership:<br>
+Christina Pickhardt · Daniel Lorenz · Niclas Weidner · Tobias Keller · Tobias Meinzer</p>
+<h1>Introduction</h1>
+<p>Log in, fire the first AI agent, get the session introduction while it runs, then tour the project structures it is working from.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Chapter</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–</td>
+<td><strong>Introduction</strong> <em>(this page)</em></td>
+<td>Log in · trigger Scoping Agent · TMA overview · project structure walkthrough</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="../ex2/README.md">Scope with AI</a></td>
+<td>Scoping agent result; refine through conversation</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="../ex3/README.md">Plan with AI</a></td>
+<td>Planning agent; HITL gate; review test plan</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="../ex4/README.md">Generate Test Cases</a></td>
+<td>TC generation agent; quality review</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="../ex5/README.md">Generate Test Data</a></td>
+<td>Data agent; classify parameters; explore dependencies</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="../ex6/README.md">Recap &amp; Outlook</a></td>
+<td>Time saved; roadmap; key takeaways</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>This is the express entry point for this session. The following are already configured for your workstation — you're joining the workflow at the point where the AI agents take over:</p>
+<table>
+<thead>
+<tr>
+<th>Pre-configured</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BPMN process diagram</td>
+<td>BJ5_simple — an illustrative process variant based on SAP S/4HANA Scope Item BJ5, importable e.g. from SAP Signavio</td>
+</tr>
+<tr>
+<td>7 <em>User Stories</em></td>
+<td>BJ5_US-01 – BJ5_US-07, linked to the process</td>
+</tr>
+<tr>
+<td><em>Requirements</em> document</td>
+<td>Generated from a BJ5 expert interview transcript</td>
+</tr>
+</tbody>
+</table>
+<p>Log in, open Joule, and you're ready to trigger the first agent.</p>
+<hr>
+<h2>1 – Log In &amp; First Agent Call</h2>
+<h3>Log In to SAP Cloud ALM</h3>
+<p>SAP Cloud ALM Test Management is where this session happens: the platform where you plan, execute, and track test projects end to end, with every test artifact traceable back to <em>Requirements</em>.</p>
+<p>Open your browser and navigate to the Cloud ALM tenant.</p>
+<blockquote>
+<p><strong>Your credentials:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tenant</strong></td>
+<td><a href="https://tm261-000-l2fw0ndj.eu10-004.alm.cloud.sap/launchpad">SAP Cloud ALM (TM261)</a></td>
+</tr>
+<tr>
+<td><strong>User</strong></td>
+<td><code>tm261-###@education.cloud.sap</code></td>
+</tr>
+<tr>
+<td><strong>Password</strong></td>
+<td><code>Acce$$teched26</code></td>
+</tr>
+</tbody>
+</table>
+<p>Replace <strong>###</strong> with your workspace number, zero-padded to three digits: space 3 → <code>003</code>, space 18 → <code>018</code>, space 42 → <code>042</code>. Your workspace number is on the card on your desk (or you received it at the entrance).</p>
+<p>Whenever you see <code>###</code> in a field value, filename, or prompt in this guide, that's your cue to substitute your own number.</p>
+</blockquote>
+<p><strong>1.</strong> Enter your username and password, then click <strong>Log On</strong>.</p>
+<p><br><img src="exercises/ex0/images/ex0_01_login.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>01 – Login to SAP Cloud ALM</em></p>
+
+<h3>Open Joule</h3>
+<p>After logging in you land on the SAP Cloud ALM home page. Let's open your most important tool for today: <strong>Joule</strong>.</p>
+<p>Joule is a chat-style AI interface built into SAP Cloud ALM. You'll use it throughout this session to interact with AI agents, ask questions, and drive the Test Preparation workflow — all in natural language.</p>
+<p><strong>1.</strong> Look for the <strong>diamond icon</strong> in the upper-right area of the screen and click it to open Joule.</p>
+<p><br><img src="exercises/ex0/images/ex0_02_home.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>02 – SAP Cloud ALM home page</em></p>
+
+<p><strong>2.</strong> Joule opens as a panel that slides over the application screen; it's always available, regardless of where you are in SAP Cloud ALM.</p>
+<p>The panel header gives you three controls:
+- <strong>Expand icon</strong>: open Joule in full-screen mode
+- <strong>Close (×)</strong>: close the panel
+- <strong>Sidebar icon</strong>: manage multiple concurrent conversations (you can run several Joule chats in parallel, one per topic or agent)</p>
+<blockquote>
+<p><strong>Good to know:</strong> Joule is stateful. Close the panel, navigate elsewhere, reopen it; your conversation is still there where you left it.
+The sidebar shows your conversation list: up to <strong>10 conversations can be active</strong> at the same time, with older ones moved to <strong>Expired</strong>.</p>
+</blockquote>
+<p><br><img src="exercises/ex0/images/ex0_03_joule_panel.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>03 – Joule panel open</em></p>
+
+<p><strong>3.</strong> Wake up Joule with a simple message in the input box at the bottom; just type naturally, for example: <strong>"Joule on :)"</strong> or any greeting.</p>
+<blockquote>
+<p>⚠ <strong>Before you continue: a word on stability.</strong> The agentic capabilities you're about to use involve complex multi-step orchestration across multiple AI skills and agent calls. This session runs on a shared productive tenant; expect some variability in response times.</p>
+<p>If Joule appears frozen, read ahead and give it a moment. If it seems to have timed out or lost context entirely, send a gentle follow-up ("still there?" or "hi") to wake it up, or re-send the original prompt.</p>
+</blockquote>
+<p>Joule will start processing; this can take a moment. When it responds, you'll see an introduction of its capabilities covering areas like <strong>Test Data Management</strong>, <strong>Test Scoping</strong>, <strong>Test Planning</strong>, and <strong>ALM Project Setup</strong>. These are exactly the capabilities you'll use today.</p>
+<p><br><img src="exercises/ex0/images/ex0_04_joule_hello.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>04 – Joule greeting and capabilities</em></p>
+
+<h3>Trigger the Scoping Agent</h3>
+<p>Your process is ready: <em>Requirements</em>, <em>User Stories</em>, and the BPMN diagram are all linked and in place. Let's put that to work.</p>
+<p><strong>1.</strong> Open a <strong>new conversation</strong> in Joule: click the <strong>sidebar icon</strong> in the panel header, then select <strong>New Conversation</strong>.</p>
+<p><strong>2.</strong> Send the following prompt — replace <code>###</code> with your workstation number:</p>
+<pre><code>I need to test process &quot;Beta_Straight Make-to-Stock Production – Discrete Manufacturing (BJ5_simple)&quot; in project &quot;###_TestProject&quot;
+</code></pre>
+<p><strong>3.</strong> Joule picks up the request and the scoping agent starts working in the background. You will see a progress indicator in the panel.</p>
+<blockquote>
+<p>⏱ <strong>This takes 10–15 minutes.</strong> The agent is reading the linked <em>Requirements</em>, <em>User Stories</em>, and process diagram and building a structured test scope. We'll use that time for the session introduction — come back to Joule afterwards.</p>
+</blockquote>
+<hr>
+<h2>2 – Introduction: Test Management Assistant</h2>
+<h3>Context: SAP Migration &amp; Modernization Assistants</h3>
+<p>Before we jump into the hands-on, a quick word on context, because what you're about to use is not an isolated feature.</p>
+<p>SAP has developed seven AI-powered assistants for Migration and Modernization scenarios, built to help customers move from SAP ECC to S/4HANA Cloud Private Edition faster and with significantly less manual effort:</p>
+<p><br><img src="exercises/ex_intro/images/intro_7_assistants.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>05 – Seven SAP Migration &amp; Modernization Assistants</em></p>
+
+<p>The <strong>Test Management Assistant</strong> is one of these seven, and Test Management is an area where the shift from manual to AI-driven work matters most:</p>
+<p>End-to-end test management for SAP migrations and modernizations is still heavily dependent on business and IT personnel. It is a consistent cost driver across transition projects, and complexity grows with every regression cycle: more scenarios, more variants, more manual effort.</p>
+<p>The Test Management Assistant targets the upstream side of this: the preparation of manual end-to-end testing. It applies AI to test scoping, test case writing, and test data preparation; these are the stages where expert effort is highest and where days of work can be compressed into minutes of guided review.</p>
+<p>Test execution itself is outside the current scope of the assistant. That stage is covered by the partner ecosystem: Tricentis, SAP's strategic partner for test automation, provides execution capabilities that complement the AI-driven preparation in SAP Cloud ALM.</p>
+<h3>What is the Test Management Assistant?</h3>
+<p>The Test Management Assistant is not a single AI feature; it's a pipeline of four specialized agents, each transforming a stage of manual Test Preparation into an AI-driven capability:</p>
+<p><br><img src="exercises/ex_intro/images/intro_agent_architecture.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>06 – Test Management Assistant: four-agent pipeline</em></p>
+
+<p>The Scoping, Preparation, and Test Data Management agents (Phase 1*) have been released and are currently in Early Adopter Care with selected customers. GA is targeted before the end of this year. The Test Execution Quality Management agent is planned for 2027**.</p>
+<blockquote>
+<p><em>* Partly available; **planned functionality. Subject to change by SAP at any time without notice.</em></p>
+<p><strong>Today's hands-on covers the three agents available today</strong>: Scoping, Preparation, and Data Management. Execution Management is on the roadmap.</p>
+</blockquote>
+<hr>
+<h2>3 – What the Agent Is Working From</h2>
+<p>While the agent runs, let's look at the Cloud ALM structures it is consuming.</p>
+<p><strong>1.</strong> Go back to the Cloud ALM home page. Select the <strong>Implementation</strong> tab in the top navigation bar — this is where Cloud ALM Test Management lives alongside the other implementation tools.</p>
+<p>In the <strong>Preparation and Setup</strong> section, click the <strong>Projects and Setup</strong> tile.</p>
+<p><br><img src="exercises/ex1_espresso/images/ex1esp_05_implementation.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>05 – Implementation tab and Projects and Setup tile</em></p>
+
+<p><strong>2.</strong> In the <strong>Manage Projects</strong> list:
+1. Search for your workstation number
+2. Select your project (<code>###_TestProject</code>)
+3. In the project details, open the <strong>Scopes</strong> tab
+4. Click on <code>###_CustomScope</code></p>
+<p><br><img src="exercises/ex1_espresso/images/ex1esp_06_projects_scope.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>06 – Locating your project and scope</em></p>
+
+<p><strong>3.</strong> Inside the scope you'll see the process <strong>Beta_Straight Make-to-Stock Production – Discrete Manufacturing (BJ5_simple)</strong>. Click on it to open its details.</p>
+<p><br><img src="exercises/ex1_espresso/images/ex1esp_07_bj5_process.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>07 – BJ5_simple process inside the custom scope</em></p>
+
+<p><strong>4.</strong> In the process detail view, click the <strong>Solution Process Flow</strong> tab. You'll find the BPMN diagram of the BJ5_simple process — two swimlanes showing the Production Planner and Warehouse Clerk roles and the steps between them, including the quality gate decision. This is one of the inputs the scoping agent uses to understand the process structure.</p>
+<p><br><img src="exercises/ex1_espresso/images/ex1esp_08_process_flow.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>08 – Solution Process Flow: BJ5_simple BPMN diagram</em></p>
+
+<p><strong>5.</strong> Switch back to the <strong>Solution Value Flow</strong> tab (1). On the right-hand panel, click the <strong>"+9"</strong> button (2) — this expands the full list of content types that can be linked to a process. Notice the counts: <strong>Requirements (1)</strong> and <strong>User Stories (7)</strong> are already in place (3). These are exactly the inputs the scoping agent is working from right now.</p>
+<p><br><img src="exercises/ex1_espresso/images/ex1esp_09_value_flow_linked.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>09 – Solution Value Flow: Requirements and User Stories linked</em></p>
+
+<p><strong>6.</strong> Click on <strong>Requirements</strong> in the list to expand that section, then open the linked requirement to read through it. Do the same for one of the <strong>User Stories</strong> — each entry shows as a card with an <strong>Open</strong> button.</p>
+<p><br><img src="exercises/ex1_espresso/images/ex1esp_10_user_story.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>10 – A linked User Story: structured input for the agent</em></p>
+
+<p>This is the raw material the scoping agent has been reading while you were here. The <em>Requirements</em> document captures the business rules and process intent extracted from the expert interview; the <em>User Stories</em> add the acceptance criteria per role and scenario. Together with the BPMN diagram, these three inputs are what the agent uses to build a traceable test scope — without any of them, it would have blocked and asked you to add them first.</p>
+<p>With that you have an overview of the information the scoping agent currently is able to draw on. Remember: the more — and higher-quality — information the agents get, the better the outcome.</p>
+<hr>
+<hr>
+<h1>Chapter 3 – Scope with AI</h1>
+<p><strong>Prerequisite:</strong> You have completed <a href="../ex1/README.md">Chapter 2</a> (or the <a href="../ex1_espresso/README.md">Express Setup</a>); the <em>BJ5_simple</em> process has linked <em>Requirements</em> and <em>User Stories</em>.</p>
+<hr>
+<h2>What You'll Do</h2>
+<p>In this chapter you'll trigger the <strong>Scoping Agent</strong>: an AI agent that reads your linked process documentation and proposes a structured <em>Test Case</em> scope. While it works in the background, you'll run a quick manual scoping exercise; when the result arrives, you can see exactly what the AI found versus what you identified.</p>
+<hr>
+<h2>3.1 – Trigger the Scoping Agent</h2>
+<p>Time to try again; with proper input now in place.</p>
+<blockquote>
+<p><strong>Express path:</strong> you already triggered the agent in the Introduction — skip ahead to <a href="#32--whats-happening-in-the-background">3.2</a>.</p>
+</blockquote>
+<p><strong>1.</strong> Open a new conversation in Joule and send the <strong>same prompt</strong> as in Step 1.3:</p>
+<blockquote>
+<p><em>"I need to test process "Beta_Straight Make-to-Stock Production – Discrete Manufacturing (BJ5_simple)" in project "###_TestProject""</em></p>
+<p>Replace <strong>###</strong> with your workstation number.</p>
+</blockquote>
+<p><strong>2.</strong> The scoping agent starts working in the background. You'll see a notification or progress indicator.</p>
+<p><br><img src="exercises/ex2/images/ex2_02_agent_running.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>24 – Scoping agent running</em></p>
+
+<hr>
+<h2>3.2 – What's happening in the background?</h2>
+<p><br><img src="exercises/ex2/images/ex2_03_scoping_agent_flow.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>25 – Scoping agent methodology</em></p>
+
+<blockquote>
+<p><strong>The scoping agent applies a structured methodology:</strong>
+1. It resolves the process name, <em>Requirements</em>, and <em>User Stories</em> to exact identifiers in SAP Cloud ALM
+2. It validates that the required input exists; if not, it blocks and returns clear instructions on what to fix
+3. It classifies each input: process scope variants or detailed reference steps
+4. It enriches the scope with SAP standard test baselines and extracts Acceptance Criteria from your linked content
+5. It scores each <em>Scope Item</em> for completeness, ranks items by priority, and flags coverage gaps
+6. It presents the result for your review and sign-off; no downstream work starts without your approval (the "Human in the Loop", or HITL, Gate 1)</p>
+<p>This is the same analysis a skilled test architect would do, but compressed from hours into minutes.</p>
+</blockquote>
+<hr>
+<h2>3.3 – Manual Scoping Exercise</h2>
+<p>While you wait for the agent, try a structured manual scoping exercise.</p>
+<p>Return to the Processes app and for the <em>BJ5_simple</em> process, think through these dimensions (a piece of paper to jot notes works fine):</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Your Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What are the main <strong>process paths</strong> (happy path + variants)?</td>
+<td></td>
+</tr>
+<tr>
+<td>What <strong>acceptance criteria</strong> can you identify from the <em>User Stories</em> and <em>Requirements</em>?</td>
+<td></td>
+</tr>
+<tr>
+<td>How many distinct <strong>apps/UIs</strong> are involved?</td>
+<td></td>
+</tr>
+<tr>
+<td>How many <strong>roles</strong> participate?</td>
+<td></td>
+</tr>
+<tr>
+<td>Which steps have <strong>blocking conditions</strong> worth testing?</td>
+<td></td>
+</tr>
+<tr>
+<td>What <strong>error scenarios</strong> can you imagine that should be covered?</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Hint: The BJ5 process involves 2 roles (Production Planner and Warehouse Clerk) and spans the full make-to-stock cycle from production order creation to finished goods receipt. There is 1 critical quality gate where output is assessed before goods receipt, and a separate failure path for scrap and replenishment.</p>
+</blockquote>
+<hr>
+<h2>3.4 – Review the Scoping Agent's Work</h2>
+<p><strong>1.</strong> When the agent is ready, it replies directly in the Joule chat window with a <strong>Test Scope Summary</strong>. The response is detailed; best switch Joule to <strong>full-screen mode</strong> first using the <strong>expand icon</strong> in the top-right of the Joule panel.</p>
+<p>The response typically gives you:</p>
+<ul>
+<li><strong>Process context</strong>: the <em>Solution Process</em>, flow diagram, and applicable countries it resolved</li>
+<li>A <strong>summary of identified process flow paths</strong>, reflecting any splits or variants in the process structure</li>
+<li>An overview of the <strong>items it ingested</strong> (your <em>Requirement</em> and the 7 <em>User Stories</em>)</li>
+<li>Related <strong>standard process procedures</strong> retrieved from the SAP Enterprise Architecture Reference Library (EARL)</li>
+<li>A conclusive list of <strong>acceptance criteria</strong> derived from all of the above, augmented with patterns from SAP's standard process baselines</li>
+</ul>
+<p><br><img src="exercises/ex2/images/ex2_04_scope_result.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>26 – Test Scope Summary in Joule</em></p>
+
+<p>After the response, the agent asks you whether to confirm the scope as is or revise it.</p>
+<blockquote>
+<p><strong>HITL (Human in the Loop) Gate 1: Test Scope Summary.</strong> This is the first checkpoint in Test Management Assistant's agentic workflow. The agent stops, presents its detailed structured analysis, and waits for your review and sign-off. Nothing proceeds until you confirm.</p>
+</blockquote>
+<p><strong>2.</strong> Before making that decision, take a few minutes to work through the proposed scope. For each item, check:
+- <strong>Name and description</strong>: does it clearly describe what's being tested?
+- <strong>Linked acceptance criteria</strong>: is it traceable back to a <em>User Story</em> or <em>Requirement</em>?
+- <strong>Role separation</strong>: are Production Planner tasks and Warehouse Clerk tasks kept in separate <em>Test Cases</em>?
+- <strong>Coverage</strong>: does the overall set cover the happy path (P1), the quality gate failure path (P2), and the scrap/replenishment scenario?</p>
+<blockquote>
+<p><strong>Compare with your manual notes from Step 3.3:</strong> Did the agent catch everything you identified? Or did it find things you missed? That's exactly the kind of task AI agents excel at: ingesting text, inferring structure, and surfacing patterns at speed.</p>
+</blockquote>
+<hr>
+<h2>3.5 – Refine the Scope in Joule</h2>
+<p>Let's not just accept the scope as is. Joule lets you refine it through conversation, and this is the moment to apply your focus on role switches and shape the scope accordingly.</p>
+<blockquote>
+<p><strong>Note for participants sharing a system:</strong> In a real-life scenario you'd typically start with the full E2E process before narrowing down. The reason for this tweak is twofold: first, it lets you experience how to shape agent output through a simple conversation; and second, the agents run on shared infrastructure and we want to avoid overloading the system with heavy concurrent calls. So we recommend limiting the scope to <strong>user stories 5, 6, and 7</strong> (the quality gate, goods receipt, and failure path), where the handoff from Production Planner to Warehouse Clerk happens.</p>
+</blockquote>
+<p>Two options are available; as you'll see, the second is the more direct one.</p>
+<p><strong>Option 1: Use the built-in "Revise Scope" shortcut</strong></p>
+<p>Click the <strong>Select</strong> button in the Joule output panel, then choose <strong>Revise Scope</strong> from the dropdown. This sends a built-in prompt ("No, let me revise the scope" or similar) to the agent, which then asks you what you'd like to change. You'd still need to type your refinement in the follow-up message, making it identical to Option 2 but with one extra round-trip.</p>
+<p><strong>Option 2: Write your own prompt</strong></p>
+<p>You can also type your refinement directly in the Joule chat window. Navigate to <em>User Stories</em> US-05, US-06, and US-07 and note their Display IDs (format: <code>3-xxx</code>), then use a prompt like:</p>
+<blockquote>
+<p>"Revise scope. Focus on <em>User Stories</em> <strong>[enter the Display IDs]</strong>. In particular take care of roles and create <em>Test Cases</em> which do NOT cross multiple roles."</p>
+</blockquote>
+<p><br><img src="exercises/ex2/images/ex2_05_refine_scope.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>27 – Refinement prompt: focusing on three user stories</em></p>
+
+<p>You may try other refinements too:
+- <strong>Narrow the scope:</strong> "Revise the scope: Remove <em>User Stories</em> 1–4 from the scope for now; focus only on the quality gate, goods receipt, and scrap path."
+- <strong>Narrow by role:</strong> "Revise Scope: Drop the Production Planner for now, and consider only the process steps relevant for the Warehouse Clerk."</p>
+<p>The agent re-runs its scoping logic - the response should be substantially faster than than the first pass. It presents the revised scope and pauses for your sign-off again. This time, click <strong>Confirm</strong> to accept the scope and move to the next stage.</p>
+<hr>
+<h2>Summary</h2>
+<p>The scoping agent analyzed all your linked process artifacts and proposed a structured <em>Test Case</em> scope, with traceability to <em>Requirements</em> and <em>User Stories</em>, in the time it took you to sketch a rough outline manually.</p>
+<p>You now have a <strong>confirmed test case scope</strong> that moves automatically into test planning.</p>
+<hr>
+<h1>Chapter 4 – Plan with AI</h1>
+<p><strong>Prerequisite:</strong> You have completed <a href="../ex2/README.md">Chapter 3</a>; a confirmed <em>Test Case</em> scope exists for the BJ5 process.</p>
+<hr>
+<h2>What You'll Do</h2>
+<p>The scope you confirmed at the end of Chapter 3 has been handed to the <strong>Preparation Agent</strong>, which is already working in the background. This chapter covers the first of its two phases: planning of the <em>Test Plan</em> and its <em>Test Cases</em>, up to the point where you review and confirm the plan. While the agent works, you will learn what it is doing and why it matters.</p>
+<hr>
+<h2>4.1 – The Preparation Agent: Planning Phase</h2>
+<p>The Preparation Agent is a two-phase agent with a human review gate between the phases. This chapter follows Phase 1: from your confirmed scope to a proposed <em>Test Plan</em>. Phase 2 (<em>Test Case</em> generation) is covered in Chapter 5.</p>
+<blockquote>
+<p><strong>The challenge:</strong> Similar to scoping, <em>Test Case</em> preparation relies on expertise that cannot scale. <em>Test Case</em> volumes grow into the hundreds per project; without structured reuse, duplicates accumulate across teams. Under time pressure, process variants get skipped: happy paths are covered, but error paths, authorisation checks, and boundary cases drop out. Acceptance Criteria end up patchily defined; tests pass but do not prove what they claim to verify.</p>
+<p>For each <em>Test Case</em> a skilled analyst would need to determine the right application, define preconditions, sequence steps at the correct level of detail, assign a role, and link everything back to <em>Requirements</em>, across an entire business process.</p>
+<p><strong>The solution:</strong> The Preparation Agent maps execution paths and Acceptance Criteria from the process model into complete <em>Test Cases</em>. It optimises for coverage and <em>Test Case</em> efficiency; the expert shifts from producing to reviewing, and covers scope more reliably.</p>
+</blockquote>
+<p><br><img src="exercises/ex3/images/ex3_01_prep_agent_flow.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>28 – Preparation Agent: pipeline up to HITL Gate 2</em></p>
+
+<blockquote>
+<p><strong>What the Preparation Agent works through:</strong>
+1. <strong>Validate incoming scope:</strong> checks quality and completeness of the scope from the Scoping Agent; flags issues before test generation begins
+2. <strong>Map all process variants:</strong> reads the BPMN diagram to identify every execution path: happy path, error flows, boundary conditions, and negative flows
+3. <strong>Draft test plan:</strong> creates a categorised plan covering all identified process variants; this is what you will review and approve
+4. <strong>HITL Gate 2 (Approve plan):</strong> no <em>Test Cases</em> are written to Cloud ALM without your explicit approval; you review and adjust before the agent continues into Phase 2</p>
+</blockquote>
+<p>⏱️ <strong>While the agent works: try it yourself</strong></p>
+<p>Pick one of the <em>Scope Items</em> from Chapter 3 (for example: "Confirm Production Operations") and try to write a <em>Test Plan</em> entry: a clear description (1–2 sentences), the role performing it (Production Planner or Warehouse Clerk), the preconditions that must be true, and a rough sequence of Test Steps.</p>
+<p>How long does that take for one item? Now multiply by the full scope, and note that this is still not the final, well-formed set of <em>Test Case</em> steps. That is what <em>Test Plan</em> preparation normally looks like.</p>
+<hr>
+<h2>4.2 – Review the Agent's Test Plan</h2>
+<p>By now the Preparation Agent should have returned with a <em>Test Plan</em> proposal. Switch back to your Joule conversation and scroll to find its response.</p>
+<p><strong>When Joule responds successfully</strong>, it presents a structured <strong>Test Plan Summary</strong>. This may come in slight variations, but typical components and structure are:</p>
+<ul>
+<li><strong>Test Case Overview</strong>: total number of <em>Test Cases</em>, split by path type (happy path vs. error case)</li>
+<li><strong>Role-Based Distribution</strong>: how <em>Test Cases</em> are distributed across roles (Production Planner and Warehouse Clerk) and which <em>User Stories</em> each role covers</li>
+<li><strong>Planned Test Cases</strong>: a deeper look at each proposed <em>Test Case</em>, with its process path, linked Acceptance Criteria, and assigned role</li>
+<li><strong>Acceptance Criteria Coverage</strong>: a summary showing how many Acceptance Criteria from each <em>User Story</em> are addressed</li>
+<li><strong>Key Features</strong>: summary of structural properties the agent applied, such as role isolation, balanced path coverage, and no cross-role tests</li>
+</ul>
+<p><br><img src="exercises/ex3/images/ex3_03_plan_summary.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>29 – Test Plan Summary: overview, role distribution, and planned test cases</em></p>
+
+<p>▶️ <strong>Your task:</strong> Review the plan and consider:
+- Does the number of <em>Test Cases</em> feel right for the scope you confirmed?
+- Are roles properly separated? No <em>Test Case</em> should span two roles.
+- Are both the happy path (P1) and the error path (P2) represented?
+- Do the Acceptance Criteria align with what you saw in the <em>User Stories</em>?</p>
+<blockquote>
+<p><strong>Compare with your try-it-yourself notes from Step 4.1:</strong> Did the agent structure the plan differently than you expected? Did it catch anything you missed?</p>
+</blockquote>
+<p><strong>Review (HITL) Gate 2: Approve the Test Plan</strong></p>
+<p>The agent will not start writing <em>Test Cases</em> until you confirm the plan.</p>
+<p><br><img src="exercises/ex3/images/ex3_04_plan_confirm.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>30 – HITL Gate 2: confirm or revise the test plan</em></p>
+
+<p>Click <strong>Select</strong> next to <strong>Confirm plan</strong> to approve and start <em>Test Case</em> generation.</p>
+<p>The agent confirms that <em>Test Case</em> generation has started, acknowledging your approved plan and the <em>User Stories</em> it will work on.</p>
+<p><br><img src="exercises/ex3/images/ex3_05_tc_generation_started.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>31 – Test case generation started</em></p>
+
+<p>Joule provides a rundown of what was created and what happens next:
+- A <strong>generation summary</strong>: <em>Test Plan</em> name and total <em>Test Cases</em>
+- <strong>Key features</strong> of this <em>Test Plan</em>: role isolation, complete Acceptance Criteria coverage, balanced path scenarios, and EARL alignment
+- <strong>Next steps</strong>: you will receive a notification when generation is complete (typically 5–10 minutes), after which you can review and execute the <em>Test Cases</em> in the native Cloud ALM Test Management app (the next exercise covers this)</p>
+<p>Joule also provides quick-access prompts; common options are <strong>Check generation progress</strong> and <strong>Open test plan in Test Management</strong>, which opens the <em>Test Plan</em> in the native Cloud ALM app for review. Follow up if you like, or continue to the next exercise.</p>
+<p><br><img src="exercises/ex3/images/ex3_06_generation_summary.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>32 – Generation summary and next steps</em></p>
+
+<hr>
+<h2>Summary</h2>
+<p>The Preparation Agent has completed its planning phase and started <em>Test Case</em> generation:
+- [x] <em>Test Plan</em> reviewed and approved (HITL Gate 2)
+- [x] <em>Test Case</em> generation triggered for several <em>Test Cases</em> across <em>User Stories</em> 3-157, 3-158, 3-159
+- [ ] <em>Test Cases</em>: generation in progress; you will be notified when ready (see next exercise)</p>
+<hr>
+<h1>Chapter 5 – Generate Test Cases</h1>
+<p><strong>Prerequisite:</strong> You have completed <a href="../ex3/README.md">Chapter 4</a>; a confirmed <em>Test Plan</em> exists for the BJ5 process, and <em>Test Case</em> generation has been triggered and is running in the background.</p>
+<hr>
+<h2>What You'll Do</h2>
+<p>In this chapter you'll follow the <strong>Test Case Generation Agent</strong> as it takes the approved <em>Test Case</em> skeletons and generates detailed, executable Test Steps. While it works, you can try drafting one <em>Test Case</em> manually, then compare your result with what Joule produces.</p>
+<hr>
+<h2>5.1 – Phase 2: Test Case Generation</h2>
+<p>The Preparation Agent is now in its second phase. Having cleared review (HITL) Gate 2 with your approved <em>Test Plan</em>, it is working through the following steps:</p>
+<p><br><img src="exercises/ex4/images/ex4_01_tc_agent_phase2.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>33 – Preparation Agent Phase 2: test case generation pipeline</em></p>
+
+<ul>
+<li><strong>Write test cases</strong>: For each planned <em>Test Case</em>, the agent creates a complete entry in SAP Cloud ALM via ContentAssist, including Test Steps, expected results, preconditions, and role assignments. Progress is streamed live as <em>Test Cases</em> are written.</li>
+<li><strong>Establish traceability</strong>: Each <em>Test Case</em> is linked to the corresponding <em>Requirement</em> and <em>Solution Process</em>, establishing full traceability.</li>
+<li><strong>Enrich content</strong>: Where available, the agent enriches the content with SAP standard test procedures from the Enterprise Architecture Reference Library (EARL).</li>
+<li><strong>Output</strong>: Complete, traceable <em>Test Cases</em> written to Cloud ALM Test Management, ready for review and execution.</li>
+</ul>
+<hr>
+<h2>5.2 – Manual Test Case Work</h2>
+<p>⏱️ <strong>While the agent works: try it yourself</strong></p>
+<p>Pick one of the <em>Test Case</em> skeletons from Chapter 4's approved plan and try to write it manually before seeing what Joule produces. For the <em>Test Case</em> "Post Goods Receipt – Finished Goods" (US-06), fill in this template:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Your Draft</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Test Case Name</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Role</strong></td>
+<td>Warehouse Clerk</td>
+</tr>
+<tr>
+<td><strong>User Story</strong></td>
+<td>BJ5_US-06: Post Goods Receipt – Finished Goods</td>
+</tr>
+<tr>
+<td><strong>Precondition</strong></td>
+<td>Production order confirmed; quality assessment passed (Quality OK = Yes, P1 path)</td>
+</tr>
+<tr>
+<td><strong>App</strong></td>
+<td>Goods Movements / Post Goods Receipt</td>
+</tr>
+<tr>
+<td><strong>Step 1</strong></td>
+<td>Open the Goods Receipt app and select the confirmed production order</td>
+</tr>
+<tr>
+<td><strong>Step 1: Expected Result</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Step 2</strong></td>
+<td>Verify the quantity matches the confirmed production output</td>
+</tr>
+<tr>
+<td><strong>Step 2: Expected Result</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Step 3</strong></td>
+<td>Select movement type and post the goods receipt</td>
+</tr>
+<tr>
+<td><strong>Step 3: Expected Result</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Step 4</strong></td>
+<td>Verify the stock update in the storage location</td>
+</tr>
+<tr>
+<td><strong>Step 4: Expected Result</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Parameters needed</strong></td>
+<td>Production order number, plant, storage location, finished goods material, quantity</td>
+</tr>
+</tbody>
+</table>
+<p>Keep your notes; you'll compare them with what Joule produced in Section 5.3.</p>
+<hr>
+<h2>5.3 – Review the Generated Test Cases</h2>
+<p>By now the <em>Test Cases</em> should be ready. Time to see what Joule produced.</p>
+<p><strong>Finding the notifications</strong></p>
+<p>While you were working on your manual <em>Test Case</em>, Joule was completing <em>Test Case</em> generation in the background. SAP Cloud ALM sends an in-app notification for each <em>Test Case</em> created. You will see a red bubble badge on the <strong>notifications bell</strong> in the top-right corner of the screen.</p>
+<p><br><img src="exercises/ex4/images/ex4_02_notifications_button.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>34 – Notification badge: test cases created</em></p>
+
+<p>Close the Joule panel first, then click the <strong>notifications bell</strong>. An overlay opens showing one entry per <em>Test Case</em>, with the <em>Test Case</em> name and an indication of when it was created.</p>
+<p><br><img src="exercises/ex4/images/ex4_03_notifications_overlay.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>35 – Notification overlay: one entry per generated test case</em></p>
+
+<p><strong>Opening and browsing a test case</strong></p>
+<p>Click on any notification to open the <em>Test Case</em> in the SAP Cloud ALM Test Preparation interface. We suggest starting with the first (oldest) <em>Test Case</em> in the batch, which is usually the most encompassing end-to-end happy path flow. Click it and the <em>Test Case</em> opens in the native Cloud ALM <em>Test Case</em> app. Take a few minutes to browse, focusing on:</p>
+<ul>
+<li><strong>Header area</strong>: indication of a Manual <em>Test Case</em>, linking to related artefacts, status "in preparation"</li>
+<li><strong>General information</strong>: you can find the <em>Test Case</em> ID here; note it down, you will need it in a later step</li>
+<li>The <strong>Content</strong> tab: a <strong>Purpose</strong> section describing the business objective, the <strong>Acceptance Criteria</strong> linked from the <em>User Story</em>, and the full set of <strong>test steps</strong> with instructions and expected results</li>
+<li>The <strong>General Information</strong> tab: traceability links to the <em>Solution Process</em> and <em>Requirement</em>, and the source indicator: "Manual <em>Test Case</em> – created with AI assistance"</li>
+<li>The <strong>Relations</strong> tab: connection to the <em>Scope Item</em> and <em>Test Plan</em> entry</li>
+<li>The <strong>References</strong> tab: any EARL standard content applied</li>
+</ul>
+<p><br><img src="exercises/ex4/images/ex4_04_tc_detail.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>36 – Test case detail: Content tab with purpose, acceptance criteria, and test steps</em></p>
+
+<p><strong>Quality check</strong></p>
+<p>▶️ <strong>Your task:</strong> Review the <em>Test Case</em> against these criteria:</p>
+<table>
+<thead>
+<tr>
+<th>Quality Criterion</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Traceable to a <em>User Story</em> or <em>Requirement</em></td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Correct role assigned</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Logical grouping of steps</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Clear, actionable steps (not too vague, not too granular)</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Expected result for every step</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Input parameters identified</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Compare with your manual draft from Step 5.2:</strong> Did Joule's version match what you wrote? What did it do better? What would you change?</p>
+</blockquote>
+<p><strong>What you have learned</strong></p>
+<p>Joule produced several complete, structured <em>Test Cases</em>, each with a clear business purpose, traceability to Acceptance Criteria, and a full set of executable Test Steps with expected results; all in the time it took you to draft one manually.</p>
+<p>Look closely at the Test Steps: they contain <strong>parameter placeholders</strong> for values the tester will need to enter. Fields like business partner, plant number, production order number, or material number have been identified but not yet filled with actual system values. In some cases, example values from linked artefacts or SAP standard content may appear as a starting point; these are not yet ready for Test Execution. Resolving these parameters is the job of the next agent in the pipeline: the <strong>Test Data Management Agent</strong>, covered in Chapter 6.</p>
+<hr>
+<h2>Summary</h2>
+<p>The Preparation Agent's Phase 2 wrote detailed, executable <em>Test Cases</em> for the full BJ5 scope; complete with steps, expected results, and parameter placeholders.</p>
+<ul>
+<li>[x] <em>Test Cases</em> generated and reviewed</li>
+<li>[x] Quality criteria checked: role assignment, step clarity, traceability, expected results</li>
+<li>[ ] Test data values: parameter placeholders identified; to be verified and resolved in Chapter 6</li>
+</ul>
+<hr>
+<h1>Chapter 6 – Generate Test Data</h1>
+<p>Good test data may be one of the most underestimated parts of Test Preparation. A single wrong value (an invalid material, the wrong plant, a date outside the planning horizon) is enough to make a test fail for the wrong reasons, wasting time and masking real <em>Defects</em>. It is also a recurring burden: even for established <em>Test Cases</em>, data values get consumed during Test Execution (orders confirmed, stock moved, documents created) and must be refreshed before the next run. Yet gathering valid, consistent test data for a business process like BJ5 traditionally demands expert knowledge of both the process and the system configuration.</p>
+<p><strong>Prerequisite:</strong> You have completed <a href="../ex4/README.md">Chapter 5</a>; <em>Test Cases</em> have been generated for the BJ5 process and are visible in Test Preparation.</p>
+<hr>
+<h2>What You'll Do</h2>
+<p>In this chapter you'll work with the <strong>Test Data Management Agent</strong>. In its current Phase 1 form, the agent reads a <em>Test Case</em> and extracts every parameter placeholder: the fields where a tester will need to provide a specific value to execute the step. It classifies them by data category; for parameters that are constant across the project (such as company code, plant, and client), it applies the known project-level values automatically so the tester does not need to look them up.</p>
+<p>The current Phase 1 capability is the foundation for a progressively richer roadmap. Future phases will connect the agent to a live S/4HANA system: first to suggest values that actually exist in the test environment, then to propose new master data records where the right values do not yet exist, modelled on patterns from a productive system. The final step will extend to writing data directly into target systems; not only master data but also transient data: the prerequisite document chains (inquiry, offer, order, delivery) needed for <em>Test Cases</em> that begin mid-flow in a business process.</p>
+<p>For now, Phase 1 turns unstructured Test Step text into a structured, actionable parameter checklist.</p>
+<hr>
+<h2>6.1 – Understanding the Agent</h2>
+<p>The diagram below shows the full pipeline of the Test Data Management Agent in Phase 1:</p>
+<p><br><img src="exercises/ex5/images/ex5_01_tdm_agent_flow.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>37 – Test Data Management Agent: Phase 1 pipeline</em></p>
+
+<blockquote>
+<p><strong>What the Test Data Management Agent works through:</strong>
+1. <strong>Fetch the <strong>Test Case</strong>:</strong> reads the <em>Test Case</em> and all its activity steps from SAP Cloud ALM; if the <em>Test Case</em> is not found or has no activities, the agent stops and asks you to verify the input
+2. <strong>Extract parameters:</strong> reads every Test Step and identifies each place where a specific value is needed; each parameter is named, typed, and described
+3. <strong>Classify:</strong> groups each parameter into one of four categories: Organisational data, Master data, Configuration data, or Transactional data
+4. <strong>Apply project context:</strong> fills in known fixed values from the project configuration (company code, plant, client), reducing manual lookup for values shared across all <em>Test Cases</em>
+5. <strong>Output:</strong> a structured parameter table per category, with descriptions, example values where available, and dependency reasoning</p>
+<p><strong>Phase 1 scope note:</strong> The agent identifies and classifies parameters; it does not yet look up or suggest actual system values. The tester uses the output as a structured checklist.</p>
+</blockquote>
+<hr>
+<h2>6.2 – Identify the Parameters in Your Test Case</h2>
+<p>⏱️ <strong>While the agent works: try it yourself</strong></p>
+<p>Open one of your generated <em>Test Cases</em> in Test Preparation, go to the <strong>Content</strong> tab, and read through the Test Steps. For each step, note every parameter: every place where the tester will need to enter a specific value.</p>
+<p>Look for patterns like these:</p>
+<ul>
+<li><strong>Material</strong>: <code>&lt;replacement material number&gt;</code>; must exist in the system</li>
+<li><strong>Plant</strong>: <code>&lt;plant&gt;</code>; the plant where the production operation takes place</li>
+<li><strong>Order Type</strong>: PP01; a configuration value, already fixed here</li>
+<li><strong>Total Qty</strong>: <code>&lt;required quantity&gt;</code>; must be valid for the material and order, and the quantity must be available in a storage location so the picking steps can be executed</li>
+<li><strong>Basic Finish Date</strong>: <code>&lt;planned finish date&gt;</code>; must fall within the planning horizon</li>
+</ul>
+<p>For a make-to-stock production and warehousing process like BJ5, you'll typically also encounter:</p>
+<ul>
+<li><strong>Sales Area</strong>: a combination of Sales Org, Distribution Channel, and Division, tied to a specific company code; all fixed from the project configuration</li>
+<li><strong>Work center</strong>: must exist in the plant and be assigned to the correct cost center</li>
+<li><strong>Storage location</strong>: must be valid for the plant and movement type</li>
+<li><strong>Production order number</strong>: a transactional reference that only exists after the order is created</li>
+<li><strong>Confirmed quantity</strong>: depends on the output of a prior step</li>
+</ul>
+<p>Note the distinction: some values are fixed (company code, plant), some are looked up once before the test (material, work center), and some are only generated at runtime (production order number). This is exactly the classification the agent applies.</p>
+<p><br><img src="exercises/ex5/images/ex5_02_tc_parameters.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>38 – *Test Case* parameters: placeholder values in the instruction text</em></p>
+
+<hr>
+<h2>6.3 – Trigger the Data Agent</h2>
+<p>Unlike the Preparation Agent covered in previous chapters, the Test Data Management Agent does not start automatically after <em>Test Case</em> generation. This is intentional: test data is a separate output, used alongside Test Steps rather than embedded in them. A <em>Test Case</em> describes <em>what</em> to do; test data provides <em>with what</em> to do it. These two artefacts have different lifecycles in SAP Cloud ALM; data will typically be resolved when the <em>Test Case</em> is in an advanced status or already assigned to a tester. The decision of when to enrich a <em>Test Case</em> with data is often made by the person preparing for execution: initially a key user, and later the tester directly.</p>
+<p>There is also a practical reason to start fresh: generated <em>Test Cases</em> need to be processed and indexed by Cloud ALM before the agent can read them; starting a new Joule conversation ensures a clean context.</p>
+<p>If you noted down the <em>Test Case</em> ID in Chapter 5, you are ready to proceed. If not, <strong>retrieve the test case ID</strong> first:
+- Switch to the <strong>General Information</strong> tab of the <em>Test Case</em> you reviewed in Step 6.2.
+- Scroll to the <strong>Object</strong> section at the bottom. Note down the <strong>ID</strong> shown there; it follows the format <code>8-1-123</code>.</p>
+<p><strong>Triggering the agent</strong></p>
+<p><strong>1.</strong> Open a <strong>new Joule conversation</strong> (click the new conversation icon or close and reopen the Joule panel).</p>
+<p><strong>2.</strong> Send this prompt, replacing <code>###</code> with your workstation number and inserting the <em>Test Case</em> ID noted above:</p>
+<blockquote>
+<p><em>"Please suggest test data for test case [your test case ID] in project "###_TestProject""</em></p>
+</blockquote>
+<p><br><img src="exercises/ex5/images/ex5_03_tdm_trigger.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>39 – New Joule conversation: triggering the Test Data Management Agent</em></p>
+
+<p>The agent starts working: it fetches the <em>Test Case</em>, reads all activity steps, extracts and classifies every parameter, and applies the project context.</p>
+<hr>
+<h2>6.4 – Review the Agent's Output</h2>
+<p>When the agent returns, it presents a structured table of all data parameters identified in the <em>Test Case</em>, grouped into four categories.</p>
+<p><strong>Organisational data</strong>
+The fixed organisational frame: sales organisation, distribution channel, division, and dependent org units such as plant and storage location. These values are typically re-usable across <em>Test Cases</em> in a project, and the agent applies them automatically from the project context wherever possible.</p>
+<p><strong>Master data</strong>
+Objects that must exist in the system before the test can run: materials valid for the sales area and plant, business partners in the correct role (for example: sold-to party, ship-to, payer), and any dependencies between them. A sold-to party determines which ship-to and payer are valid; a material type determines which item category is auto-assigned.</p>
+<p><strong>Configuration data</strong>
+System settings that affect process behaviour: pricing procedures, document types, workflow configurations, authorisation roles. These rarely change between test runs but must be verified to exist and be correctly set up before testing.</p>
+<p><strong>Transactional data</strong>
+Values that are either chosen by the tester at runtime or generated on the fly during execution: quantities, dates, and document numbers (order numbers, delivery numbers, production order IDs) that only exist after a preceding step has been completed.</p>
+<p><strong>Why dependencies matter</strong></p>
+<p>The agent does not just list parameters; it explains which values drive which others. This is more valuable than it first appears. Consider a quantity of "10" entered in a production order step: taken in isolation it looks arbitrary. Trace it forward through the process and that same quantity must arrive at a picking step where the storage location needs to hold sufficient stock. If it does not, the test will fail for the wrong reasons: not a <em>Defect</em>, but a data setup problem. Understanding these dependencies upfront is the prerequisite for future agent phases to run automated checks and resolve such blocking conditions before a test is even started.</p>
+<p><br><img src="exercises/ex5/images/ex5_04_tdm_output.png" style="border:1px solid #ddd;border-radius:4px;" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>40 – Test Data Management Agent output: parameters grouped by category with example values and reasoning</em></p>
+
+<p>▶️ <strong>Your task:</strong> Compare the agent's parameter table against your manual notes from Step 6.2:</p>
+<table>
+<thead>
+<tr>
+<th>Quality check</th>
+<th>What to look for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Completeness</strong></td>
+<td>Are all parameter placeholders from the Test Steps in the table? Are there steps where a value is clearly needed but not captured?</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td>Are categories assigned correctly? Company code = Org Data; material = Master Data; production order number = Transactional Data</td>
+</tr>
+<tr>
+<td><strong>Project context</strong></td>
+<td>Are fixed values like plant and company code already populated from the project record?</td>
+</tr>
+<tr>
+<td><strong>Reasoning</strong></td>
+<td>Does the agent trace each parameter back to the Test Step it came from and explain why it is needed?</td>
+</tr>
+<tr>
+<td><strong>Dependencies</strong></td>
+<td>Does the output indicate which parameters drive or constrain others? Use the follow-up prompt below if not.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Compare with your manual notes from Step 6.2:</strong> Did the agent capture everything you identified? Did it find parameters you missed?</p>
+</blockquote>
+<p>At the end of its response, the agent offers suggestions for next steps; one of the most useful is an analysis of the dependencies between the parameter groups. Try sending one of the offered follow-up prompts, or write your own:</p>
+<blockquote>
+<p><em>"Outline the dependencies between the parameters you identified."</em></p>
+</blockquote>
+<p>The agent should map which values must be consistent with which others; useful both for manual data lookup and as a foundation for future automated data preparation.</p>
+<hr>
+<h2>Summary</h2>
+<p>The Test Data Management Agent turned unstructured Test Step text into a structured parameter checklist; classifying every placeholder by data category and applying fixed project values automatically.</p>
+<ul>
+<li>[x] <em>Test Case</em> parameters extracted and classified by the agent</li>
+<li>[x] Parameter dependencies and categories understood</li>
+<li>[ ] Actual system values: to be looked up by the tester using the agent's output as a checklist</li>
+</ul>
+<p>You have now completed the full AI-assisted Test Preparation cycle:
+- [x] <em>Requirements</em> generated from interview transcript (Chapter 2)
+- [x] Test scope proposed by Scoping Agent (Chapter 3)
+- [x] <em>Test Plan</em> structured by Preparation Agent: Phase 1 (Chapter 4)
+- [x] <em>Test Cases</em> written by Preparation Agent: Phase 2 (Chapter 5)
+- [x] <em>Test Case</em> parameters identified and classified (Chapter 6)</p>
+<hr>
+<h1>Chapter 7 – Recap &amp; Outlook</h1>
+<hr>
+<h2>7.1 – What You Accomplished</h2>
+<p>You just worked through a complete AI-assisted Test Preparation cycle for a real SAP S/4HANA business process. Here is what you did, and what the agents did alongside you.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>What you did</th>
+<th>What AI contributed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Orientation</strong> *</td>
+<td>Explored the BJ5 process in Cloud ALM; assigned <em>User Stories</em>; reviewed the process flow</td>
+<td>Joule demonstrated the quality gate: no input, no output</td>
+</tr>
+<tr>
+<td><strong>Build input</strong> *</td>
+<td>Reviewed the interview transcript; connected <em>Requirement</em> and <em>User Stories</em> to the process</td>
+<td>In-built AI feature generated a structured <em>Requirement</em> from a raw transcript</td>
+</tr>
+<tr>
+<td><strong>Scoping</strong></td>
+<td>Mapped the process manually on paper; evaluated role boundaries and process paths</td>
+<td>Scoping Agent analyzed all linked artifacts and produced a traceable test scope in minutes</td>
+</tr>
+<tr>
+<td><strong>Test planning</strong></td>
+<td>Drafted a <em>Test Plan</em> entry manually for one <em>Scope Item</em></td>
+<td>Preparation Agent structured the full scope into a <em>Test Plan</em> with roles, paths, and Acceptance Criteria</td>
+</tr>
+<tr>
+<td><strong>Test cases</strong></td>
+<td>Wrote one <em>Test Case</em> manually in a template</td>
+<td>Preparation Agent wrote complete, executable <em>Test Cases</em> for the confirmed scope</td>
+</tr>
+<tr>
+<td><strong>Test data</strong></td>
+<td>Identified parameter placeholders in a <em>Test Case</em> step by step</td>
+<td>Test Data Management Agent extracted and classified all parameters, explained dependencies</td>
+</tr>
+</tbody>
+</table>
+<p><em>* Express path: pre-configured before the session — reviewed as context rather than performed hands-on.</em></p>
+<p>What would have taken a test team several days, end to end, was completed by the agents in the time it took you to work through the manual exercises. Not as a replacement for your judgment, but as the first draft you review rather than the blank page you fill.</p>
+<p><strong>The shift:</strong> you moved from <em>producing</em> test artifacts to <em>reviewing</em> them. The expert role does not disappear; it changes:
+Instead of writing Test Steps, you validate whether the agent got the scenario right.
+Instead of looking up master data, you confirm whether the classifications make sense.
+That judgment is irreplaceable; the mechanical production of structured content is not.</p>
+<p><strong>Time saved</strong></p>
+<p>To put the session in perspective: the table below shows rough estimates of the manual effort each stage would typically take a skilled practitioner for such a non-complex scenario with about 10 test cases. The AI agents deliver the first draft in minutes; human review adds time, but the net result is already a substantial reduction, and it will grow as the agents become more capable.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Manual effort (estimate)</th>
+<th>AI-assisted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Requirements</em> from transcript</td>
+<td>1 hour (BA)</td>
+<td>~2 minutes + review</td>
+</tr>
+<tr>
+<td><em>Test Case</em> scoping</td>
+<td>3–5 hours (architect)</td>
+<td>~3 minutes + review</td>
+</tr>
+<tr>
+<td><em>Test Plan</em> creation</td>
+<td>1–2 hours (test analyst)</td>
+<td>~3 minutes + review</td>
+</tr>
+<tr>
+<td><em>Test Case</em> writing</td>
+<td>6–8 hours (test analyst)</td>
+<td>~5 minutes + review</td>
+</tr>
+<tr>
+<td>Test data parameters</td>
+<td>2–4 hours (analyst)</td>
+<td>~2 minutes + review</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>1.5–2.5 days</strong></td>
+<td><strong>&lt; 30 minutes, review on top</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>7.2 – What's Coming Next</h2>
+<p>The capabilities you worked with today are Phase 1 of the Test Management Assistant in SAP Cloud ALM. The roadmap has three main directions.</p>
+<p><strong>Scoping Agent: broader input sources</strong></p>
+<p>Today the Scoping Agent reads from SAP Cloud ALM. In future waves it will be able to consume additional input types: Jira <em>Requirements</em>, Signavio process models, output from other SAP AI assistants in the multi-model architecture (MMA), and more. Scoping will become source-agnostic and will work across the landscape your project actually uses, not just what lives inside Cloud ALM.</p>
+<p><strong>Test Data Management Agent: from identification to execution</strong></p>
+<p>Today the agent identifies and classifies parameters. The next phases extend this into active data management: reading existing data from connected S/4HANA systems, suggesting values from productive data that fit the test context, and eventually writing clean test data directly into test systems before execution. This closes the loop from "what do I need?" to "the data is ready".</p>
+<p><strong>Managing execution of tests: from completed to signed off</strong></p>
+<p>Formal completion and genuine test validation are not the same thing; that gap is invisible in execution statistics and only surfaces at go-live. The next agent aims to close it: monitoring execution quality continuously, verifying that Test Steps were documented rather than clicked through, detecting anomalies such as suspiciously high pass rates relative to known system issues, and evaluating whether reported <em>Defects</em> carry enough detail for proper resolution. When the checks pass, it will produce a structured test report and a full <em>Scope Item</em> → <em>Test Case</em> → result traceability matrix, ready for the Test Manager's approval and sign-off.</p>
+<hr>
+<h2>7.3 – Key Takeaways</h2>
+<ol>
+<li>
+<p><strong>This is not a separate tool; it binds into Cloud ALM.</strong> Everything generated lives in Cloud ALM Test Management structures: <em>Test Plans</em>, <em>Test Cases</em> with tabs for content, relations, and references; notifications; traceability links. The agents work within and strengthen the existing SAP Cloud ALM architecture, not alongside it. Your test team's existing workflows, reports, and integrations remain intact.</p>
+</li>
+<li>
+<p><strong>AI enhances what is already there.</strong> The agents worked because the content was in the system: linked <em>Requirements</em>, <em>User Stories</em> with Acceptance Criteria, a process model. AI leverages existing structured content; it does not create quality from nothing. Investing in good process documentation and structured <em>Requirements</em> pays off twice.</p>
+</li>
+<li>
+<p><strong>Human judgment is the irreplaceable layer.</strong> Every agent in the pipeline includes a human review gate. The agents produced the first draft; you provided the quality check. Catching a role mismatch, a missing precondition, a <em>Scope Item</em> that does not belong: that is the test expert's contribution, and it matters as much as ever.</p>
+</li>
+<li>
+<p><strong>Traceability is what makes it trustworthy.</strong> The chain runs in two directions at once. Every <em>Test Case</em> links to the <em>Test Plan</em> and the scope; every <em>Scope Item</em> in that scope links to the process, the <em>User Stories</em>, and the Acceptance Criteria that defined it. These two structures meet at scope, which means a test result traces all the way back to a specific process path and the acceptance criterion it was designed to prove. When a test passes, you know what passed, what it means for the process, and which criterion it covers. That chain is what allows you to demonstrate testing assurance to auditors, project managers, and stakeholders with confidence.</p>
+</li>
+</ol>
+<hr>
+<h2>Questions &amp; Discussion</h2>
+<p>Some questions to take into the discussion:</p>
+<ol>
+<li>Where in your current testing process would agents like these save the most time?</li>
+<li>What inputs do you have today that you would want to feed to a scoping agent? (<em>Requirements</em> in Jira? Process models in Signavio? Interview recordings?)</li>
+<li>At which stage would your team want to review and confirm before the agent continues? Where does the human gate matter most?</li>
+</ol>
+<hr>
+<h2>Feedback</h2>
+<p>Two surveys. One is mandatory SAP bureaucracy. The other is the one we'll read on the train home.</p>
+<p><strong>The official one first:</strong> open the <strong>SAP Events app</strong>, choose this session in the <strong>Agenda Builder</strong>, and rate it in the <strong>Feedback</strong> section.</p>
+<p><br><img src="exercises/ex6/images/ex6_01_teched_survey_qr.png" /></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>41 – Please rate the session</em></p>
+
+<p>You will also find us after the session if you have further questions or want to share observations directly.</p>
+<hr>
+<h2>Share Your First Impressions</h2>
+<p>Help us shape what comes next. Beyond the official session rating, this short survey captures your first impressions: what worked, what surprised you, and where you see the most value. Your responses feed directly into how we prioritise the next development steps for the Test Management Assistant.</p>
+<p>If you have ideas or questions that go beyond the survey, find us after the session or leave your contact details in the open question.</p>
+<div style="text-align:center;margin:1.5em auto;max-width:260px;background:#f0f6ff;border-radius:10px;padding:1.2em 1.5em;border:1px solid #c0d8f0">
+<p style="margin:0 0 0.8em;color:#0057b8;font-weight:600;font-size:10.5pt">10 questions &middot; ~5 min</p>
+<a href="https://www.menti.com/alsqqf11whm5" target="_blank">
+<img src="exercises/ex6/images/ex6_02_mentimeter_qr.png" style="width:160px;height:auto;display:block;margin:0 auto;border:none;border-radius:4px" />
+</a>
+<p style="margin:0.7em 0 0;font-size:10pt"><a href="https://www.menti.com/alsqqf11whm5" style="color:#0070f2;font-weight:600" target="_blank">menti.com/alsqqf11whm5</a></p>
+</div>
+<p style="font-size:9pt;color:#888;margin-top:0.5em"><em>42 – Share your first impressions (Mentimeter)</em></p>
+
+<hr>
+<blockquote>
+<p><strong>Heading to the AI Theatre?</strong> The 11:15 AM session — <strong>"Test Smarter, Release Faster: Shape the SAP Test Management Assistant with Us"</strong> — is in the <strong>SAP AI Theatre</strong> (ground floor, back area under the stairs). If you want to catch it, now is the moment.</p>
+</blockquote>
+<hr>
+<h2>More from This Team at SAP TechEd</h2>
+<p>If today's session sparked ideas, there is more from the same team across the conference.</p>
+<p><br><img src="exercises/ex6/images/ex6_03_alm_summit_sessions.png" style="max-width:700px;" /></p>
+<hr>
+<h2>Thank You</h2>
+<p>Thank you for your time, your curiosity, and your engagement today.</p>
+<p><strong>TM261 – Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM</strong></p>
+<p>This material remains available after the session at the SAP TechEd GitHub repository.</p></div></body></html>

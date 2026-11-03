@@ -8,12 +8,14 @@ You just worked through a complete AI-assisted Test Preparation cycle for a real
 
 | Stage | What you did | What AI contributed |
 |---|---|---|
-| **Orientation** | Explored the BJ5 process in Cloud ALM; assigned *User Stories*; reviewed the process flow | Joule demonstrated the quality gate: no input, no output |
-| **Build input** | Reviewed the interview transcript; connected *Requirement* and *User Stories* to the process | In-built AI feature generated a structured *Requirement* from a raw transcript |
+| **Orientation** \* | Explored the BJ5 process in Cloud ALM; assigned *User Stories*; reviewed the process flow | Joule demonstrated the quality gate: no input, no output |
+| **Build input** \* | Reviewed the interview transcript; connected *Requirement* and *User Stories* to the process | In-built AI feature generated a structured *Requirement* from a raw transcript |
 | **Scoping** | Mapped the process manually on paper; evaluated role boundaries and process paths | Scoping Agent analyzed all linked artifacts and produced a traceable test scope in minutes |
 | **Test planning** | Drafted a *Test Plan* entry manually for one *Scope Item* | Preparation Agent structured the full scope into a *Test Plan* with roles, paths, and Acceptance Criteria |
 | **Test cases** | Wrote one *Test Case* manually in a template | Preparation Agent wrote complete, executable *Test Cases* for the confirmed scope |
 | **Test data** | Identified parameter placeholders in a *Test Case* step by step | Test Data Management Agent extracted and classified all parameters, explained dependencies |
+
+*\* Express path: pre-configured before the session — reviewed as context rather than performed hands-on.*
 
 What would have taken a test team several days, end to end, was completed by the agents in the time it took you to work through the manual exercises. Not as a replacement for your judgment, but as the first draft you review rather than the blank page you fill.
 
@@ -21,6 +23,19 @@ What would have taken a test team several days, end to end, was completed by the
 Instead of writing Test Steps, you validate whether the agent got the scenario right.
 Instead of looking up master data, you confirm whether the classifications make sense.
 That judgment is irreplaceable; the mechanical production of structured content is not.
+
+**Time saved**
+
+To put the session in perspective: the table below shows rough estimates of the manual effort each stage would typically take a skilled practitioner for such a non-complex scenario with about 10 test cases. The AI agents deliver the first draft in minutes; human review adds time, but the net result is already a substantial reduction, and it will grow as the agents become more capable.
+
+| Stage | Manual effort (estimate) | AI-assisted |
+|---|---|---|
+| *Requirements* from transcript | 1 hour (BA) | ~2 minutes + review |
+| *Test Case* scoping | 3–5 hours (architect) | ~3 minutes + review |
+| *Test Plan* creation | 1–2 hours (test analyst) | ~3 minutes + review |
+| *Test Case* writing | 6–8 hours (test analyst) | ~5 minutes + review |
+| Test data parameters | 2–4 hours (analyst) | ~2 minutes + review |
+| **Total** | **1.5–2.5 days** | **< 30 minutes, review on top** |
 
 ---
 
@@ -66,10 +81,12 @@ Some questions to take into the discussion:
 
 ## Feedback
 
-Please rate this session using the official SAP TechEd survey: open the SAP Events app, add this session to My Schedule, then scan:
+Two surveys. One is mandatory SAP bureaucracy. The other is the one we'll read on the train home.
+
+**The official one first:** open the **SAP Events app**, choose this session in the **Agenda Builder**, and rate it in the **Feedback** section.
 
 <br><img src="images/ex6_01_teched_survey_qr.png" />
-<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>41 – SAP TechEd session survey</em></p>
+<p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>41 – Please rate the session</em></p>
 
 You will also find us after the session if you have further questions or want to share observations directly.
 
@@ -89,6 +106,18 @@ If you have ideas or questions that go beyond the survey, find us after the sess
 <p style="margin:0.7em 0 0;font-size:10pt"><a href="https://www.menti.com/alsqqf11whm5" style="color:#0070f2;font-weight:600" target="_blank">menti.com/alsqqf11whm5</a></p>
 </div>
 <p style="font-size:9pt;color:#888;margin-top:0.5em"><em>42 – Share your first impressions (Mentimeter)</em></p>
+
+---
+
+> **Heading to the AI Theatre?** The 11:15 AM session — **"Test Smarter, Release Faster: Shape the SAP Test Management Assistant with Us"** — is in the **SAP AI Theatre** (ground floor, back area under the stairs). If you want to catch it, now is the moment.
+
+---
+
+## More from This Team at SAP TechEd
+
+If today's session sparked ideas, there is more from the same team across the conference.
+
+<br><img src="images/ex6_03_alm_summit_sessions.png" style="max-width:700px;" />
 
 ---
 

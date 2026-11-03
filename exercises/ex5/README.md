@@ -146,17 +146,4 @@ You have now completed the full AI-assisted Test Preparation cycle:
 - [x] *Test Cases* written by Preparation Agent: Phase 2 (Chapter 5)
 - [x] *Test Case* parameters identified and classified (Chapter 6)
 
-**Time saved**
-
-To put the session in perspective: the table below shows rough estimates of the manual effort each stage would typically take a skilled practitioner. The AI agents deliver the first draft in minutes; human review adds time, but the net result is already a substantial reduction, and it will grow as the agents become more capable.
-
-| Stage | Manual effort (estimate) | AI-assisted |
-|---|---|---|
-| *Requirements* from transcript | 2–4 hours (BA) | ~2 minutes + review |
-| *Test Case* scoping | 4–8 hours (architect) | ~3 minutes + review |
-| *Test Plan* creation | 2–4 hours (test analyst) | ~3 minutes + review |
-| *Test Case* writing | 1–2 days (test analyst) | ~5 minutes + review |
-| Test data parameters | 2–4 hours (analyst) | ~2 minutes + review |
-| **Total** | **3–5 days** | **< 30 minutes** |
-
 Continue to [Chapter 7 – Recap & Outlook](../ex6/README.md)
