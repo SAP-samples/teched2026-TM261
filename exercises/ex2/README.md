@@ -1,6 +1,6 @@
 # Chapter 3 – Scope with AI
 
-**Prerequisite:** You have completed [Chapter 2](../ex1/README.md); the *BJ5_simple* process has linked *Requirements* and *User Stories*.
+**Prerequisite:** You have completed [Chapter 2](../ex1/README.md) (or the [Express Setup](../ex1_espresso/README.md)); the *BJ5_simple* process has linked *Requirements* and *User Stories*.
 
 ---
 
@@ -13,6 +13,8 @@ In this chapter you'll trigger the **Scoping Agent**: an AI agent that reads you
 ## 3.1 – Trigger the Scoping Agent
 
 Time to try again; with proper input now in place.
+
+> **Express path:** you already triggered the agent in the Introduction — skip ahead to [3.2](#32--whats-happening-in-the-background).
 
 **1.** Open a new conversation in Joule and send the **same prompt** as in Step 1.3:
 
@@ -108,16 +110,16 @@ Click the **Select** button in the Joule output panel, then choose **Revise Scop
 
 You can also type your refinement directly in the Joule chat window. Navigate to *User Stories* US-05, US-06, and US-07 and note their Display IDs (format: `3-xxx`), then use a prompt like:
 
-> "Focus on *User Stories* **[enter the Display IDs]**. In particular take care of roles and create *Test Cases* which do NOT cross multiple roles."
+> "Revise scope. Focus on *User Stories* **[enter the Display IDs]**. In particular take care of roles and create *Test Cases* which do NOT cross multiple roles."
 
 <br><img src="images/ex2_05_refine_scope.png" style="border:1px solid #ddd;border-radius:4px;" />
 <p style="font-size:9pt;color:#888;margin-top:-0.5em"><em>27 – Refinement prompt: focusing on three user stories</em></p>
 
 You may try other refinements too:
-- **Narrow the scope:** "Remove *User Stories* 1–4 from the scope for now; focus only on the quality gate, goods receipt, and scrap path."
-- **Narrow by role:** "Drop the Production Planner for now, and consider only the process steps relevant for the Warehouse Clerk."
+- **Narrow the scope:** "Revise the scope: Remove *User Stories* 1–4 from the scope for now; focus only on the quality gate, goods receipt, and scrap path."
+- **Narrow by role:** "Revise Scope: Drop the Production Planner for now, and consider only the process steps relevant for the Warehouse Clerk."
 
-The agent re-runs its scoping logic and returns faster than the first pass. It presents the revised scope and pauses for your sign-off again. This time, click **Confirm** to accept the scope and move to the next stage.
+The agent re-runs its scoping logic - the response should be substantially faster than than the first pass. It presents the revised scope and pauses for your sign-off again. This time, click **Confirm** to accept the scope and move to the next stage.
 
 ---
 

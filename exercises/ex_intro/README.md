@@ -21,6 +21,10 @@ Christina Pickhardt · Daniel Lorenz · Niclas Weidner · Tobias Keller
 | 6 | Generate Test Data | Data agent; classify & explore; dependencies |
 | 7 | Recap & Outlook | Time saved; roadmap; key takeaways |
 
+> **Related session:** If today's session sparks ideas about where the Test Management Assistant should go next — there's a direct follow-on you won't want to miss: **"Test Smarter, Release Faster: Shape the SAP Test Management Assistant with Us"** starts at **11:15 AM** in the **SAP AI Theatre** (ground floor, back area under the stairs). We'll give you a heads-up before the hands-on ends so you can get there in time.
+>
+> More sessions by this team run across Tuesday and Wednesday — find the full programme at the end of this guide (Chapter 7).
+
 ---
 
 # Introduction: Test Management Assistant

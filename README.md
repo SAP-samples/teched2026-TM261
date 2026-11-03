@@ -4,45 +4,38 @@
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/teched2026-TM261)](https://api.reuse.software/info/github.com/SAP-samples/teched2026-TM261)
 
+<div style="background:#f0f6ff;border-left:4px solid #0070f2;padding:0.8em 1.2em;margin:1em 0;border-radius:0 6px 6px 0;font-size:1.05em">
+<table style="border:none;margin:0"><tr>
+<td style="border:none;padding:0 1.5em 0 0;vertical-align:middle">
+<strong>This guide is also accessible at:</strong><br><br>
+<a href="https://url.sap/iq4049" style="font-size:1.1em;font-weight:600">url.sap/iq4049</a>
+</td>
+<td style="border:none;padding:0;vertical-align:middle">
+<a href="https://url.sap/iq4049"><img src="exercises/ex_intro/images/intro_qr_github.png" width="110" style="display:block;border:none;border-radius:4px" /></a>
+</td>
+</tr></table>
+</div>
+
 ## Description
 
-This repository contains the hands-on exercise material for **SAP TechEd 2026 Session TM261**.
+This repository contains the hands-on exercise material for **SAP TechEd 2026 Session TM261** and the **ALM Summit 2026 hands-on session on Agent-led Test Management**.
 
 **Session:** Agent-Led Test Management: Hands-on Lab with Joule in SAP Cloud ALM  
-**Date:** Wednesday, 28 October 2026  
-**Location:** SAP TechEd 2026, Berlin  
+**Date:** Wednesday, 28 October 2026 , SAP TechEd 2026, Berlin  
 **Presenters:** SAP Cloud ALM Product Ownership:  
-Christina Pickhardt · Daniel Lorenz · Niclas Weidner · Tobias Keller
+Christina Pickhardt · Daniel Lorenz · Niclas Weidner · Tobias Keller · Tobias Meinzer
 
 In this session you'll experience how AI agents in SAP Cloud ALM Test Management accelerate every stage of test preparation — from generating requirements from an interview transcript to writing executable test cases and suggesting test data — for a Make-to-Stock Production process customisation scenario.
 
 ## Start here
 
-👉 **[Introduction & Exercise Guide](exercises/ex_intro/README.md)** 
+| Session | Path | Guide |
+|---|---|---|
+| **SAP TechEd 2026** | Full hands-on (~2 hours) | 👉 [Introduction & Exercise Guide](exercises/ex_intro/README.md) |
+| **Cloud ALM Summit 2026** | Express (~90 min) | 👉 [Express Setup](exercises/ex1_espresso/README.md) |
 
-The introduction covers the scenario context and session agenda. Each exercise links to the next, so you can work through the full guide sequentially.
+The full-path guide covers the complete scenario from setup to test data, with exercises linking sequentially. The express path assumes prerequisites are pre-configured and begins at the AI agent workflow.
 
-For downloading the styled HTML or PDF version of the full guide: <a href="https://github.com/SAP-samples/teched2026-TM261/tree/main/_FINAL%20SCRIPTS" target="_blank">TM261 Script Downloads (_FINAL SCRIPTS folder)</a>
-
-## Session overview
-
-| Chapter | Topic |
-|---|---|
-| Introduction | Context, agenda, what the Test Management Assistant is |
-| Chapter 1 – Getting Started | Log in, meet Joule, explore the Cloud ALM tenant |
-| Chapter 2 – Feed the Agents | Assign user stories; generate a requirements document from an interview transcript |
-| Chapter 3 – Scope with AI | Trigger the scoping agent; compare with manual scoping; refine through conversation |
-| Chapter 4 – Plan with AI | Trigger the planning agent; review the test plan at the HITL gate |
-| Chapter 5 – Generate Test Cases | Trigger the test case generation agent; review quality |
-| Chapter 6 – Generate Test Data | Trigger the test data agent; explore data suggestions |
-| Chapter 7 – Recap & Outlook | Reflect on the time saved; preview what's coming next |
-
-## Requirements
-
-- A browser (Chrome or Edge recommended)
-- Your participant credentials: `tm261-###@education.cloud.sap` / `Acce$$teched26`  
-  (replace `###` with your workstation number shown on the tent card on your desk)
-- No installation required — everything runs in SAP Cloud ALM
 
 ## Contributing
 
